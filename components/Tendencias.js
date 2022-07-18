@@ -79,8 +79,7 @@ const Destaques = () => {
             }}
           >
             <Typography variant="h6" sx={{ textTransform: "uppercase" }}>
-              Ortodontia
-            </Typography>
+Ortodontia            </Typography>
             <Typography
               variant="h2"
               sx={{

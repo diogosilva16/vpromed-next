@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Grid, Container, Typography, Box } from "@mui/material";
-import Form from "../../components/Form";
 import { useRouter } from "next/router";
+import Form from "../../components/Form";
 import { useEffect } from "react";
 // import Loader from "../Loader";
 
