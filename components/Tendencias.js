@@ -53,7 +53,7 @@ const Destaques = () => {
                   Implantologia
                 </Typography>
                 <Typography
-                  variant="h2"
+                  variant={isMobile ? "h4" : "h2"}
                   sx={{
                     textTransform: "uppercase",
                     fontFamily: "Times New Roman",
@@ -92,7 +92,7 @@ const Destaques = () => {
                   Ortodontia
                 </Typography>
                 <Typography
-                  variant="h2"
+                  variant={isMobile ? "h4" : "h2"}
                   sx={{
                     textTransform: "uppercase",
                     fontFamily: "Times New Roman",
