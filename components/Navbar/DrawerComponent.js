@@ -17,7 +17,7 @@ export const DrawerComponent = ({ openDrawer, setOpenDrawer }) => {
 
   const renderMenu = () => {
     return (
-       /* TO DO: Replace this with a dynamic list of menu items -> NEXT JS ROUTING IS GIVING LOADS OF TROUBLE WITH THIS NEED TO REVIEW LATER */
+      /* TO DO: Replace this with a dynamic list of menu items -> NEXT JS ROUTING IS GIVING LOADS OF TROUBLE WITH THIS NEED TO REVIEW LATER */
       <>
         <Link href="/sobre">
           <ListItem sx={alignText} onClick={() => setOpenDrawer(false)}>
@@ -55,67 +55,13 @@ export const DrawerComponent = ({ openDrawer, setOpenDrawer }) => {
         </Link>
       </>
     );
-    {
-      /* return MenuData.map((page, key) =>
-      page.path !== null ? (
-        <Link href={page.path !== null ? page.path : ""}>
-          <a>
-            <ListItem
-              key={key}
-              sx={alignText}
-              onClick={() => setOpenDrawer(false)}
-            >
-              <ListItemText>{page.title}</ListItemText>
-            </ListItem>
-          </a>
-        </Link>
-      ) : (
-        <>
-          <ListItem
-            key={key}
-            sx={alignText}
-            onClick={() => setOpenDrawer(false)}
-          >
-            <ListItemText>{page.title}</ListItemText>
-          </ListItem>
-          {page.id === 2 ? (
-            <List
-              sx={{
-                fontWeight: "200",
-                color: "rgba(255,255,255,0.5)",
-                textTransform: "uppercase",
-              }}
-            >
-              {renderEspecData()}
-            </List>
-          ) : (
-            page.id === 3 && (
-              <List
-                sx={{
-                  fontWeight: "200",
-                  color: "rgba(255,255,255,0.5)",
-                  textTransform: "uppercase",
-                }}
-              >
-                {renderDestData()}
-              </List>
-            )
-          )}{" "}
-        </>
-      )
-    ); */
-    }
   };
 
   const renderEspecData = () => {
     return espec.map((item, key) => (
-      <Link href={`/especialidade/${item.ARTICLE_ID}`}>
+      <Link href={`/especialidade/${item.ARTICLE_ID}`} key={key}>
         <a>
-          <ListItem
-            key={key}
-            sx={listItemStyle}
-            onClick={() => setOpenDrawer(false)}
-          >
+          <ListItem sx={listItemStyle} onClick={() => setOpenDrawer(false)}>
             <ListItemText>{item.NAME_SEO}</ListItemText>
           </ListItem>
         </a>
@@ -125,7 +71,7 @@ export const DrawerComponent = ({ openDrawer, setOpenDrawer }) => {
 
   const renderDestData = () => {
     return dest.map((item, key) => (
-      <Link href={`/tendencia/${item.ARTICLE_ID}`}>
+      <Link href={`/tendencia/${item.ARTICLE_ID}`} key={key}>
         <a>
           <ListItem
             key={key}

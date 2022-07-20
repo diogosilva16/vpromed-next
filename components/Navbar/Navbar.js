@@ -87,9 +87,9 @@ const Navbar = () => {
         >
           <List sx={{ backgroundColor: "#000", color: "#fff" }}>
             {dest.map((item, key) => (
-              <Link href={`/tendencia/${item.ARTICLE_ID}`}>
+              <Link href={`/tendencia/${item.ARTICLE_ID}`} key={key}>
                 <a>
-                  <ListItem key={key}>
+                  <ListItem>
                     <ListItemText sx={{ textTransform: "uppercase" }}>
                       {item.NAME_SEO}
                     </ListItemText>
@@ -120,9 +120,9 @@ const Navbar = () => {
         >
           <List sx={{ backgroundColor: "#000", color: "#fff" }}>
             {espec.map((item, key) => (
-              <Link href={`/especialidade/${item.ARTICLE_ID}`}>
+              <Link href={`/especialidade/${item.ARTICLE_ID}`} key={key}>
                 <a>
-                  <ListItem key={key}>
+                  <ListItem>
                     <ListItemText sx={{ textTransform: "uppercase" }}>
                       {item.NAME_SEO}
                     </ListItemText>
@@ -182,7 +182,7 @@ const Navbar = () => {
                   <MenuIcon color="secondary" />
                 </IconButton>
               </Stack>
-            )}  
+            )}
           </Toolbar>
         </Container>
       </AppBar>
