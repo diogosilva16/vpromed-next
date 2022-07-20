@@ -18,14 +18,12 @@ const Form = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
-  const [formData, setFormData] = useState([]);
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [choice, setChoice] = useState();
 
   const submitForm = async (e) => {
     e.preventDefault();
-    console.log(formData);
 
     const formInfo = {
       name: name,
@@ -39,11 +37,15 @@ const Form = () => {
       body: JSON.stringify(formInfo),
     };
 
-    console.log(formInfo);
+    let res = await fetch(`https://www.critecnow.com/promed/api/formSend/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX`, requestOptions);
+    let resJson = await res.json();
+    if (res.status === 200) {
+      console.log("WORKED");
+    } else {
+      console.log("Some error occured");
+    }
 
-    setName("");
-    setContact("");
-    setChoice();
+    console.log(formInfo);
   };
 
   const updateName = (e) => {
@@ -63,10 +65,12 @@ const Form = () => {
           <Typography variant="subtitle1">
             Os nossos especialistas cuidam de si
           </Typography>
-          <Typography variant={isMobile ? "h4" : "h2"}>Agende a sua consulta</Typography>
+          <Typography variant={isMobile ? "h4" : "h2"}>
+            Agende a sua consulta
+          </Typography>
         </Grid>
         <Grid item xs={12}>
-          <form>
+          <form onSubmit={submitForm}>
             <FormGroup>
               <Grid container spacing={2} direction="row">
                 <Grid item>
@@ -94,7 +98,11 @@ const Form = () => {
                     }}
                     onChange={updateContact}
                     type="number"
-                    onInput={(e)=>{e.target.value = Math.max(0, parseInt(e.target.value)).toString().slice(0,9)}}
+                    onInput={(e) => {
+                      e.target.value = Math.max(0, parseInt(e.target.value))
+                        .toString()
+                        .slice(0, 9);
+                    }}
                   ></TextField>
                 </Grid>
               </Grid>
@@ -108,7 +116,7 @@ const Form = () => {
                       width: "300px",
                       "&:focus": {
                         background: "black",
-                      }
+                      },
                     }}
                     onClick={() => {
                       setChoice(1);
@@ -126,7 +134,7 @@ const Form = () => {
                       width: "300px",
                       "&:focus": {
                         background: "black",
-                      }
+                      },
                     }}
                     onClick={() => {
                       setChoice(2);
@@ -159,13 +167,16 @@ const Form = () => {
                       "linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(50,50,50,1) 85%, rgba(62,62,62,1) 100%)",
                     border: "1px solid #CEC568",
                     width: isMobile || isTablet ? "50%" : "10%",
-                    '&:disabled': {
+                    "&:disabled": {
                       color: "white",
-                      background: "transparent"
-                    }
+                      background: "transparent",
+                    },
                   }}
-                  disabled={name === "" || contact === "" || choice === "" ? true : false}
-                  onClick={submitForm}
+                  disabled={
+                    name === "" || contact === "" || choice === ""
+                      ? true
+                      : false
+                  }
                 >
                   Enviar
                 </Button>
