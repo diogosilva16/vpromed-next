@@ -3,13 +3,13 @@ import { Grid, Container, Typography, Box } from "@mui/material";
 import { useRouter } from "next/router";
 import Form from "../../components/Form";
 import { useEffect } from "react";
-// import Loader from "../Loader";
+import Loader from "../../components/Loader";
 
 const Especialidade = () => {
-  //   const API_KEY = process.env.REACT_APP_TOKEN_KEY;
+  // const API_KEY = process.env.API_KEY;
 
   const router = useRouter();
-  const { id } = router.query;
+  let { id } = router.query;
 
   const [especialidadeInfo, setEspecialidadeInfo] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -18,6 +18,7 @@ const Especialidade = () => {
 
   const getEspecialidadeInfo = async () => {
     try {
+      if (!id) return;
       const response = await fetch(
         `https://www.critecnow.com/promed/api/article/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/${id}/1`
       );
@@ -37,7 +38,7 @@ const Especialidade = () => {
 
   return (
     <>
-      {/* {isLoading && <Loader />} */}
+      {isLoading && <Loader />}
       {!isLoading && !hasError && (
         <Container maxWidth="xl">
           <Grid container pt={20} pb={5}>
@@ -76,7 +77,6 @@ const Especialidade = () => {
                 </Typography>
               </Grid>
               <Grid item xs={12} pt={2}>
-                {/* <Typography variant="body1">{convertToPlain(teste).replace(/<[^>]*>/g, "")} {id}</Typography> */}
                 <Typography variant="body1" sx={{ whiteSpace: "pre-line" }}>
                   {especialidadeInfo.TEXT_SEO}
                 </Typography>

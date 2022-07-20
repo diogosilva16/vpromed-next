@@ -2,6 +2,7 @@ import { Grid, Typography, Paper, Box } from "@mui/material";
 import React, { useContext } from "react";
 import { CompanySpecialitiesContext } from "../context/CompanySpecialitiesContext";
 import Link from "next/link";
+import Loader from "./Loader";
 
 const Especialidades = () => {
   const { espec, especIsLoading, especHasError } = useContext(
@@ -49,7 +50,7 @@ const Especialidades = () => {
           pb={10}
           sx={{ textTransform: "uppercase" }}
         >
-          {/* {especIsLoading && <Loader />} */}
+          {especIsLoading && <Loader />}
           {!especIsLoading && !especHasError && renderEspecialidades()}
         </Grid>
       </Grid>

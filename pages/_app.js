@@ -7,11 +7,17 @@ import { CacheProvider } from "@emotion/react";
 import theme from "../src/theme";
 import createEmotionCache from "../src/createEmotionCache";
 import styles from "../styles/styles.scss";
+import "@georgedrpg/pannellum-react-next/es/css/video-js.css";
+import "@georgedrpg/pannellum-react-next/es/css/pannellum.css";
+import "@georgedrpg/pannellum-react-next/es/css/style-textInfo.css";
+
 import {
   CompanySpecialitiesContext,
   CompanySpecialitiesContextProvider,
 } from "../context/CompanySpecialitiesContext";
-
+import { CompanyInfoContextProvider } from "../context/CompanyInfoContext";
+import Layout from "../components/Layout";
+import Navbar from "../components/Navbar/Navbar";
 // Client-side cache shared for the whole session
 // of the user in the browser.
 
@@ -26,14 +32,15 @@ export default function MyApp(props) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <CompanySpecialitiesContextProvider>
-        <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant,
-				consistent, and simple baseline to
-				build upon. */}
-
-          <CssBaseline />
-          <Component {...pageProps} />
-        </ThemeProvider>
+        <CompanyInfoContextProvider>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            {/* <Layout> */}
+            <Navbar />
+              <Component {...pageProps} />
+            {/* </Layout> */}
+          </ThemeProvider>
+        </CompanyInfoContextProvider>
       </CompanySpecialitiesContextProvider>
     </CacheProvider>
   );
