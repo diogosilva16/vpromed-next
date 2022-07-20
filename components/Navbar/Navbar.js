@@ -20,8 +20,6 @@ import Link from "next/link";
 import { MenuData } from "./MenuData";
 import { CompanyInfoContext } from "../../context/CompanyInfoContext";
 import { CompanySpecialitiesContext } from "../../context/CompanySpecialitiesContext";
-import PopoverList from "./PopoverList";
-import MenuList from "./MenuList";
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
