@@ -125,7 +125,7 @@ export const DrawerComponent = ({ openDrawer, setOpenDrawer }) => {
 
   const renderDestData = () => {
     return dest.map((item, key) => (
-      <Link href={`/destaque/${item.ARTICLE_ID}`}>
+      <Link href={`/tendencia/${item.ARTICLE_ID}`}>
         <a>
           <ListItem
             key={key}

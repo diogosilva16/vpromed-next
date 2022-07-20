@@ -25,7 +25,6 @@ const Especialidade = () => {
       const data = await response.json();
       setEspecialidadeInfo(data);
       setIsLoading(false);
-      setTeste(especialidadeInfo.TEXT_SEO);
     } catch (error) {
       setHasError(true);
       setIsLoading(false);

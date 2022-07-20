@@ -4,6 +4,7 @@ import Tendencias from "../../components/Tendencias";
 import Especialidades from "../../components/Especialidades";
 import Form from "../../components/Form";
 import Panorama from "../../components/Panorama";
+import Sweet from "../../components/Sweet";
 
 const Inicio = () => {
   return (
@@ -12,6 +13,7 @@ const Inicio = () => {
       <Container maxWidth="xl">
         <Tendencias />
         <Especialidades />
+        <Sweet />
         <Form />
       </Container>
     </Box>

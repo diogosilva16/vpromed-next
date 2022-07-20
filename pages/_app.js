@@ -10,16 +10,9 @@ import styles from "../styles/styles.scss";
 import "@georgedrpg/pannellum-react-next/es/css/video-js.css";
 import "@georgedrpg/pannellum-react-next/es/css/pannellum.css";
 import "@georgedrpg/pannellum-react-next/es/css/style-textInfo.css";
-
-import {
-  CompanySpecialitiesContext,
-  CompanySpecialitiesContextProvider,
-} from "../context/CompanySpecialitiesContext";
+import { CompanySpecialitiesContextProvider } from "../context/CompanySpecialitiesContext";
 import { CompanyInfoContextProvider } from "../context/CompanyInfoContext";
 import Layout from "../components/Layout";
-import Navbar from "../components/Navbar/Navbar";
-// Client-side cache shared for the whole session
-// of the user in the browser.
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -35,10 +28,9 @@ export default function MyApp(props) {
         <CompanyInfoContextProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            {/* <Layout> */}
-            <Navbar />
+            <Layout>
               <Component {...pageProps} />
-            {/* </Layout> */}
+            </Layout>
           </ThemeProvider>
         </CompanyInfoContextProvider>
       </CompanySpecialitiesContextProvider>

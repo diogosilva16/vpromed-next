@@ -19,6 +19,7 @@ export function CompanyInfoContextProvider({ children }) {
       );
       const data = await response.json();
       setCompanyInfo(data);
+      setIsLoading(false);
     } catch (error) {
       setHasError(true);
       setIsLoading(false);
