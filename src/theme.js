@@ -21,12 +21,21 @@ const theme = createTheme({
     body2: {},
     subtitle1: {
       color: "#fff",
-      textTransform: 'uppercase',
-      fontSize: "1.5rem"
+      textTransform: "uppercase",
+      fontSize: "1.5rem",
     },
     subtitle2: {},
     caption: {},
     button: {},
+  },
+  components: {
+    MuiAccordionSummary: {
+      styleOverrides: {
+        content: {
+          flexGrow: 0,
+        },
+      },
+    },
   },
 });
 

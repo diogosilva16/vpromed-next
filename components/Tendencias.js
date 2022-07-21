@@ -9,14 +9,25 @@ import {
 } from "@mui/material";
 import React, { useContext } from "react";
 import { CompanyInfoContext } from "../context/CompanyInfoContext";
+import ButtonComp from "./ButtonComp";
 import Loader from "./Loader";
+import { useRouter } from "next/router";
 
 const Destaques = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
+  const router = useRouter();
+  let { id } = router.query;
+
   const { dest, destIsLoading, destHasError } = useContext(CompanyInfoContext);
+
+  const goToPage = (id) => {
+    router.push(`/tendencia/${id}`);
+  }
+
+  console.log(dest);
 
   return (
     <>
@@ -65,9 +76,7 @@ const Destaques = () => {
                 <Typography variant="body1" pb={2}>
                   {JSON.parse(dest[0].CUSTOMCAMPS).small_description}
                 </Typography>
-                <Button variant="contained" color="success" sx={{width: "50%"}}>
-                  Saber mais
-                </Button>
+                <ButtonComp text={"Saber Mais"} goTo={() => goToPage(dest[0].ARTICLE_ID)}/>
               </Grid>
             </Box>
 
@@ -104,9 +113,7 @@ const Destaques = () => {
                 <Typography variant="body1" pb={2}>
                   {JSON.parse(dest[1].CUSTOMCAMPS).small_description}
                 </Typography>
-                <Button variant="contained" color="success" sx={{width: "50%"}}>
-                  Saber mais
-                </Button>
+                <ButtonComp text={"Saber Mais"} goTo={() => goToPage(dest[1].ARTICLE_ID)}/>
               </Grid>
             </Box>
           </Grid>

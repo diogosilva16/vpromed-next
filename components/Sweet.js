@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Typography, Button, Box } from "@mui/material";
+import { Grid, Typography, Box } from "@mui/material";
 import Loader from "./Loader";
+import ButtonComp from "./ButtonComp";
+import { useRouter } from "next/router";
 
 const Sweet = () => {
   const [cardInfo, setCardInfo] = useState([]);
@@ -25,7 +27,14 @@ const Sweet = () => {
     getCardInfo();
   }, []);
 
-  console.log(cardInfo);
+  const router = useRouter();
+  let { id } = router.query;
+
+  const goToPage = (id) => {
+    console.log("yes");
+    // router.push(`/tendencia/${id}`);
+  };
+
   return (
     <>
       {isLoading && <Loader />}
@@ -33,7 +42,9 @@ const Sweet = () => {
         <Grid container direction="row" pt={5} pb={5}>
           <Grid item md={6}>
             <Box>
-              <Typography variant="subtitle1">{cardInfo[0].NAME_SEO}</Typography>
+              <Typography variant="subtitle1">
+                {cardInfo[0].NAME_SEO}
+              </Typography>
             </Box>
             <Box pt={2} pb={2}>
               <Typography
@@ -49,17 +60,10 @@ const Sweet = () => {
               </Typography>
             </Box>
             <Box pt={2} pb={2}>
-              <Button
-                variant="contained"
-                sx={{
-                  background:
-                    "linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(50,50,50,1) 85%, rgba(62,62,62,1) 100%)",
-                  border: "1px solid #CEC568",
-                  // width: isMobile || isTablet ? "50%" : "10%",
-                }}
-              >
-                Saber Mais
-              </Button>
+              <ButtonComp
+                text={"Saber Mais"}
+                goTo={() => goToPage(cardInfo[0].ARTICLE_ID)}
+              />
             </Box>
           </Grid>
           <Grid item md={6}>

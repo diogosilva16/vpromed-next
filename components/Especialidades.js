@@ -48,7 +48,7 @@ const Especialidades = () => {
           spacing={5}
           columnSpacing={5}
           pb={10}
-          sx={{ textTransform: "uppercase", wordWrap:"break-word" }}
+          sx={{ textTransform: "uppercase", wordWrap: "break-word" }}
         >
           {especIsLoading && <Loader />}
           {!especIsLoading && !especHasError && renderEspecialidades()}

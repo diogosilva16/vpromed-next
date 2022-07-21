@@ -60,7 +60,7 @@ const Navbar = () => {
       <>
         <Link href="/sobre">
           <ListItem
-            sx={{ my: 2, color: "white", display: "block" }}
+            sx={{ my: 2, color: "white", display: "block", cursor: "pointer" }}
             aria-describedby={id}
           >
             <ListItemText>VPROMED</ListItemText>
@@ -68,7 +68,13 @@ const Navbar = () => {
         </Link>
         <ListItem>
           <ListItemText
-            sx={{ my: 2, color: "white", display: "block" }}
+            sx={{
+              my: 2,
+              color: "white",
+              display: "block",
+              "&:hover": { color: "#CEC568" },
+              cursor: "pointer",
+            }}
             aria-describedby={id}
             onMouseDown={(e) => handleClick(e, 3)}
           >
@@ -101,7 +107,13 @@ const Navbar = () => {
         </Popover>
         <ListItem>
           <ListItemText
-            sx={{ my: 2, color: "white", display: "block" }}
+            sx={{
+              my: 2,
+              color: "white",
+              display: "block",
+              "&:hover": { color: "#CEC568" },
+              cursor: "pointer",
+            }}
             aria-describedby={id}
             onMouseDown={(e) => handleClick(e, 2)}
           >
@@ -134,7 +146,7 @@ const Navbar = () => {
         </Popover>
         <Link href="/contactos">
           <ListItem
-            sx={{ my: 2, color: "white", display: "block" }}
+            sx={{ my: 2, color: "white", display: "block", cursor: "pointer" }}
             aria-describedby={id}
           >
             <ListItemText>CONTACTOS</ListItemText>

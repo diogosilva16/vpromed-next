@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Grid, Container, Typography, Box , Button} from "@mui/material";
+import { Grid, Container, Typography, Box, Button } from "@mui/material";
 import { useRouter } from "next/router";
-import Form from "../../components/Form";
 import { useEffect } from "react";
 import Loader from "../../components/Loader";
+import ButtonComp from "../../components/ButtonComp";
+
 const Destaque = () => {
   const router = useRouter();
   let { id } = router.query;
@@ -44,7 +45,7 @@ const Destaque = () => {
             <Box sx={{ width: "100vw" }}>
               <Grid item xs={12}>
                 <Typography variant="h5" style={{ color: "white" }}>
-                  Destaque
+                  Tendência
                 </Typography>
               </Grid>
               <Grid item xs={12} pt={2} pb={5}>
@@ -106,21 +107,7 @@ const Destaque = () => {
               </Grid>
             </Box>
             <Grid item xs={12} pt={5} textAlign="center">
-              <Button
-                variant="contained"
-                sx={{
-                  background:
-                    "linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(50,50,50,1) 85%, rgba(62,62,62,1) 100%)",
-                  border: "1px solid #CEC568",
-                  width: "250px",
-                  "&:hover": {
-                    color: "#CEC568",
-                  },
-                }}
-                onClick={goToContact}
-              >
-                Contacte-nos
-              </Button>
+              <ButtonComp text={"Contacte-nos"} goTo={goToContact} />
             </Grid>
           </Grid>
         </Container>
