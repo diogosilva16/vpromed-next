@@ -16,7 +16,6 @@ const PanoComp = () => {
       yaw={180}
       hfov={130}
       showControls={false}
-      autoLoad
       // hotspotDebug={true}
       disableKeyboardCtrl={true}
       mouseZoom={false}

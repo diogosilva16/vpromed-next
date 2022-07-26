@@ -21,7 +21,7 @@ const Form = () => {
 
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
-  const [choice, setChoice] = useState();
+  const [choice, setChoice] = useState(null);
   const [playAnim, setPlayAnim] = useState("");
 
   const playAnimation = (event, unobserve) => {
@@ -188,7 +188,7 @@ const Form = () => {
                       },
                     }}
                     disabled={
-                      name === "" || contact === "" || choice === ""
+                      name === "" || contact === "" || choice === null
                         ? true
                         : false
                     }
