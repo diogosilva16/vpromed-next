@@ -1,9 +1,16 @@
 import styles from '../styles/Home.module.css'
 import React, { useState } from 'react'
-import {Container, Grid, Typography, Button, Box } from '@mui/material'
+import {Container, Grid, Typography, Button, Box, useMediaQuery } from '@mui/material'
 import Link from 'next/link'
+import "animate.css";
+import { useTheme } from "@emotion/react";
+
 
 export default function Home() {
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  
   const [clicked, setClicked] = useState(false);
 
   return (
@@ -30,19 +37,19 @@ export default function Home() {
           sx={{
             zIndex: "1",
             position: "absolute",
-            top: "0",
+            top: isMobile ? "0" : "",
             visibility: clicked ? "hidden" : "visible",
           }}
         >
           {/* visibility because just removing the element was not placing the other elements in the right spot :)*/}
-          <Typography
+          <Typography className='animate__animated animate__fadeInDown'
             sx={{
               fontFamily: "Times New Roman",
               backgroundImage:
                 "linear-gradient(135deg, hsla(55, 51%, 61%, 1) 0%, hsla(0, 0%, 0%, 1) 100%)",
               backgroundClip: "text",
               color: "transparent",
-              fontSize: "40rem",
+              fontSize: isMobile ? "40rem" : "90vw",
             }}
           >
             V
@@ -50,8 +57,9 @@ export default function Home() {
         </Grid>
         <Grid item sx={{ zIndex: "2" }}>
           <Typography
-            variant="h5"
+            variant={isMobile ? "h5" : "h3"}
             sx={{ textTransform: "uppercase", fontFamily: "Times New Roman" }}
+            className="animate__animated animate__zoomIn"
           >
             Dentárias <span style={{ color: "#CEC568" }}>V</span>-Promed
           </Typography>
@@ -66,6 +74,7 @@ export default function Home() {
                 fontFamily: "Times New Roman",
                 color: "#CEC568",
               }}
+              className={clicked && "animate__animated animate__fadeInUp"}
             >
               Bem vindo
             </Typography>
@@ -83,6 +92,7 @@ export default function Home() {
                     color: "#CEC568",
                   },
                 }}
+                className={clicked && "animate__animated animate__fadeIn"}
               >
                 Entrar
               </Button>

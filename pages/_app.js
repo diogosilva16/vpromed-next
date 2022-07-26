@@ -13,6 +13,7 @@ import "@georgedrpg/pannellum-react-next/es/css/style-textInfo.css";
 import { CompanySpecialitiesContextProvider } from "../context/CompanySpecialitiesContext";
 import { CompanyInfoContextProvider } from "../context/CompanyInfoContext";
 import Layout from "../components/Layout";
+import "animate.css"
 
 const clientSideEmotionCache = createEmotionCache();
 

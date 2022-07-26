@@ -56,6 +56,7 @@ const Team = () => {
             }}
             onMouseEnter={() => uIsHovering(index)}
             onMouseLeave={uIsNotHovering}
+            className="animate__animated animate__fadeInUp"
           >
             <Box
               visibility={
