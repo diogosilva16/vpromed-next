@@ -79,7 +79,7 @@ const Destaques = () => {
                   isMobile || (isTablet && !isDesktop)
                     ? "featureMobile"
                     : "feature1"
-                } ${isMobile || isTablet ? "" : animation1}`}
+                } ${(isMobile || isTablet) && !isDesktop ? "" : animation1}`}
                 justifyContent={
                   isMobile || (isTablet && !isDesktop)
                     ? "flex-start"
@@ -182,10 +182,10 @@ const Destaques = () => {
             <Observer onChange={handleAnim2}>
               <Box
                 className={`${
-                  isMobile || (isTablet && !isDesktop)
+                  (isMobile || isTablet) && !isDesktop
                     ? "featureMobile"
                     : "feature2"
-                } ${isMobile || isTablet ? "" : animation2}`}
+                } ${(isMobile || isTablet) && !isDesktop ? "" : animation2}`}
                 display="flex"
                 position={!isMobile || (!isTablet && "relative")}
                 justifyContent={
