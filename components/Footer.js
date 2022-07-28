@@ -10,11 +10,7 @@ const Footer = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
-  const {
-    companyInfo,
-    isLoading,
-    hasError,
-  } = useContext(CompanyInfoContext);
+  const { companyInfo, isLoading, hasError } = useContext(CompanyInfoContext);
 
   return (
     <Box>
@@ -26,7 +22,7 @@ const Footer = () => {
       ) : (
         <Container
           maxWidth="xl"
-          sx={{ paddingTop: "5rem", textAlign: { xs: "center", md: "left" } }}
+          sx={{ paddingTop: "4rem", textAlign: { xs: "center", md: "left" } }}
         >
           <Box sx={{ borderTop: "solid 1px #CEC568" }}>
             <Grid container pt={5}>
@@ -34,26 +30,66 @@ const Footer = () => {
                 <img src={companyInfo[0]?.VALUE || ""} width={200} alt="Logo" />
               </Grid>
               <Grid item xs={12} md={3} pt={isMobile || (isTablet && 3)}>
-                <Typography sx={{ color: "white", textTransform: "uppercase" }}>
+                <Typography
+                  sx={{
+                    color: "white",
+                    textTransform: "uppercase",
+                    fontFamily: "Times New Roman",
+                    fontSize: isMobile && "1rem",
+                  }}
+                >
                   Horários
                 </Typography>
-                <Typography sx={{ color: "white", whiteSpace: "pre-wrap" }}>
+                <Typography
+                  sx={{
+                    color: "white",
+                    whiteSpace: "pre-wrap",
+                    fontFamily: "Mulish",
+                    fontSize: isMobile && "0.8125rem",
+                  }}
+                >
                   {companyInfo[8].VALUE}
                 </Typography>
               </Grid>
               <Grid item xs={12} md={3} pt={isMobile || (isTablet && 3)}>
-                <Typography sx={{ color: "white", textTransform: "uppercase" }}>
+                <Typography
+                  sx={{
+                    color: "white",
+                    textTransform: "uppercase",
+                    fontFamily: "Times New Roman",
+                    fontSize: isMobile && "1rem",
+                  }}
+                >
                   Águeda Clinic
                 </Typography>
-                <Typography sx={{ color: "white" }}>
+                <Typography
+                  sx={{
+                    color: "white",
+                    fontFamily: "Mulish",
+                    fontSize: isMobile && "0.8125rem",
+                  }}
+                >
                   {companyInfo[10].VALUE}
                 </Typography>
               </Grid>
               <Grid item xs={12} md={3} pt={isMobile || (isTablet && 3)}>
-                <Typography sx={{ color: "white", textTransform: "uppercase" }}>
+                <Typography
+                  sx={{
+                    color: "white",
+                    textTransform: "uppercase",
+                    fontFamily: "Times New Roman",
+                    fontSize: isMobile && "1rem",
+                  }}
+                >
                   Barrô Clinic
                 </Typography>
-                <Typography sx={{ color: "white" }}>
+                <Typography
+                  sx={{
+                    color: "white",
+                    fontFamily: "Mulish",
+                    fontSize: isMobile && "0.8125rem",
+                  }}
+                >
                   {companyInfo[11].VALUE}
                 </Typography>
               </Grid>
@@ -64,7 +100,14 @@ const Footer = () => {
                 pt={5}
                 sx={{ textAlign: { xs: "center", md: "left" } }}
               >
-                <Typography sx={{ color: "white", textTransform: "uppercase" }}>
+                <Typography
+                  sx={{
+                    color: "white",
+                    textTransform: "uppercase",
+                    fontFamily: "Mulish",
+                    fontSize: isMobile && "1rem",
+                  }}
+                >
                   Siga-nos online
                 </Typography>
                 <Box sx={{ color: "white" }} pt={1}>
@@ -76,26 +119,34 @@ const Footer = () => {
               <Grid
                 container
                 pt={isMobile || isTablet ? 5 : 10}
-                pb={10}
+                pb={5}
                 sx={{ textTransform: "uppercase" }}
               >
                 <Grid item xs={12} md={3} pb={isMobile || (isTablet && 2)}>
-                  <Typography sx={{ color: "white" }}>
+                  <Typography
+                    sx={{ color: "white", fontSize: isMobile && "1rem" }}
+                  >
                     Política de Privacidade
                   </Typography>
                 </Grid>
                 <Grid item xs={12} md={3} pb={isMobile || (isTablet && 2)}>
-                  <Typography sx={{ color: "white" }}>
+                  <Typography
+                    sx={{ color: "white", fontSize: isMobile && "1rem" }}
+                  >
                     Livro de reclamações
                   </Typography>
                 </Grid>
                 <Grid item xs={12} md={3} pb={isMobile || (isTablet && 2)}>
-                  <Typography sx={{ color: "white" }}>
+                  <Typography
+                    sx={{ color: "white", fontSize: isMobile && "1rem" }}
+                  >
                     Copyright 2022
                   </Typography>
                 </Grid>
                 <Grid item xs={12} md={3}>
-                  <Typography sx={{ color: "white" }}>
+                  <Typography
+                    sx={{ color: "white", fontSize: isMobile && "1rem" }}
+                  >
                     Developed by critec
                   </Typography>
                 </Grid>

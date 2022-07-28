@@ -65,7 +65,7 @@ export default function Home() {
           </Typography>
         </Grid>
         {/* visibility because just removing the element was not placing this in the right spot :)*/}
-        <Box style={{ visibility: clicked ? "visible" : "hidden" }}>
+        <Box style={{ visibility: clicked ? "visible" : "hidden", textAlign: "center" }}>
           <Grid item pt={5}>
             <Typography
               variant="h5"

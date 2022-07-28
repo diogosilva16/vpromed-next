@@ -44,7 +44,7 @@ const Destaque = () => {
           <Grid container pt={20}>
             <Box sx={{ width: "100vw" }}>
               <Grid item xs={12}>
-                <Typography variant="h5" style={{ color: "white" }}>
+                <Typography variant="h5" style={{ color: "white", textTransform: "uppercase" }}>
                   Tendência
                 </Typography>
               </Grid>
@@ -73,18 +73,18 @@ const Destaque = () => {
                     borderLeft: "1px solid #CEC568",
                     fontFamily: "Times New Roman",
                     textTransform: "uppercase",
+                    fontSize: "1.25rem"
                   }}
-                  variant="h5"
                 >
                   Conheça as características do {trendInfo.NAME_SEO}
                 </Typography>
               </Grid>
               <Grid item xs={12}>
-                <Typography sx={{ color: "white" }} variant="body1">
+                <Typography sx={{ color: "white", fontSize: "1.25rem" }} variant="body1">
                   {trendInfo.TEXT_SEO}
                 </Typography>
               </Grid>
-              <Grid item xs={12} pt={5}>
+              {/* <Grid item xs={12} pt={5}>
                 <Typography
                   sx={{ color: "#CEC568", textTransform: "uppercase" }}
                 >
@@ -104,7 +104,7 @@ const Destaque = () => {
                   viverra maecenas accumsan lacus vel facilisis volutpat est
                   velit.
                 </Typography>
-              </Grid>
+              </Grid> */}
             </Box>
             <Grid item xs={12} pt={5} textAlign="center">
               <ButtonComp text={"Contacte-nos"} goTo={goToContact} />

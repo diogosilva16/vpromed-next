@@ -17,7 +17,8 @@ import Observer from "@researchgate/react-intersection-observer";
 const Destaques = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
+  const isTablet = useMediaQuery(theme.breakpoints.up("sm"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const [animation1, setAnimation1] = useState("");
   const [animation2, setAnimation2] = useState("");
 
@@ -48,6 +49,7 @@ const Destaques = () => {
     router.push(`/tendencia/${id}`);
   };
 
+  console.log(dest);
   return (
     <>
       {destIsLoading && <Loader />}
@@ -55,7 +57,13 @@ const Destaques = () => {
         <div className="teste">
           <Grid container pt={5} pb={5}>
             <Typography
-              sx={{ color: "white", textTransform: "uppercase" }}
+              sx={{
+                color: "#CEC568",
+                textTransform: "uppercase",
+                fontFamily: "Mulish",
+                fontWeight: "bold",
+                fontSize: "1rem",
+              }}
               pb={2}
               className={
                 isMobile || isTablet
@@ -68,70 +76,151 @@ const Destaques = () => {
             <Observer onChange={handleAnim1}>
               <Box
                 className={`${
-                  isMobile || isTablet ? "featureNoBg" : "feature1"
+                  isMobile || (isTablet && !isDesktop)
+                    ? "featureMobile"
+                    : "feature1"
                 } ${isMobile || isTablet ? "" : animation1}`}
-                justifyContent="flex-end"
+                justifyContent={
+                  isMobile || (isTablet && !isDesktop)
+                    ? "flex-start"
+                    : "flex-end"
+                }
                 display="flex"
-                position={isMobile || isTablet ? "" : "relative"}
+                position="relative"
+                sx={{
+                  backgroundImage:
+                    isDesktop && `url(${dest[0].IMAGES[0]?.FILE})`,
+                }}
               >
-                <Grid
-                  item
-                  md={5}
-                  p={isMobile || isTablet ? 0 : 10}
-                  sx={{
-                    position: { md: "absolute" },
-                    bottom: 0,
-                    backgroundColor: "#2A2A2A",
-                    color: "white",
-                    height: { md: "60%", lg: "60%", xl: "40%" },
-                    width: "100%",
-                  }}
-                >
-                  <Typography variant="h6" sx={{ textTransform: "uppercase" }}>
-                    Implantologia
-                  </Typography>
-                  <Typography
-                    variant={isMobile ? "h4" : "h2"}
+                <>
+                  <Grid
+                    item
+                    md={5}
+                    xs={12}
+                    p={isMobile || (isTablet && !isDesktop) ? 0 : 10}
                     sx={{
-                      textTransform: "uppercase",
-                      fontFamily: "Times New Roman",
+                      zIndex: isMobile || (isTablet && !isDesktop) ? 1 : 0,
+                      position: { md: "absolute" },
+                      bottom: 0,
+                      backgroundColor:
+                        isMobile || (isTablet && !isDesktop) ? "" : "#2A2A2A",
                       color: "white",
+                      height: { md: "60%", lg: "60%", xl: "40%" },
+                      width: "80%",
                     }}
                   >
-                    {dest[0].NAME_SEO}
-                  </Typography>
-                  <Typography variant="body1" pb={2}>
-                    {JSON.parse(dest[0].CUSTOMCAMPS).small_description}
-                  </Typography>
-                  <ButtonComp
-                    text={"Saber Mais"}
-                    goTo={() => goToPage(dest[0].ARTICLE_ID)}
-                  />
-                </Grid>
+                    <Typography
+                      variant="h6"
+                      pt={isMobile || (isTablet && !isDesktop) ? 5 : 0}
+                      sx={{ textTransform: "uppercase" }}
+                    >
+                      Implantologia
+                    </Typography>
+                    <Typography
+                      variant={isMobile ? "h4" : "h2"}
+                      sx={{
+                        textTransform: "uppercase",
+                        fontFamily: "Times New Roman",
+                        color: "white",
+                      }}
+                    >
+                      {dest[0].NAME_SEO}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      pb={2}
+                      pt={
+                        (isMobile && !isDesktop) || (isTablet && !isDesktop)
+                          ? 3
+                          : 0
+                      }
+                    >
+                      {JSON.parse(dest[0].CUSTOMCAMPS).small_description}
+                    </Typography>
+                    <Box
+                      sx={{
+                        textAlign:
+                          (isMobile || isTablet) && !isDesktop && "center",
+                      }}
+                    >
+                      <ButtonComp
+                        text={"Saber Mais"}
+                        goTo={() => goToPage(dest[0].ARTICLE_ID)}
+                      />
+                    </Box>
+                  </Grid>
+                  {isMobile && !isDesktop && (
+                    <Box
+                      xs={12}
+                      sx={{
+                        zIndex: 0,
+                        backgroundImage: `url(${dest[0].IMAGES[1]?.FILE})`,
+                        width: "70%",
+                        height: "70%",
+                        left: "30%",
+                        backgroundSize: "cover",
+                        position: "absolute",
+                      }}
+                    ></Box>
+                  )}
+                  {isTablet && !isDesktop && (
+                    <Box
+                      sx={{
+                        backgroundImage: `url(${dest[0].IMAGES[1]?.FILE})`,
+                        width: "80%",
+                        height: "100%",
+                        left: "20%",
+                        backgroundSize: "cover",
+                        position: "absolute",
+                      }}
+                    ></Box>
+                  )}
+                </>
               </Box>
             </Observer>
 
             <Observer onChange={handleAnim2}>
               <Box
                 className={`${
-                  isMobile || isTablet ? "featureNoBg" : "feature2"
+                  isMobile || (isTablet && !isDesktop)
+                    ? "featureMobile"
+                    : "feature2"
                 } ${isMobile || isTablet ? "" : animation2}`}
                 display="flex"
                 position={!isMobile || (!isTablet && "relative")}
+                justifyContent={
+                  isMobile || (isTablet && !isDesktop)
+                    ? "flex-end"
+                    : "flex-start"
+                }
                 mt={10}
+                sx={{
+                  backgroundImage:
+                    isDesktop && `url(${dest[1].IMAGES[0]?.FILE})`,
+                }}
               >
                 <Grid
                   item
-                  md={5}
-                  p={isMobile || isTablet ? 0 : 10}
+                  md={4}
+                  xs={12}
+                  p={isMobile || (isTablet && !isDesktop) ? 0 : 10}
                   sx={{
-                    backgroundColor: "#2A2A2A",
+                    zIndex: isMobile || (isTablet && !isDesktop) ? 1 : 0,
                     color: "white",
                     width: "100%",
                     height: { md: "60%", lg: "60%", xl: "45%" },
+                    position: { md: "absolute" },
+                    backgroundColor:
+                      isMobile || (isTablet && !isDesktop) ? "" : "#2A2A2A",
+                    paddingLeft:
+                      isMobile || (isTablet && !isDesktop) ? "3rem" : 10,
                   }}
                 >
-                  <Typography variant="h6" sx={{ textTransform: "uppercase" }}>
+                  <Typography
+                    variant="h6"
+                    pt={isMobile || (isTablet && !isDesktop) ? 5 : 0}
+                    sx={{ textTransform: "uppercase" }}
+                  >
                     Ortodontia
                   </Typography>
                   <Typography
@@ -152,6 +241,33 @@ const Destaques = () => {
                     goTo={() => goToPage(dest[1].ARTICLE_ID)}
                   />
                 </Grid>
+                {isMobile && !isDesktop && (
+                  <Box
+                    xs={12}
+                    sx={{
+                      zIndex: 0,
+                      backgroundImage: `url(${dest[1].IMAGES[1]?.FILE})`,
+                      width: "70%",
+                      height: "70%",
+                      left: "0",
+                      backgroundSize: "cover",
+                      position: "absolute",
+                    }}
+                  ></Box>
+                )}
+                {isTablet && !isDesktop && (
+                  <Box
+                    sx={{
+                      zIndex: 0,
+                      backgroundImage: `url(${dest[1].IMAGES[1]?.FILE})`,
+                      width: "60%",
+                      height: "25%",
+                      left: 0,
+                      backgroundSize: "cover",
+                      position: "absolute",
+                    }}
+                  ></Box>
+                )}
               </Box>
             </Observer>
           </Grid>

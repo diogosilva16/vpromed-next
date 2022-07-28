@@ -52,6 +52,8 @@ const Sweet = () => {
     getCardInfo();
   }, []);
 
+  console.log(cardInfo);
+
   const router = useRouter();
   let { id } = router.query;
 
@@ -64,7 +66,7 @@ const Sweet = () => {
     <>
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
-        <Grid container direction="row" pt={5} pb={5}>
+        <Grid container direction="row" pb={5}>
           <Observer onChange={playLeftAnim}>
             <Grid
               item
@@ -72,20 +74,33 @@ const Sweet = () => {
               className={`${isMobile || isTablet ? "" : leftAnim}`}
             >
               <Box>
-                <Typography variant="subtitle1">
+                <Typography
+                  variant="subtitle1"
+                  sx={{ fontSize: isMobile && "0.8125rem" }}
+                >
                   {cardInfo[0].NAME_SEO}
                 </Typography>
               </Box>
               <Box pt={2} pb={2}>
                 <Typography
                   variant="h2"
-                  sx={{ textTransform: "uppercase", color: "white" }}
+                  sx={{
+                    textTransform: "uppercase",
+                    color: "white",
+                    fontSize: "2.125rem",
+                  }}
                 >
                   {JSON.parse(cardInfo[0].CUSTOMCAMPS).main_description}
                 </Typography>
               </Box>
               <Box>
-                <Typography>
+                <Typography
+                  sx={{
+                    fontFamily: "Mulish",
+                    fontWeight: "regular",
+                    fontSize: isMobile && "1rem",
+                  }}
+                >
                   {JSON.parse(cardInfo[0].CUSTOMCAMPS).small_description}.
                 </Typography>
               </Box>
@@ -102,9 +117,10 @@ const Sweet = () => {
               item
               md={6}
               className={`${isMobile || isTablet ? "" : rightAnim}`}
+              sx={{ display: isMobile && "none" }}
             >
               <img
-                src="https://via.placeholder.com/600x300"
+                src={cardInfo[0].IMAGES[0]?.FILE || ""}
                 alt="Especialidade"
                 width="100%"
               />

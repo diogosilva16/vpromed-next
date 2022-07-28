@@ -11,7 +11,7 @@ const PanoComp = () => {
       autoLoad
       width="100vw"
       height={isMobile ? "70vh" : "100vh"}
-      image="https://www.critecnow.com/promed/storage/files/original/pano_62d58262901de.jpg"
+      image="https://www.critecnow.com/promed/storage/files/original/panorama_62e24e3ea860e.jpg"
       pitch={0}
       yaw={180}
       hfov={130}

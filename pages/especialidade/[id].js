@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { Grid, Container, Typography, Box } from "@mui/material";
+import { Grid, Container, Typography, Box, useMediaQuery } from "@mui/material";
 import { useRouter } from "next/router";
 import Form from "../../components/Form";
 import { useEffect } from "react";
 import Loader from "../../components/Loader";
+import { useTheme } from "@emotion/react";
+import Sweet from "../../components/Sweet";
 
 const Especialidade = () => {
   // const API_KEY = process.env.API_KEY;
+  const theme = useTheme();
 
   const router = useRouter();
   let { id } = router.query;
@@ -14,7 +17,7 @@ const Especialidade = () => {
   const [especialidadeInfo, setEspecialidadeInfo] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const [teste, setTeste] = useState("");
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const getEspecialidadeInfo = async () => {
     try {
@@ -40,10 +43,13 @@ const Especialidade = () => {
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
         <Container maxWidth="xl">
-          <Grid container pt={20} pb={5}>
+          <Grid container pt={isMobile ? 8 : 20} pb={5}>
             <Box sx={{ width: "100vw", background: "black" }}>
               <Grid item xs={12} pb={3} className="borderEspecialidade">
-                <Typography variant="h5" style={{ color: "white" }}>
+                <Typography
+                  variant="h5"
+                  style={{ color: "white", textTransform: "uppercase" }}
+                >
                   Especialidades
                 </Typography>
               </Grid>
@@ -53,8 +59,8 @@ const Especialidade = () => {
                     color: "white",
                     textTransform: "uppercase",
                     fontFamily: "Times New Roman",
+                    fontSize: "1.25rem",
                   }}
-                  variant="body1"
                 >
                   <span style={{ color: "#CEC568" }}>
                     A {especialidadeInfo.NAME_SEO} divide-se em {""}
@@ -63,24 +69,32 @@ const Especialidade = () => {
                 </Typography>
               </Grid>
             </Box>
-            <Grid container pt={3} sx={{ color: "white" }}>
+            <Grid container pt={3} pb={5} sx={{ color: "white" }}>
               <Grid item xs={12}>
                 <Typography
                   variant="h5"
                   sx={{
                     fontFamily: "Times New Roman",
                     textTransform: "uppercase",
+                    fontSize: "2.25rem",
                   }}
                 >
                   {especialidadeInfo.NAME_SEO}
                 </Typography>
               </Grid>
               <Grid item xs={12} pt={2}>
-                <Typography variant="body1" sx={{ whiteSpace: "pre-line" }}>
+                <Typography
+                  sx={{
+                    whiteSpace: "pre-line",
+                    fontFamily: "Mulish",
+                    fontSize: "1.125rem",
+                  }}
+                >
                   {especialidadeInfo.TEXT_SEO}
                 </Typography>
               </Grid>
             </Grid>
+            <Sweet />
             <Form />
           </Grid>
         </Container>

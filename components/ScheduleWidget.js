@@ -1,7 +1,7 @@
 import { Typography, Box, Grid, useMediaQuery } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "./Form";
 import MobileForm from "./MobileForm";
 
@@ -14,6 +14,29 @@ const ScheduleWidget = () => {
 
   const [open, setOpen] = useState(false);
 
+  const [icon, setIcon] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
+
+  const getIcon = async () => {
+    try {
+      const response = await fetch(
+        `https://www.critecnow.com/promed/api/filebyid/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/12/1`
+      );
+      const data = await response.json();
+      setIcon(data);
+      setIsLoading(false);
+    } catch (error) {
+      setHasError(true);
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getIcon();
+  }, []);
+
+  console.log(icon);
   const openSchedule = () => {
     setOpen(true);
   };
@@ -54,10 +77,10 @@ const ScheduleWidget = () => {
               : 0,
           bottom: 5,
           zIndex: 99,
-          borderTopLeftRadius: "20px",
-          borderBottomLeftRadius: "20px",
+          borderTopLeftRadius: "6px",
+          borderBottomLeftRadius: "6px",
           height: isMobile ? "25vh" : isTablet || isXL ? "17vh" : "25vh",
-          width: isMobile ? "15vw" : isTablet ? "10vw" : "5vw",
+          width: isMobile ? "15vw" : isTablet ? "10vw" : "3vw",
           background:
             "linear-gradient(180deg, hsla(160, 34%, 29%, 1) 0%, hsla(158, 43%, 18%, 1) 100%)",
           color: "white",
@@ -79,7 +102,7 @@ const ScheduleWidget = () => {
             </Typography>
           </Grid>
           <Grid item pt={4}>
-            <EventAvailableIcon fontSize="large" />
+            <img src="https://www.critecnow.com/promed/storage/files/original/agendar_consulta_62e02504cb458.svg" />
           </Grid>
         </Grid>
       </Box>

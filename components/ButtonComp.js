@@ -13,6 +13,9 @@ const ButtonComp = (props) => {
         "&:hover": {
           color: "#CEC568",
         },
+        fontFamily: "Mulish",
+        fontWeight: "regular",
+        fontSize: "1rem",
       }}
       onClick={props.goTo}
     >

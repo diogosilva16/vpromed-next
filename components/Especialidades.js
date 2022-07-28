@@ -41,14 +41,22 @@ const Especialidades = () => {
             <Paper
               sx={{
                 textAlign: "center",
+                display: "flex",
                 background:
                   "linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(50,50,50,1) 85%, rgba(62,62,62,1) 100%)",
+                minHeight: isMobile ? "150px" : "200px",
+                alignItems: "center",
+                justifyContent: "center",
               }}
               elevation={24}
             >
-              <img src="https://via.placeholder.com/150" alt="Especialidade" />
+              <img
+                src={especialidade.IMAGES[0]?.FILE || ""}
+                alt="Especialidade"
+              />
             </Paper>
             <Typography
+              pt={1}
               sx={{ color: "white", textAlign: "center" }}
               variant="subtitle2"
             >
@@ -65,9 +73,16 @@ const Especialidades = () => {
       {especIsLoading && <Loader />}
       {!especIsLoading && !especHasError && (
         <Grid container>
-          <Grid item xs={12} pb={10} pt={5} sx={{ textTransform: "uppercase" }}>
-            <Typography variant="subtitle1">Especialidades</Typography>
-            <Typography variant="h2">Conheça-nos</Typography>
+          <Grid item xs={12} pb={5} pt={5} sx={{ textTransform: "uppercase" }}>
+            <Typography
+              variant="subtitle1"
+              sx={{ fontSize: isMobile && "0.8125rem" }}
+            >
+              As nossas especialidades
+            </Typography>
+            <Typography variant="h2" sx={{ fontSize: isMobile && "2.25rem" }}>
+              Conheça-nos
+            </Typography>
           </Grid>
           <Observer onChange={playEspecAnim}>
             <Grid

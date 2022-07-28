@@ -76,8 +76,11 @@ const Form = () => {
     <Box>
       <Observer onChange={playAnimation}>
         <Grid container className={`${isMobile || isTablet ? "" : playAnim}`}>
-          <Grid item xs={12} pb={5} pt={5} sx={{ textTransform: "uppercase" }}>
-            <Typography variant="subtitle1">
+          <Grid item xs={12} pb={3} pt={5} sx={{ textTransform: "uppercase" }}>
+            <Typography
+              variant="subtitle1"
+              sx={{ fontSize: isMobile && "0.8125rem" }}
+            >
               Os nossos especialistas cuidam de si
             </Typography>
             <Typography variant={isMobile ? "h4" : "h2"}>
@@ -129,6 +132,9 @@ const Form = () => {
                         textTransform: "uppercase",
                         border: "1px solid white",
                         width: "300px",
+                        fontFamily: "Mulish",
+                        fontWeight: "regular",
+                        fontSize: isMobile && "0.8125rem",
                         "&:focus": {
                           background: "black",
                         },
@@ -147,6 +153,9 @@ const Form = () => {
                         textTransform: "uppercase",
                         border: "1px solid white",
                         width: "300px",
+                        fontFamily: "Mulish",
+                        fontWeight: "regular",
+                        fontSize: isMobile && "0.8125rem",
                         "&:focus": {
                           background: "black",
                         },
@@ -167,6 +176,9 @@ const Form = () => {
                         required
                         sx={{
                           color: "white",
+                          fontFamily: "Mulish",
+                          fontWeight: "regular",
+                          fontSize: isMobile && "1rem",
                         }}
                       />
                     }

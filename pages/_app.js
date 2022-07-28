@@ -13,7 +13,7 @@ import "@georgedrpg/pannellum-react-next/es/css/style-textInfo.css";
 import { CompanySpecialitiesContextProvider } from "../context/CompanySpecialitiesContext";
 import { CompanyInfoContextProvider } from "../context/CompanyInfoContext";
 import Layout from "../components/Layout";
-import "animate.css"
+import "animate.css";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -24,6 +24,12 @@ export default function MyApp(props) {
     <CacheProvider value={emotionCache}>
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;600;700;800&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <CompanySpecialitiesContextProvider>
         <CompanyInfoContextProvider>

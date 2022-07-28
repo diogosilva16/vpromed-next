@@ -40,11 +40,10 @@ const Team = () => {
     setIsHovering(false);
   };
 
-
   const _renderTeamInfo = () => {
     return teamInfo.map((item, index) => {
       return (
-        <Grid item xs={12} sm={4} md={3} key={index}>
+        <Grid item xs={6} sm={4} md={3} key={index}>
           <Paper
             sx={{
               backgroundImage: `url(${item.IMAGES[0].FILE})`,
@@ -98,10 +97,10 @@ const Team = () => {
         <Grid container pt={1} sx={{ color: "white" }}>
           <Grid item xs={12}>
             <Typography
-              variant="h5"
               sx={{
                 fontFamily: "Times New Roman",
                 textTransform: "uppercase",
+                fontSize: "2.25rem",
               }}
             >
               A Equipa

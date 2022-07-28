@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Container, Grid, Box, Typography } from "@mui/material";
+import { Container, Grid, Box, Typography, useMediaQuery } from "@mui/material";
 import Loader from "../../components/Loader";
 import Team from "../../components/Team";
+import Especialidades from "../../components/Especialidades";
+import { useTheme } from "@emotion/react";
+import Form from "../../components/Form";
 
 const Sobre = () => {
+  const theme = useTheme();
+
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [companyAbout, setCompanyAbout] = useState([]);
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const getCompanyAbout = async () => {
     try {
@@ -31,7 +37,7 @@ const Sobre = () => {
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
         <Container maxWidth="xl">
-          <Grid container pt={20} pb={5}>
+          <Grid container pt={isMobile ? 8 : 20} pb={5}>
             <Box sx={{ width: "100vw", background: "black" }}>
               <Grid item xs={12} pb={3} className="borderEspecialidade">
                 <Typography
@@ -47,8 +53,8 @@ const Sobre = () => {
                     color: "white",
                     textTransform: "uppercase",
                     fontFamily: "Times New Roman",
+                    fontSize: "1.25rem",
                   }}
-                  variant="body1"
                 >
                   {JSON.parse(companyAbout.CUSTOMCAMPS).small_description}
                 </Typography>
@@ -57,10 +63,10 @@ const Sobre = () => {
             <Grid container pt={3} sx={{ color: "white" }}>
               <Grid item xs={12}>
                 <Typography
-                  variant="h5"
                   sx={{
                     fontFamily: "Times New Roman",
                     textTransform: "uppercase",
+                    fontSize: "2.25rem",
                   }}
                 >
                   Clínica
@@ -79,13 +85,21 @@ const Sobre = () => {
                 </Typography>
               </Grid>
               <Grid item xs={12} pt={2}>
-                <Typography variant="body1" sx={{ whiteSpace: "pre-line" }}>
+                <Typography
+                  sx={{
+                    whiteSpace: "pre-line",
+                    fontFamily: "Mulish",
+                    fontSize: "1.125rem",
+                  }}
+                >
                   {companyAbout.TEXT_SEO}
                 </Typography>
               </Grid>
             </Grid>
           </Grid>
           <Team />
+          <Especialidades />
+          <Form />
         </Container>
       )}
     </>

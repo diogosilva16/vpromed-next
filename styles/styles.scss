@@ -1,85 +1,96 @@
 body {
-    background-color: #2a2a2a;
-    overflow-x: hidden;
-    color: white;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  background-color: #2a2a2a;
+  overflow-x: hidden;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li:hover {
+  color: #cec568;
+}
+
+.navbar {
+  background-color: #535353;
+  height: 150px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  color: white;
+
+  p {
+    margin: 0;
+    padding: 20px;
   }
-  
-  a {
-    text-decoration: none;
-    color: inherit;
+}
+
+.teste {
+  background-color: #2a2a2a;
+
+  h1 {
+    margin: 0;
+    padding: 20px;
   }
-  
-  li:hover {
-    color: #cec568;
+
+  .feature1,
+  .feature2 {
+    // background-image: url("https://www.critecnow.com/promed/storage/files/original/dentes_nopropriodia_62e2a7a66c00b.png");
+    height: 100vh;
+    width: 100vw;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
-  
-  .navbar {
-    background-color: #535353;
-    height: 150px;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    color: white;
-  
-    p {
-      margin: 0;
-      padding: 20px;
-    }
+
+  .feature2 {
+    // background-image: url("https://www.critecnow.com/promed/storage/files/original/alinhadores_invisiveis_62e2a7f34f4f5.png");
+    height: 100vh;
+    width: 100vw;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
-  
-  .teste {
-    background-color: #2a2a2a;
-  
-    h1 {
-      margin: 0;
-      padding: 20px;
-    }
-  
-    .feature1,
-    .feature2 {
-      background-image: url("https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2");
-      height: 100vh;
-      width: 100vw;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-  
-    .featureNoBg {
-      background-image: none;
-      // height: 100vh;
-      width: 100vw;
-    }
+
+  .featureMobile {
+    // background-image: none;
+    // background-image: url("https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2");
+    // background-size: "";
+    // height: 100vh;
+    width: 100vw;
   }
-  
-  // .pnlm-load-box{
-  // //    background-color: !important;
-  // }
-  
-  // .pnlm-container{
-  //      background-color: red !important;
-  // }
-  
-  .navLinks {
-    color: #fff;
-  }
-  
-  .borderEspecialidade {
-    position: relative;
-  }
-  
-  .borderEspecialidade:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 40%;
-    border: 1px solid #cec568;
-  }
-  
-  .Mui-checked {
-    color: white !important;
-  }
+}
+
+// .pnlm-load-box{
+// //    background-color: !important;
+// }
+
+// .pnlm-container{
+//      background-color: red !important;
+// }
+
+.navLinks {
+  color: #fff;
+}
+
+.borderEspecialidade {
+  position: relative;
+}
+
+.borderEspecialidade:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40%;
+  border: 1px solid #cec568;
+}
+
+.Mui-checked {
+  color: white !important;
+}
