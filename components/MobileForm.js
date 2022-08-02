@@ -25,30 +25,24 @@ const MobileForm = () => {
   const submitForm = async (e) => {
     e.preventDefault();
 
-    const formInfo = {
-      name: name,
-      contact: contact,
-      choice: choice === 1 ? "Marcar uma consulta" : "Pedir informações",
+    var formdata = new FormData();
+    formdata.append("name", name);
+    formdata.append("contact", contact);
+    formdata.append("choice", choice === 1 ? "Marcar uma consulta" : "Pedir informações");
+
+    var requestOptions = {
+      method: "POST",
+      body: formdata,
+      redirect: "follow",
     };
 
-    const requestOptions = {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formInfo),
-    };
-
-    let res = await fetch(
-      `https://www.critecnow.com/promed/api/formSend/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX`,
+    fetch(
+      "https://www.critecnow.com/promed/api/formSend/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX",
       requestOptions
-    );
-    let resJson = await res.json();
-    if (res.status === 200) {
-      console.log("WORKED");
-    } else {
-      console.log("Some error occured");
-    }
-
-    console.log(formInfo);
+    )
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
   };
 
   const updateName = (e) => {

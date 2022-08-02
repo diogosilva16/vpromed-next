@@ -53,6 +53,7 @@ const Especialidades = () => {
               <img
                 src={especialidade.IMAGES[0]?.FILE || ""}
                 alt="Especialidade"
+                width={100}
               />
             </Paper>
             <Typography

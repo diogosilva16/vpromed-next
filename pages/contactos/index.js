@@ -15,7 +15,7 @@ import Loader from "../../components/Loader";
 import { useTheme } from "@emotion/react";
 import { CompanyInfoContext } from "../../context/CompanyInfoContext";
 
-const Contactos = () => {
+const Contactos = ({ mobData, horData, locData }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -43,7 +43,7 @@ const Contactos = () => {
                         color: "white",
                       }}
                     >
-                      <AccordionSummary sx={{flexGrow: 0}}>
+                      <AccordionSummary sx={{ flexGrow: 0 }}>
                         <Typography
                           variant={isMobile ? "h4" : "h2"}
                           sx={{
@@ -57,15 +57,15 @@ const Contactos = () => {
                       </AccordionSummary>
                       <AccordionDetails>
                         <Box>
-                          <EventAvailableIcon />
+                          <img src={locData.FILE} width={40} />
                           <Typography>{companyInfo[6].VALUE}</Typography>
                         </Box>
                         <Box pt={3}>
-                          <EventAvailableIcon />
+                          <img src={mobData.FILE} width={40} />
                           <Typography>{companyInfo[10].VALUE}</Typography>
                         </Box>
                         <Box pt={3}>
-                          <EventAvailableIcon />
+                          <img src={horData.FILE} width={40} />
                           <Typography>{companyInfo[8].VALUE}</Typography>
                         </Box>
                       </AccordionDetails>
@@ -97,15 +97,15 @@ const Contactos = () => {
                       </AccordionSummary>
                       <AccordionDetails>
                         <Box>
-                          <EventAvailableIcon />
+                          <img src={locData.FILE} width={40} />
                           <Typography>{companyInfo[7].VALUE}</Typography>
                         </Box>
                         <Box pt={3}>
-                          <EventAvailableIcon />
+                          <img src={mobData.FILE} width={40} />
                           <Typography>{companyInfo[11].VALUE}</Typography>
                         </Box>
                         <Box pt={3}>
-                          <EventAvailableIcon />
+                          <img src={horData.FILE} width={40} />
                           <Typography>{companyInfo[9].VALUE}</Typography>
                         </Box>
                       </AccordionDetails>
@@ -122,4 +122,26 @@ const Contactos = () => {
   );
 };
 
+export async function getStaticProps() {
+  const mobileResponse = await fetch(
+    `https://www.critecnow.com/promed/api/filebyid/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/33/1`
+  );
+  const mobData = await mobileResponse.json();
+  const horarioResponse = await fetch(
+    `https://www.critecnow.com/promed/api/filebyid/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/36/1`
+  );
+  const horData = await horarioResponse.json();
+  const localResponse = await fetch(
+    `https://www.critecnow.com/promed/api/filebyid/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/37/1`
+  );
+  const locData = await localResponse.json();
+
+  return {
+    props: {
+      mobData,
+      horData,
+      locData,
+    },
+  };
+}
 export default Contactos;

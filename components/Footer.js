@@ -1,5 +1,5 @@
 import { Box, Grid, Typography, Container, useMediaQuery } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import { useTheme } from "@emotion/react";
 import { CompanyInfoContext } from "../context/CompanyInfoContext";
@@ -11,6 +11,37 @@ const Footer = () => {
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
   const { companyInfo, isLoading, hasError } = useContext(CompanyInfoContext);
+
+  const [twitter, setTwitter] = useState("");
+  const [facebook, setFacebook] = useState("");
+  const [instagram, setInstagram] = useState("");
+  const [error, setError] = useState("");
+
+  const getIcons = async () => {
+    try {
+      const twResponse = await fetch(
+        `https://www.critecnow.com/promed/api/filebyid/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/34/1`
+      );
+      const twData = await twResponse.json();
+      setTwitter(twData);
+      const fbResponse = await fetch(
+        `https://www.critecnow.com/promed/api/filebyid/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/35/1`
+      );
+      const fbData = await fbResponse.json();
+      setFacebook(fbData);
+      const igResponse = await fetch(
+        `https://www.critecnow.com/promed/api/filebyid/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/32/1`
+      );
+      const igData = await igResponse.json();
+      setInstagram(igData);
+    } catch (error) {
+      setError(true);
+    }
+  };
+
+  useEffect(() => {
+    getIcons();
+  }, []);
 
   return (
     <Box>
@@ -111,9 +142,21 @@ const Footer = () => {
                   Siga-nos online
                 </Typography>
                 <Box sx={{ color: "white" }} pt={1}>
-                  <FacebookRoundedIcon sx={{ paddingRight: "0.5rem" }} />
-                  <FacebookRoundedIcon sx={{ paddingRight: "0.5rem" }} />
-                  <FacebookRoundedIcon sx={{ paddingRight: "0.5rem" }} />
+                  <img
+                    src={facebook.FILE}
+                    width={40}
+                    style={{ paddingRight: "0.5rem" }}
+                  />
+                  <img
+                    src={instagram.FILE}
+                    width={40}
+                    style={{ paddingRight: "0.5rem" }}
+                  />
+                  <img
+                    src={twitter.FILE}
+                    width={40}
+                    style={{ paddingRight: "0.5rem" }}
+                  />
                 </Box>
               </Grid>
               <Grid

@@ -49,7 +49,6 @@ const Destaques = () => {
     router.push(`/tendencia/${id}`);
   };
 
-  console.log(dest);
   return (
     <>
       {destIsLoading && <Loader />}
@@ -201,7 +200,7 @@ const Destaques = () => {
               >
                 <Grid
                   item
-                  md={4}
+                  md={5}
                   xs={12}
                   p={isMobile || (isTablet && !isDesktop) ? 0 : 10}
                   sx={{

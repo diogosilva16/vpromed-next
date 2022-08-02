@@ -35,8 +35,6 @@ const ScheduleWidget = () => {
   useEffect(() => {
     getIcon();
   }, []);
-
-  console.log(icon);
   const openSchedule = () => {
     setOpen(true);
   };
@@ -102,7 +100,7 @@ const ScheduleWidget = () => {
             </Typography>
           </Grid>
           <Grid item pt={4}>
-            <img src="https://www.critecnow.com/promed/storage/files/original/agendar_consulta_62e02504cb458.svg" />
+            <img src={icon.FILE} />
           </Grid>
         </Grid>
       </Box>

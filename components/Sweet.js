@@ -51,9 +51,7 @@ const Sweet = () => {
   useEffect(() => {
     getCardInfo();
   }, []);
-
-  console.log(cardInfo);
-
+  
   const router = useRouter();
   let { id } = router.query;
 

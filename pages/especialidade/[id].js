@@ -14,6 +14,16 @@ const Especialidade = () => {
   const router = useRouter();
   let { id } = router.query;
 
+  const [wait, setWait] = useState(true);
+
+  const timer = setTimeout(() => setWait(false), 1500);
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [timer]);
+
   const [especialidadeInfo, setEspecialidadeInfo] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
@@ -95,7 +105,7 @@ const Especialidade = () => {
               </Grid>
             </Grid>
             <Sweet />
-            <Form />
+            {!wait && <Form />}
           </Grid>
         </Container>
       )}

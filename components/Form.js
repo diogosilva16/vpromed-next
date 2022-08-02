@@ -10,9 +10,14 @@ import {
   FormControl,
   FormControlLabel,
   useMediaQuery,
+  Alert,
+  Collapse,
+  IconButton,
 } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import { useTheme } from "@emotion/react";
 import Observer from "@researchgate/react-intersection-observer";
+import { SafetyCheckRounded } from "@mui/icons-material";
 
 const Form = () => {
   const theme = useTheme();
@@ -23,6 +28,9 @@ const Form = () => {
   const [contact, setContact] = useState("");
   const [choice, setChoice] = useState(null);
   const [playAnim, setPlayAnim] = useState("");
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [openFeedback, setOpenFeedback] = useState(true);
+  const [checked, setChecked] = useState(false);
 
   const playAnimation = (event, unobserve) => {
     if (event.isIntersecting) {
@@ -36,10 +44,15 @@ const Form = () => {
   const submitForm = async (e) => {
     e.preventDefault();
 
+    setFormSubmitted(false);
+
     var formdata = new FormData();
     formdata.append("name", name);
     formdata.append("contact", contact);
-    formdata.append("choice", choice === 1 ? "Marcar uma consulta" : "Pedir informações");
+    formdata.append(
+      "choice",
+      choice === 1 ? "Marcar uma consulta" : "Pedir informações"
+    );
 
     var requestOptions = {
       method: "POST",
@@ -52,7 +65,13 @@ const Form = () => {
       requestOptions
     )
       .then((response) => response.text())
-      .then((result) => console.log(result))
+      .then(
+        (result) => setFormSubmitted(true),
+        setName(""),
+        setContact(""),
+        setOpenFeedback(true),
+        setChecked(false),
+      )
       .catch((error) => console.log("error", error));
   };
 
@@ -66,6 +85,9 @@ const Form = () => {
     setContact(e.target.value);
   };
 
+  const handleChecked = (event) => {
+    setChecked(event.target.checked);
+  };
   return (
     <Box>
       <Observer onChange={playAnimation}>
@@ -96,6 +118,7 @@ const Form = () => {
                         borderRadius: "5px",
                       }}
                       onChange={updateName}
+                      value={name}
                     ></TextField>
                   </Grid>
                   <Grid item>
@@ -103,6 +126,7 @@ const Form = () => {
                       variant="filled"
                       label="Contacto"
                       required
+                      value={contact}
                       sx={{
                         width: "300px",
                         background: "white",
@@ -168,6 +192,8 @@ const Form = () => {
                     control={
                       <Checkbox
                         required
+                        checked={checked}
+                        onChange={handleChecked}
                         sx={{
                           color: "white",
                           fontFamily: "Mulish",
@@ -204,6 +230,42 @@ const Form = () => {
                 </Grid>
               </FormGroup>
             </form>
+            {formSubmitted && (
+              <Box pt={2}>
+                <Collapse in={openFeedback}>
+                  <Alert
+                    action={
+                      <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"
+                        onClick={() => {
+                          setOpenFeedback(false);
+                          setFormSubmitted(false);
+                        }}
+                      >
+                        <CloseIcon fontSize="inherit" />
+                      </IconButton>
+                    }
+                    sx={{
+                      backgroundColor: "#2a2a2a",
+                      boxShadow: " 0px 10px 15px -3px rgba(0,0,0,0.1)",
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        color: "#cec568",
+                        textTransform: "uppercase",
+                        fontFamily: "Mulish",
+                      }}
+                    >
+                      Pedido de agendamento enviado com sucesso.
+                    </Typography>
+                  </Alert>
+                </Collapse>
+              </Box>
+            )}
           </Grid>
         </Grid>
       </Observer>
