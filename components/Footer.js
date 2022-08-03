@@ -60,7 +60,21 @@ const Footer = () => {
               <Grid item xs={12} md={3}>
                 <img src={companyInfo[0]?.VALUE || ""} width={200} alt="Logo" />
               </Grid>
-              <Grid item xs={12} md={3} pt={isMobile || (isTablet && 3)}>
+              {(isMobile || isTablet) && (
+                <Grid item xs={12} pt={3}>
+                  <Typography
+                    sx={{
+                      fontSize: "1.25rem",
+                      fontFamily: "Times New Roman",
+                      textTransform: "uppercase",
+                      color: "#CEC568",
+                    }}
+                  >
+                    Pode contar connosco
+                  </Typography>
+                </Grid>
+              )}
+              <Grid item xs={12} md={3} pt={(isMobile || isTablet) && 3}>
                 <Typography
                   sx={{
                     color: "white",
@@ -82,7 +96,7 @@ const Footer = () => {
                   {companyInfo[8].VALUE}
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={3} pt={isMobile || (isTablet && 3)}>
+              <Grid item xs={12} md={3} pt={(isMobile || isTablet) && 3}>
                 <Typography
                   sx={{
                     color: "white",
@@ -100,10 +114,15 @@ const Footer = () => {
                     fontSize: isMobile && "0.8125rem",
                   }}
                 >
-                  {companyInfo[10].VALUE}
+                  <a
+                    style={{ textDecoration: "underline" }}
+                    href={`tel: ${companyInfo[10].VALUE}`}
+                  >
+                    {companyInfo[10].VALUE}
+                  </a>
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={3} pt={isMobile || (isTablet && 3)}>
+              <Grid item xs={12} md={3} pt={(isMobile || isTablet) && 3}>
                 <Typography
                   sx={{
                     color: "white",
@@ -121,7 +140,12 @@ const Footer = () => {
                     fontSize: isMobile && "0.8125rem",
                   }}
                 >
-                  {companyInfo[11].VALUE}
+                  <a
+                    style={{ textDecoration: "underline" }}
+                    href={`tel: ${companyInfo[10].VALUE}`}
+                  >
+                    {companyInfo[11].VALUE}
+                  </a>
                 </Typography>
               </Grid>
               <Grid
@@ -141,22 +165,21 @@ const Footer = () => {
                 >
                   Siga-nos online
                 </Typography>
-                <Box sx={{ color: "white" }} pt={1}>
-                  <img
-                    src={facebook.FILE}
-                    width={40}
-                    style={{ paddingRight: "0.5rem" }}
-                  />
-                  <img
-                    src={instagram.FILE}
-                    width={40}
-                    style={{ paddingRight: "0.5rem" }}
-                  />
-                  <img
-                    src={twitter.FILE}
-                    width={40}
-                    style={{ paddingRight: "0.5rem" }}
-                  />
+                <Box
+                  justifyContent={(isMobile || isTablet) && "center"}
+                  display="flex"
+                  color={"white"}
+                  pt={1}
+                >
+                  <Box p={1.5}>
+                    <img src={facebook.FILE} width={40} />
+                  </Box>
+                  <Box p={1.5}>
+                    <img src={instagram.FILE} width={40} />
+                  </Box>
+                  <Box p={1.5}>
+                    <img src={twitter.FILE} width={40} />
+                  </Box>
                 </Box>
               </Grid>
               <Grid
@@ -190,7 +213,12 @@ const Footer = () => {
                   <Typography
                     sx={{ color: "white", fontSize: isMobile && "1rem" }}
                   >
-                    Developed by critec
+                    Developed by{" "}
+                    <span
+                      style={{ textTransform: "lowercase", fontWeight: "900" }}
+                    >
+                      critec
+                    </span>
                   </Typography>
                 </Grid>
               </Grid>

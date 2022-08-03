@@ -26,14 +26,14 @@ const Contactos = ({ mobData, horData, locData }) => {
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
         <Container maxWidth="xl">
-          <Grid container pt={20}>
+          <Grid container pt={(isMobile) ? 10 : 20}>
             <Box sx={{ width: "100%" }}>
               <Grid item xs={12}>
                 <Typography variant="h5" style={{ color: "white" }}>
                   Contactos
                 </Typography>
               </Grid>
-              <Box textAlign="center">
+              <Box textAlign="center" pt={5}>
                 <Container maxWidth="xs">
                   <Grid item xs={12}>
                     <Accordion

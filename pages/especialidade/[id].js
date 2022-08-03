@@ -48,14 +48,29 @@ const Especialidade = () => {
     getEspecialidadeInfo();
   }, [id, isLoading]);
 
+  console.log(especialidadeInfo);
   return (
     <>
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
         <Container maxWidth="xl">
-          <Grid container pt={isMobile ? 8 : 20} pb={5}>
-            <Box sx={{ width: "100vw", background: "black" }}>
-              <Grid item xs={12} pb={3} className="borderEspecialidade">
+          <Grid container pt={isMobile ? 7 : 20} pb={5}>
+            <Box
+              sx={{
+                zIndex: 0,
+                position: "absolute",
+                left: "calc(-50vw + 50%)",
+              }}
+            >
+              <img src={especialidadeInfo.IMAGES[1]?.FILE} width="100%" />
+            </Box>
+            <Box
+              sx={{
+                zIndex: 1,
+                position: "relative",
+              }}
+            >
+              <Grid item xs={12} pt={1} pb={3} className="borderEspecialidade">
                 <Typography
                   variant="h5"
                   style={{ color: "white", textTransform: "uppercase" }}
@@ -104,9 +119,9 @@ const Especialidade = () => {
                 </Typography>
               </Grid>
             </Grid>
-            <Sweet />
-            {!wait && <Form />}
           </Grid>
+          <Sweet />
+          {!wait && <Form />}
         </Container>
       )}
     </>

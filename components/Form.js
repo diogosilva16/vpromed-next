@@ -89,196 +89,218 @@ const Form = () => {
     setChecked(event.target.checked);
   };
   return (
-    <Box>
-      <Observer onChange={playAnimation}>
-        <Grid container className={`${isMobile || isTablet ? "" : playAnim}`}>
-          <Grid item xs={12} pb={3} pt={5} sx={{ textTransform: "uppercase" }}>
-            <Typography
-              variant="subtitle1"
-              sx={{ fontSize: isMobile && "0.8125rem" }}
+    <>
+      <Box>
+        <Box
+          pt={isMobile ? 0 : 10}
+          sx={{
+            width: "100vw",
+            position: "relative",
+            left: "calc(-50vw + 50%)",
+          }}
+        >
+          {isMobile || isTablet ? (
+            <img src="/separador.png" width="100%" alt="separador mobile" />
+          ) : (
+            <img src="/sepDesktop.png" width="100%" alt="separador" />
+          )}
+        </Box>
+        <Observer onChange={playAnimation}>
+          <Grid container className={`${isMobile || isTablet ? "" : playAnim}`}>
+            <Grid
+              item
+              xs={12}
+              pb={3}
+              pt={5}
+              sx={{ textTransform: "uppercase" }}
             >
-              Os nossos especialistas cuidam de si
-            </Typography>
-            <Typography variant={isMobile ? "h4" : "h2"}>
-              Agende a sua consulta
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <form onSubmit={submitForm}>
-              <FormGroup>
-                <Grid container spacing={2} direction="row">
-                  <Grid item>
-                    <TextField
-                      variant="filled"
-                      label="Nome"
-                      required
-                      sx={{
-                        width: "300px",
-                        background: "white",
-                        borderRadius: "5px",
-                      }}
-                      onChange={updateName}
-                      value={name}
-                    ></TextField>
-                  </Grid>
-                  <Grid item>
-                    <TextField
-                      variant="filled"
-                      label="Contacto"
-                      required
-                      value={contact}
-                      sx={{
-                        width: "300px",
-                        background: "white",
-                        borderRadius: "5px",
-                      }}
-                      onChange={updateContact}
-                      type="number"
-                      onInput={(e) => {
-                        e.target.value = Math.max(0, parseInt(e.target.value))
-                          .toString()
-                          .slice(0, 9);
-                      }}
-                    ></TextField>
-                  </Grid>
-                </Grid>
-                <Grid container spacing={2} direction="row" pt={2}>
-                  <Grid item>
-                    <Button
-                      sx={{
-                        color: "white",
-                        textTransform: "uppercase",
-                        border: "1px solid white",
-                        width: "300px",
-                        fontFamily: "Mulish",
-                        fontWeight: "regular",
-                        fontSize: isMobile && "0.8125rem",
-                        "&:focus": {
-                          background: "black",
-                        },
-                      }}
-                      onClick={() => {
-                        setChoice(1);
-                      }}
-                    >
-                      Marcar uma consulta
-                    </Button>
-                  </Grid>
-                  <Grid item>
-                    <Button
-                      sx={{
-                        color: "white",
-                        textTransform: "uppercase",
-                        border: "1px solid white",
-                        width: "300px",
-                        fontFamily: "Mulish",
-                        fontWeight: "regular",
-                        fontSize: isMobile && "0.8125rem",
-                        "&:focus": {
-                          background: "black",
-                        },
-                      }}
-                      onClick={() => {
-                        setChoice(2);
-                      }}
-                    >
-                      Pedir informações
-                    </Button>
-                  </Grid>
-                </Grid>
-                <Grid item pt={2}>
-                  <FormControlLabel
-                    sx={{ color: "white" }}
-                    control={
-                      <Checkbox
+              <Typography
+                variant="subtitle1"
+                sx={{ fontSize: isMobile && "0.8125rem" }}
+              >
+                Os nossos especialistas cuidam de si
+              </Typography>
+              <Typography variant={isMobile ? "h4" : "h2"}>
+                Agende a sua consulta
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <form onSubmit={submitForm}>
+                <FormGroup>
+                  <Grid container spacing={2} direction="row">
+                    <Grid item>
+                      <TextField
+                        variant="filled"
+                        label="Nome"
                         required
-                        checked={checked}
-                        onChange={handleChecked}
+                        sx={{
+                          width: "300px",
+                          background: "white",
+                          borderRadius: "5px",
+                        }}
+                        onChange={updateName}
+                        value={name}
+                      ></TextField>
+                    </Grid>
+                    <Grid item>
+                      <TextField
+                        variant="filled"
+                        label="Contacto"
+                        required
+                        value={contact}
+                        sx={{
+                          width: "300px",
+                          background: "white",
+                          borderRadius: "5px",
+                        }}
+                        onChange={updateContact}
+                        type="number"
+                        onInput={(e) => {
+                          e.target.value = Math.max(0, parseInt(e.target.value))
+                            .toString()
+                            .slice(0, 9);
+                        }}
+                      ></TextField>
+                    </Grid>
+                  </Grid>
+                  <Grid container spacing={2} direction="row" pt={2}>
+                    <Grid item>
+                      <Button
                         sx={{
                           color: "white",
+                          textTransform: "uppercase",
+                          border: "1px solid white",
+                          width: "300px",
                           fontFamily: "Mulish",
                           fontWeight: "regular",
-                          fontSize: isMobile && "1rem",
+                          fontSize: isMobile && "0.8125rem",
+                          "&:focus": {
+                            background: "black",
+                          },
                         }}
-                      />
-                    }
-                    label="Li e aceito os termos e condições e a política de privacidade"
-                  />
-                </Grid>
-                <Grid item pt={2}>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    sx={{
-                      background:
-                        "linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(50,50,50,1) 85%, rgba(62,62,62,1) 100%)",
-                      border: "1px solid #CEC568",
-                      width: isMobile || isTablet ? "50%" : "10%",
-                      "&:disabled": {
-                        color: "white",
-                        background: "transparent",
-                      },
-                    }}
-                    disabled={
-                      name === "" || contact === "" || choice === null
-                        ? true
-                        : false
-                    }
-                  >
-                    Enviar
-                  </Button>
-                </Grid>
-              </FormGroup>
-            </form>
-            {formSubmitted && (
-              <Box pt={2}>
-                <Collapse in={openFeedback}>
-                  <Alert
-                  variant="standard"
-                  color="success"
-                    action={
-                      <IconButton
-                        aria-label="close"
-                        variant="filled"
                         onClick={() => {
-                          setOpenFeedback(false);
-                          setFormSubmitted(false);
+                          setChoice(1);
                         }}
-                        sx={{ color: "#fff" }}
                       >
-                        <CloseIcon fontSize="inherit" w />
-                      </IconButton>
-                    }
-                    sx={{
-                      "& .MuiAlert-icon": {
-                        color: "#fff",
-                      },
-                      width: isMobile || isTablet ? "80vw" : "40vw",
-                      // backgroundColor: "#2a2a2a",
-                      background:
-                        "linear-gradient(180deg, hsla(160, 34%, 29%, 1) 0%, hsla(158, 43%, 18%, 1) 100%)",
-                      boxShadow: " 0px 10px 15px -3px rgba(0,0,0,0.1)",
-                      color: "#fff",
-                    }}
-                  >
-                    <Typography
-                      variant="h6"
+                        Marcar uma consulta
+                      </Button>
+                    </Grid>
+                    <Grid item>
+                      <Button
+                        sx={{
+                          color: "white",
+                          textTransform: "uppercase",
+                          border: "1px solid white",
+                          width: "300px",
+                          fontFamily: "Mulish",
+                          fontWeight: "regular",
+                          fontSize: isMobile && "0.8125rem",
+                          "&:focus": {
+                            background: "black",
+                          },
+                        }}
+                        onClick={() => {
+                          setChoice(2);
+                        }}
+                      >
+                        Pedir informações
+                      </Button>
+                    </Grid>
+                  </Grid>
+                  <Grid item pt={2}>
+                    <FormControlLabel
+                      sx={{ color: "white" }}
+                      control={
+                        <Checkbox
+                          required
+                          checked={checked}
+                          onChange={handleChecked}
+                          sx={{
+                            color: "white",
+                            fontFamily: "Mulish",
+                            fontWeight: "regular",
+                            fontSize: isMobile && "1rem",
+                          }}
+                        />
+                      }
+                      label="Li e aceito os termos e condições e a política de privacidade"
+                    />
+                  </Grid>
+                  <Grid item pt={2}>
+                    <Button
+                      type="submit"
+                      variant="contained"
                       sx={{
+                        background:
+                          "linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(50,50,50,1) 85%, rgba(62,62,62,1) 100%)",
+                        border: "1px solid #CEC568",
+                        width: isMobile || isTablet ? "50%" : "10%",
+                        "&:disabled": {
+                          color: "white",
+                          background: "transparent",
+                        },
+                      }}
+                      disabled={
+                        name === "" || contact === "" || choice === null
+                          ? true
+                          : false
+                      }
+                    >
+                      Enviar
+                    </Button>
+                  </Grid>
+                </FormGroup>
+              </form>
+              {formSubmitted && (
+                <Box pt={2}>
+                  <Collapse in={openFeedback}>
+                    <Alert
+                      variant="standard"
+                      color="success"
+                      action={
+                        <IconButton
+                          aria-label="close"
+                          variant="filled"
+                          onClick={() => {
+                            setOpenFeedback(false);
+                            setFormSubmitted(false);
+                          }}
+                          sx={{ color: "#fff" }}
+                        >
+                          <CloseIcon fontSize="inherit" w />
+                        </IconButton>
+                      }
+                      sx={{
+                        "& .MuiAlert-icon": {
+                          color: "#fff",
+                        },
+                        width: isMobile || isTablet ? "80vw" : "40vw",
+                        // backgroundColor: "#2a2a2a",
+                        background:
+                          "linear-gradient(180deg, hsla(160, 34%, 29%, 1) 0%, hsla(158, 43%, 18%, 1) 100%)",
+                        boxShadow: " 0px 10px 15px -3px rgba(0,0,0,0.1)",
                         color: "#fff",
-                        textTransform: "uppercase",
-                        fontFamily: "Mulish",
                       }}
                     >
-                      Pedido de agendamento enviado com sucesso.
-                    </Typography>
-                  </Alert>
-                </Collapse>
-              </Box>
-            )}
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          color: "#fff",
+                          textTransform: "uppercase",
+                          fontFamily: "Mulish",
+                        }}
+                      >
+                        Pedido de agendamento enviado com sucesso.
+                      </Typography>
+                    </Alert>
+                  </Collapse>
+                </Box>
+              )}
+            </Grid>
           </Grid>
-        </Grid>
-      </Observer>
-    </Box>
+        </Observer>
+      </Box>
+    </>
   );
 };
 

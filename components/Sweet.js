@@ -68,9 +68,11 @@ const Sweet = () => {
           <Grid container direction="row" pb={5}>
             <Observer onChange={playLeftAnim}>
               <Grid
+                position="relative"
                 item
                 md={6}
                 className={`${isMobile || isTablet ? "" : leftAnim}`}
+                sx={{ zIndex: isMobile ? 1 : 0 }}
               >
                 <Box>
                   <Typography
@@ -103,7 +105,13 @@ const Sweet = () => {
                     {JSON.parse(cardInfo[0].CUSTOMCAMPS).small_description}.
                   </Typography>
                 </Box>
-                <Box pt={2} pb={2}>
+                <Box
+                  pt={2}
+                  pb={2}
+                  sx={{
+                    textAlign: isMobile && "center",
+                  }}
+                >
                   <ButtonComp
                     text={"Saber Mais"}
                     goTo={() => goToPage(cardInfo[0].ARTICLE_ID)}
@@ -125,21 +133,36 @@ const Sweet = () => {
                 />
               </Grid>
             </Observer>
+            {isMobile && (
+              <Box
+                xs={12}
+                sx={{
+                  zIndex: 0,
+                  backgroundImage: `url(${cardInfo[0].IMAGES[1]?.FILE})`,
+                  width: "60%",
+                  height: "30%",
+                  left: "40%",
+                  backgroundSize: "contain",
+                  position: "absolute",
+                  backgroundRepeat: "no-repeat",
+                }}
+              ></Box>
+            )}
           </Grid>
-          <Box
-            pt={10}
+          {/* <Box
+            pt={isMobile ? 0 : 10}
             sx={{
               width: "100vw",
               position: "relative",
               left: "calc(-50vw + 50%)",
             }}
           >
-            {isMobile  || isTablet ? (
+            {isMobile || isTablet ? (
               <img src="/separador.png" width="100%" alt="separador mobile" />
             ) : (
               <img src="/sepDesktop.png" width="100%" alt="separador" />
             )}
-          </Box>
+          </Box> */}
         </>
       )}
     </>
