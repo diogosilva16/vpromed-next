@@ -51,7 +51,7 @@ const Sweet = () => {
   useEffect(() => {
     getCardInfo();
   }, []);
-  
+
   const router = useRouter();
   let { id } = router.query;
 
@@ -64,67 +64,83 @@ const Sweet = () => {
     <>
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
-        <Grid container direction="row" pb={5}>
-          <Observer onChange={playLeftAnim}>
-            <Grid
-              item
-              md={6}
-              className={`${isMobile || isTablet ? "" : leftAnim}`}
-            >
-              <Box>
-                <Typography
-                  variant="subtitle1"
-                  sx={{ fontSize: isMobile && "0.8125rem" }}
-                >
-                  {cardInfo[0].NAME_SEO}
-                </Typography>
-              </Box>
-              <Box pt={2} pb={2}>
-                <Typography
-                  variant="h2"
-                  sx={{
-                    textTransform: "uppercase",
-                    color: "white",
-                    fontSize: "2.125rem",
-                  }}
-                >
-                  {JSON.parse(cardInfo[0].CUSTOMCAMPS).main_description}
-                </Typography>
-              </Box>
-              <Box>
-                <Typography
-                  sx={{
-                    fontFamily: "Mulish",
-                    fontWeight: "regular",
-                    fontSize: isMobile && "1rem",
-                  }}
-                >
-                  {JSON.parse(cardInfo[0].CUSTOMCAMPS).small_description}.
-                </Typography>
-              </Box>
-              <Box pt={2} pb={2}>
-                <ButtonComp
-                  text={"Saber Mais"}
-                  goTo={() => goToPage(cardInfo[0].ARTICLE_ID)}
+        <>
+          <Grid container direction="row" pb={5}>
+            <Observer onChange={playLeftAnim}>
+              <Grid
+                item
+                md={6}
+                className={`${isMobile || isTablet ? "" : leftAnim}`}
+              >
+                <Box>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{ fontSize: isMobile && "0.8125rem" }}
+                  >
+                    {cardInfo[0].NAME_SEO}
+                  </Typography>
+                </Box>
+                <Box pt={2} pb={2}>
+                  <Typography
+                    variant="h2"
+                    sx={{
+                      textTransform: "uppercase",
+                      color: "white",
+                      fontSize: "2.125rem",
+                    }}
+                  >
+                    {JSON.parse(cardInfo[0].CUSTOMCAMPS).main_description}
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography
+                    sx={{
+                      fontFamily: "Mulish",
+                      fontWeight: "regular",
+                      fontSize: isMobile && "1rem",
+                    }}
+                  >
+                    {JSON.parse(cardInfo[0].CUSTOMCAMPS).small_description}.
+                  </Typography>
+                </Box>
+                <Box pt={2} pb={2}>
+                  <ButtonComp
+                    text={"Saber Mais"}
+                    goTo={() => goToPage(cardInfo[0].ARTICLE_ID)}
+                  />
+                </Box>
+              </Grid>
+            </Observer>
+            <Observer onChange={playRightAnim}>
+              <Grid
+                item
+                md={6}
+                className={`${isMobile || isTablet ? "" : rightAnim}`}
+                sx={{ display: isMobile && "none" }}
+              >
+                <img
+                  src={cardInfo[0].IMAGES[0]?.FILE || ""}
+                  alt="Especialidade"
+                  width="100%"
                 />
-              </Box>
-            </Grid>
-          </Observer>
-          <Observer onChange={playRightAnim}>
-            <Grid
-              item
-              md={6}
-              className={`${isMobile || isTablet ? "" : rightAnim}`}
-              sx={{ display: isMobile && "none" }}
-            >
-              <img
-                src={cardInfo[0].IMAGES[0]?.FILE || ""}
-                alt="Especialidade"
-                width="100%"
-              />
-            </Grid>
-          </Observer>
-        </Grid>
+              </Grid>
+            </Observer>
+          </Grid>
+          <Box
+            pt={10}
+            sx={{
+              width: "100vw",
+              position: "relative",
+              left: "calc(-50vw + 50%)",
+            }}
+          >
+            {isMobile  || isTablet ? (
+              <img src="/separador.png" width="100%" alt="separador mobile" />
+            ) : (
+              <img src="/sepDesktop.png" width="100%" alt="separador" />
+            )}
+          </Box>
+        </>
       )}
     </>
   );

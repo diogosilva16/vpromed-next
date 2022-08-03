@@ -139,7 +139,7 @@ const Destaques = () => {
                     <Box
                       sx={{
                         textAlign:
-                          (isMobile || isTablet) && !isDesktop && "center",
+                          (isMobile && !isDesktop) && "center",
                       }}
                     >
                       <ButtonComp
@@ -166,9 +166,9 @@ const Destaques = () => {
                     <Box
                       sx={{
                         backgroundImage: `url(${dest[0].IMAGES[1]?.FILE})`,
-                        width: "80%",
+                        width: "60%",
                         height: "100%",
-                        left: "20%",
+                        left: "40%",
                         backgroundSize: "cover",
                         position: "absolute",
                       }}

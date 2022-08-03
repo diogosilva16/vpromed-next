@@ -70,7 +70,7 @@ const Form = () => {
         setName(""),
         setContact(""),
         setOpenFeedback(true),
-        setChecked(false),
+        setChecked(false)
       )
       .catch((error) => console.log("error", error));
   };
@@ -234,28 +234,37 @@ const Form = () => {
               <Box pt={2}>
                 <Collapse in={openFeedback}>
                   <Alert
+                  variant="standard"
+                  color="success"
                     action={
                       <IconButton
                         aria-label="close"
-                        color="inherit"
-                        size="small"
+                        variant="filled"
                         onClick={() => {
                           setOpenFeedback(false);
                           setFormSubmitted(false);
                         }}
+                        sx={{ color: "#fff" }}
                       >
-                        <CloseIcon fontSize="inherit" />
+                        <CloseIcon fontSize="inherit" w />
                       </IconButton>
                     }
                     sx={{
-                      backgroundColor: "#2a2a2a",
+                      "& .MuiAlert-icon": {
+                        color: "#fff",
+                      },
+                      width: isMobile || isTablet ? "80vw" : "40vw",
+                      // backgroundColor: "#2a2a2a",
+                      background:
+                        "linear-gradient(180deg, hsla(160, 34%, 29%, 1) 0%, hsla(158, 43%, 18%, 1) 100%)",
                       boxShadow: " 0px 10px 15px -3px rgba(0,0,0,0.1)",
+                      color: "#fff",
                     }}
                   >
                     <Typography
                       variant="h6"
                       sx={{
-                        color: "#cec568",
+                        color: "#fff",
                         textTransform: "uppercase",
                         fontFamily: "Mulish",
                       }}

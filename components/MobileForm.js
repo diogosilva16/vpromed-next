@@ -10,7 +10,12 @@ import {
   FormControl,
   FormControlLabel,
   useMediaQuery,
+  Alert,
+  Collapse,
+  IconButton
 } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+
 import { useTheme } from "@emotion/react";
 
 const MobileForm = () => {
@@ -22,13 +27,22 @@ const MobileForm = () => {
   const [contact, setContact] = useState("");
   const [choice, setChoice] = useState();
 
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [openFeedback, setOpenFeedback] = useState(true);
+  const [checked, setChecked] = useState(false);
+
   const submitForm = async (e) => {
     e.preventDefault();
+
+    setFormSubmitted(false);
 
     var formdata = new FormData();
     formdata.append("name", name);
     formdata.append("contact", contact);
-    formdata.append("choice", choice === 1 ? "Marcar uma consulta" : "Pedir informações");
+    formdata.append(
+      "choice",
+      choice === 1 ? "Marcar uma consulta" : "Pedir informações"
+    );
 
     var requestOptions = {
       method: "POST",
@@ -41,7 +55,13 @@ const MobileForm = () => {
       requestOptions
     )
       .then((response) => response.text())
-      .then((result) => console.log(result))
+      .then(
+        (result) => setFormSubmitted(true),
+        setName(""),
+        setContact(""),
+        setOpenFeedback(true),
+        setChecked(false)
+      )
       .catch((error) => console.log("error", error));
   };
 
@@ -54,6 +74,10 @@ const MobileForm = () => {
     e.preventDefault();
     setContact(e.target.value);
   };
+
+  const handleChecked = (event) => {
+    setChecked(event.target.checked);
+  }
 
   return (
     <Box>
@@ -85,6 +109,7 @@ const MobileForm = () => {
                       borderRadius: "5px",
                     }}
                     onChange={updateName}
+                    value={name}
                   ></TextField>
                 </Grid>
                 <Grid item>
@@ -92,6 +117,7 @@ const MobileForm = () => {
                     variant="filled"
                     label="Contacto"
                     required
+                    value={contact}
                     sx={{
                       width: "200px",
                       background: "white",
@@ -151,6 +177,8 @@ const MobileForm = () => {
                   control={
                     <Checkbox
                       required
+                      checked={checked}
+                      onChange={handleChecked}
                       sx={{
                         color: "white",
                       }}
@@ -184,6 +212,47 @@ const MobileForm = () => {
               </Grid>
             </FormGroup>
           </form>
+          {formSubmitted && (
+              <Box pt={2} mr={3}>
+                <Collapse in={openFeedback}>
+                  <Alert
+                    action={
+                      <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"
+                        onClick={() => {
+                          setOpenFeedback(false);
+                          setFormSubmitted(false);
+                        }}
+                      >
+                        <CloseIcon fontSize="inherit" />
+                      </IconButton>
+                    }
+                    sx={{
+                      "& .MuiAlert-icon": {
+                        color: "#fff",
+                      },
+                      background:
+                        "linear-gradient(180deg, hsla(160, 34%, 29%, 1) 0%, hsla(158, 43%, 18%, 1) 100%)",
+                      // backgroundColor: "#2a2a2a",
+                      boxShadow: " 0px 10px 15px -3px rgba(0,0,0,0.1)",
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        color: "#cec568",
+                        textTransform: "uppercase",
+                        fontFamily: "Mulish",
+                      }}
+                    >
+                      Pedido de agendamento enviado com sucesso.
+                    </Typography>
+                  </Alert>
+                </Collapse>
+              </Box>
+            )}
         </Grid>
       </Grid>
     </Box>
