@@ -1,4 +1,4 @@
-import { Box, Container } from "@mui/material";
+import { Box, Container, useMediaQuery } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Tendencias from "../../components/Tendencias";
 import Especialidades from "../../components/Especialidades";
@@ -7,9 +7,14 @@ import Panorama from "../../components/Panorama";
 import Sweet from "../../components/Sweet";
 import Loader from "../../components/Loader";
 import Separator from "../../components/Separator";
+import { useTheme } from "@emotion/react";
 
 const Inicio = () => {
   const [wait, setWait] = useState(true);
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
   const timer = setTimeout(() => setWait(false), 1000);
 
@@ -20,7 +25,7 @@ const Inicio = () => {
   }, [timer]);
 
   return (
-    <Box pt={10} sx={{ background: "#2A2A2A" }}>
+    <Box pt={isMobile ? 7 : isTablet ? 8 : 10} sx={{ background: "#2A2A2A" }}>
       <Panorama />
       <Container maxWidth="xl">
         {wait && <Loader />}

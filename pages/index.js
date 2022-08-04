@@ -1,17 +1,32 @@
-import styles from '../styles/Home.module.css'
-import React, { useState } from 'react'
-import {Container, Grid, Typography, Button, Box, useMediaQuery } from '@mui/material'
-import Link from 'next/link'
+import styles from "../styles/Home.module.css";
+import React, { useState, useEffect } from "react";
+import {
+  Container,
+  Grid,
+  Typography,
+  Button,
+  Box,
+  useMediaQuery,
+} from "@mui/material";
+import Link from "next/link";
 import "animate.css";
 import { useTheme } from "@emotion/react";
 
-
 export default function Home() {
-
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  
+
   const [clicked, setClicked] = useState(false);
+  const [teste, setTeste] = useState("animate__animated animate__fadeIn");
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setTeste("animate__animated animate__fadeOut");
+      setClicked(true);
+      setVisible(false);
+    }, 3000);
+  }, []);
 
   return (
     <Container
@@ -22,7 +37,6 @@ export default function Home() {
         color: "white",
         overflow: "hidden",
       }}
-      onClick={() => setClicked(true)}
     >
       <Grid
         container
@@ -38,11 +52,11 @@ export default function Home() {
             zIndex: "1",
             position: "absolute",
             top: isMobile ? "0" : "",
-            visibility: clicked ? "hidden" : "visible",
           }}
         >
           {/* visibility because just removing the element was not placing the other elements in the right spot :)*/}
-          <Typography className='animate__animated animate__fadeIn'
+          <Typography
+            className={teste}
             sx={{
               fontFamily: "Times New Roman",
               backgroundImage:
@@ -66,10 +80,16 @@ export default function Home() {
           </Typography>
         </Grid>
         {/* visibility because just removing the element was not placing this in the right spot :)*/}
-        <Box style={{ visibility: clicked ? "visible" : "hidden", textAlign: "center" }}>
+        <Box
+          style={{
+            visibility: clicked ? "visible" : "hidden",
+            textAlign: "center",
+            zIndex: 2
+          }}
+        >
           <Grid item pt={5}>
             <Typography
-              variant="h5"
+              variant={isMobile ? "h5" : "h2"}
               sx={{
                 textTransform: "uppercase",
                 fontFamily: "Times New Roman",
@@ -102,5 +122,5 @@ export default function Home() {
         </Box>
       </Grid>
     </Container>
-  )
+  );
 }

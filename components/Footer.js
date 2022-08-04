@@ -172,13 +172,13 @@ const Footer = () => {
                   pt={1}
                 >
                   <Box p={1.5}>
-                    <img src={facebook.FILE} width={40} />
+                    <img src={facebook.FILE} width={30} />
                   </Box>
                   <Box p={1.5}>
-                    <img src={instagram.FILE} width={40} />
+                    <img src={instagram.FILE} width={30} />
                   </Box>
                   <Box p={1.5}>
-                    <img src={twitter.FILE} width={40} />
+                    <img src={twitter.FILE} width={30} />
                   </Box>
                 </Box>
               </Grid>

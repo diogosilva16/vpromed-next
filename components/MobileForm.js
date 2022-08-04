@@ -27,6 +27,7 @@ const MobileForm = () => {
   const [contact, setContact] = useState("");
   const [choice, setChoice] = useState();
   const [buttonText, setButtonText] = useState("Enviar");
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const [checked, setChecked] = useState(false);
 
@@ -59,7 +60,6 @@ const MobileForm = () => {
         setName(""),
         setContact(""),
         setChoice(),
-        setOpenFeedback(true),
         setChecked(false)
       )
       .catch((error) => console.log("error", error));

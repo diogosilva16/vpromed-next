@@ -20,6 +20,7 @@ import Link from "next/link";
 import { MenuData } from "./MenuData";
 import { CompanyInfoContext } from "../../context/CompanyInfoContext";
 import { CompanySpecialitiesContext } from "../../context/CompanySpecialitiesContext";
+import Loader from "../Loader";
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -164,11 +165,16 @@ const Navbar = () => {
           <Toolbar>
             <Link href="/inicio">
               <Typography>
-                <img
+                {isLoading ? <img
+                  src="/logo_menu.svg"
+                  alt="v-promed"
+                  width="150"
+                /> :<img
                   src={companyInfo[0]?.VALUE || ""}
                   alt="v-promed"
                   width="150"
-                />
+                /> }
+                
               </Typography>
             </Link>
             {isMobile ? (
