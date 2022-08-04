@@ -42,13 +42,14 @@ export default function Home() {
           }}
         >
           {/* visibility because just removing the element was not placing the other elements in the right spot :)*/}
-          <Typography className='animate__animated animate__fadeInDown'
+          <Typography className='animate__animated animate__fadeIn'
             sx={{
               fontFamily: "Times New Roman",
               backgroundImage:
                 "linear-gradient(135deg, hsla(55, 51%, 61%, 1) 0%, hsla(0, 0%, 0%, 1) 100%)",
               backgroundClip: "text",
               color: "transparent",
+              fontWeight: "bold",
               fontSize: isMobile ? "40rem" : "90vw",
             }}
           >
@@ -74,7 +75,7 @@ export default function Home() {
                 fontFamily: "Times New Roman",
                 color: "#CEC568",
               }}
-              className={clicked && "animate__animated animate__fadeInUp"}
+              className={clicked && "animate__animated animate__fadeIn"}
             >
               Bem vindo
             </Typography>

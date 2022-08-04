@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import Loader from "../../components/Loader";
 import { useTheme } from "@emotion/react";
 import Sweet from "../../components/Sweet";
+import Separator from "../../components/Separator";
 
 const Especialidade = () => {
   // const API_KEY = process.env.API_KEY;
@@ -28,6 +29,7 @@ const Especialidade = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
   const getEspecialidadeInfo = async () => {
     try {
@@ -48,13 +50,12 @@ const Especialidade = () => {
     getEspecialidadeInfo();
   }, [id, isLoading]);
 
-  console.log(especialidadeInfo);
   return (
     <>
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
         <Container maxWidth="xl">
-          <Grid container pt={isMobile ? 7 : 20} pb={5}>
+          <Grid container pt={isMobile ? 7 : isTablet ? 10 : 15} pb={5}>
             <Box
               sx={{
                 zIndex: 0,
@@ -62,7 +63,9 @@ const Especialidade = () => {
                 left: "calc(-50vw + 50%)",
               }}
             >
-              <img src={especialidadeInfo.IMAGES[1]?.FILE} width="100%" />
+              {isMobile && (
+                <img src={especialidadeInfo.IMAGES[1]?.FILE} width="100%" />
+              )}
             </Box>
             <Box
               sx={{
@@ -121,6 +124,7 @@ const Especialidade = () => {
             </Grid>
           </Grid>
           <Sweet />
+          <Separator />
           {!wait && <Form />}
         </Container>
       )}

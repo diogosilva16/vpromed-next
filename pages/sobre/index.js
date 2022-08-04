@@ -5,6 +5,7 @@ import Team from "../../components/Team";
 import Especialidades from "../../components/Especialidades";
 import { useTheme } from "@emotion/react";
 import Form from "../../components/Form";
+import Separator from "../../components/Separator";
 
 const Sobre = () => {
   const theme = useTheme();
@@ -13,6 +14,7 @@ const Sobre = () => {
   const [hasError, setHasError] = useState(false);
   const [companyAbout, setCompanyAbout] = useState([]);
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
   const getCompanyAbout = async () => {
     try {
@@ -39,7 +41,7 @@ const Sobre = () => {
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
         <Container maxWidth="xl">
-          <Grid container pt={isMobile ? 7 : 20} pb={5}>
+          <Grid container pt={isMobile ? 7 : isTablet ? 8 : 12} pb={5}>
             <Box
               sx={{
                 zIndex: 0,
@@ -47,7 +49,9 @@ const Sobre = () => {
                 left: "calc(-50vw + 50%)",
               }}
             >
-              <img src={companyAbout.IMAGES[0]?.FILE} width="100%" />
+              {isMobile && (
+                <img src={companyAbout.IMAGES[0]?.FILE} width="100%" />
+              )}
             </Box>
             <Box
               sx={{
@@ -115,6 +119,7 @@ const Sobre = () => {
           </Grid>
           <Team />
           <Especialidades />
+          <Separator />
           <Form />
         </Container>
       )}

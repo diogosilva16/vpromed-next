@@ -1,17 +1,24 @@
 import React, { useState } from "react";
-import { Grid, Container, Typography, Box, Button } from "@mui/material";
+import { Grid, Container, Typography, Box, Button, useMediaQuery } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Loader from "../../components/Loader";
 import ButtonComp from "../../components/ButtonComp";
+import { useTheme } from "@emotion/react";
+
 
 const Destaque = () => {
   const router = useRouter();
   let { id } = router.query;
 
+  const theme = useTheme();
+
   const [trendInfo, setTrendInfo] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
   const getTrendInfo = async () => {
     try {
@@ -41,7 +48,7 @@ const Destaque = () => {
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
         <Container maxWidth="xl">
-          <Grid container pt={20}>
+          <Grid container pt={(isMobile || isTablet) ? 10 : 15}>
             <Box sx={{ width: "100vw" }}>
               <Grid item xs={12}>
                 <Typography variant="h5" style={{ color: "white", textTransform: "uppercase" }}>

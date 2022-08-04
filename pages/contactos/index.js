@@ -10,7 +10,6 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import Form from "../../components/Form";
-import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import Loader from "../../components/Loader";
 import { useTheme } from "@emotion/react";
 import { CompanyInfoContext } from "../../context/CompanyInfoContext";

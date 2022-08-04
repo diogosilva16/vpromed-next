@@ -6,6 +6,7 @@ import Form from "../../components/Form";
 import Panorama from "../../components/Panorama";
 import Sweet from "../../components/Sweet";
 import Loader from "../../components/Loader";
+import Separator from "../../components/Separator";
 
 const Inicio = () => {
   const [wait, setWait] = useState(true);
@@ -28,6 +29,7 @@ const Inicio = () => {
             <Tendencias />
             <Especialidades />
             <Sweet />
+            <Separator />
             <Form />
           </>
         )}

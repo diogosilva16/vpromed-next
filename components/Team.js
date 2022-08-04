@@ -6,6 +6,10 @@ import { useTheme } from "@emotion/react";
 const Team = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
+  // const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
+
 
   const [teamInfo, setTeamInfo] = useState([]);
   const [teamInfoIsLoading, setTeamInfoIsLoading] = useState(true);
@@ -49,7 +53,7 @@ const Team = () => {
               backgroundImage: `url(${item.IMAGES[0].FILE})`,
               backgroundSize: "contain",
               backgroundRepeat: "no-repeat",
-              background: "#000",
+              // background: "#000",
               width: "100%",
               paddingTop: "66.64%",
             }}
@@ -68,7 +72,7 @@ const Team = () => {
                 sx={{
                   fontFamily: "Times New Roman",
                   color: "#CEC568",
-                  fontSize: isMobile ? "1rem" : "2rem",
+                  fontSize: (isMobile || isTablet) ? "1rem" : "2rem",
                 }}
               >
                 {item.NAME_SEO}

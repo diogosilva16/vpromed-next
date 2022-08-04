@@ -55,10 +55,11 @@ const Sweet = () => {
   const router = useRouter();
   let { id } = router.query;
 
-  const goToPage = (id) => {
-    console.log("yes");
-    // router.push(`/tendencia/${id}`);
+  const goToPage = () => {
+    router.push(`/cartao`);
   };
+
+  console.log(cardInfo);
 
   return (
     <>
@@ -72,7 +73,7 @@ const Sweet = () => {
                 item
                 md={6}
                 className={`${isMobile || isTablet ? "" : leftAnim}`}
-                sx={{ zIndex: isMobile ? 1 : 0 }}
+                sx={{ zIndex: (isMobile || isTablet) ? 1 : 0 }}
               >
                 <Box>
                   <Typography
@@ -124,7 +125,7 @@ const Sweet = () => {
                 item
                 md={6}
                 className={`${isMobile || isTablet ? "" : rightAnim}`}
-                sx={{ display: isMobile && "none" }}
+                sx={{ display: (isMobile || isTablet) && "none" }}
               >
                 <img
                   src={cardInfo[0].IMAGES[0]?.FILE || ""}
@@ -133,7 +134,7 @@ const Sweet = () => {
                 />
               </Grid>
             </Observer>
-            {isMobile && (
+            {(isMobile  || isTablet) && (
               <Box
                 xs={12}
                 sx={{
@@ -149,20 +150,6 @@ const Sweet = () => {
               ></Box>
             )}
           </Grid>
-          {/* <Box
-            pt={isMobile ? 0 : 10}
-            sx={{
-              width: "100vw",
-              position: "relative",
-              left: "calc(-50vw + 50%)",
-            }}
-          >
-            {isMobile || isTablet ? (
-              <img src="/separador.png" width="100%" alt="separador mobile" />
-            ) : (
-              <img src="/sepDesktop.png" width="100%" alt="separador" />
-            )}
-          </Box> */}
         </>
       )}
     </>

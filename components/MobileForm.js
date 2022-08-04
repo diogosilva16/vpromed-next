@@ -12,7 +12,7 @@ import {
   useMediaQuery,
   Alert,
   Collapse,
-  IconButton
+  IconButton,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -26,9 +26,8 @@ const MobileForm = () => {
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [choice, setChoice] = useState();
+  const [buttonText, setButtonText] = useState("Enviar");
 
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [openFeedback, setOpenFeedback] = useState(true);
   const [checked, setChecked] = useState(false);
 
   const submitForm = async (e) => {
@@ -59,6 +58,7 @@ const MobileForm = () => {
         (result) => setFormSubmitted(true),
         setName(""),
         setContact(""),
+        setChoice(),
         setOpenFeedback(true),
         setChecked(false)
       )
@@ -77,7 +77,14 @@ const MobileForm = () => {
 
   const handleChecked = (event) => {
     setChecked(event.target.checked);
-  }
+  };
+
+  const handleButtonText = () => {
+    setButtonText("Enviado com sucesso");
+    setTimeout(() => {
+      setButtonText("Enviar");
+    }, 2000);
+  };
 
   return (
     <Box>
@@ -144,6 +151,10 @@ const MobileForm = () => {
                       "&:focus": {
                         background: "black",
                       },
+                      backgroundColor: choice === 1 ? "black" : "transparent",
+                      fontFamily: "Mulish",
+                      fontWeight: "regular",
+                      fontSize: isMobile && "0.8125rem",
                     }}
                     onClick={() => {
                       setChoice(1);
@@ -162,6 +173,10 @@ const MobileForm = () => {
                       "&:focus": {
                         background: "black",
                       },
+                      backgroundColor: choice === 2 ? "black" : "transparent",
+                      fontFamily: "Mulish",
+                      fontWeight: "regular",
+                      fontSize: isMobile && "0.8125rem",
                     }}
                     onClick={() => {
                       setChoice(2);
@@ -201,58 +216,18 @@ const MobileForm = () => {
                       background: "transparent",
                     },
                   }}
+                  onClick={handleButtonText}
                   disabled={
                     name === "" || contact === "" || choice === ""
                       ? true
                       : false
                   }
                 >
-                  Enviar
+                  {buttonText}
                 </Button>
               </Grid>
             </FormGroup>
           </form>
-          {formSubmitted && (
-              <Box pt={2} mr={3}>
-                <Collapse in={openFeedback}>
-                  <Alert
-                    action={
-                      <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        size="small"
-                        onClick={() => {
-                          setOpenFeedback(false);
-                          setFormSubmitted(false);
-                        }}
-                      >
-                        <CloseIcon fontSize="inherit" />
-                      </IconButton>
-                    }
-                    sx={{
-                      "& .MuiAlert-icon": {
-                        color: "#fff",
-                      },
-                      background:
-                        "linear-gradient(180deg, hsla(160, 34%, 29%, 1) 0%, hsla(158, 43%, 18%, 1) 100%)",
-                      // backgroundColor: "#2a2a2a",
-                      boxShadow: " 0px 10px 15px -3px rgba(0,0,0,0.1)",
-                    }}
-                  >
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        color: "#cec568",
-                        textTransform: "uppercase",
-                        fontFamily: "Mulish",
-                      }}
-                    >
-                      Pedido de agendamento enviado com sucesso.
-                    </Typography>
-                  </Alert>
-                </Collapse>
-              </Box>
-            )}
         </Grid>
       </Grid>
     </Box>

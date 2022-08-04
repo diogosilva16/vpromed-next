@@ -17,7 +17,6 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { useTheme } from "@emotion/react";
 import Observer from "@researchgate/react-intersection-observer";
-import { SafetyCheckRounded } from "@mui/icons-material";
 
 const Form = () => {
   const theme = useTheme();
@@ -69,6 +68,7 @@ const Form = () => {
         (result) => setFormSubmitted(true),
         setName(""),
         setContact(""),
+        setChoice(),
         setOpenFeedback(true),
         setChecked(false)
       )
@@ -91,20 +91,6 @@ const Form = () => {
   return (
     <>
       <Box>
-        <Box
-          pt={isMobile ? 0 : 10}
-          sx={{
-            width: "100vw",
-            position: "relative",
-            left: "calc(-50vw + 50%)",
-          }}
-        >
-          {isMobile || isTablet ? (
-            <img src="/separador.png" width="100%" alt="separador mobile" />
-          ) : (
-            <img src="/sepDesktop.png" width="100%" alt="separador" />
-          )}
-        </Box>
         <Observer onChange={playAnimation}>
           <Grid container className={`${isMobile || isTablet ? "" : playAnim}`}>
             <Grid
@@ -177,6 +163,8 @@ const Form = () => {
                           "&:focus": {
                             background: "black",
                           },
+                          backgroundColor:
+                            choice === 1 ? "black" : "transparent",
                         }}
                         onClick={() => {
                           setChoice(1);
@@ -198,6 +186,8 @@ const Form = () => {
                           "&:focus": {
                             background: "black",
                           },
+                          backgroundColor:
+                            choice === 2 ? "black" : "transparent",
                         }}
                         onClick={() => {
                           setChoice(2);
@@ -241,7 +231,7 @@ const Form = () => {
                         },
                       }}
                       disabled={
-                        name === "" || contact === "" || choice === null
+                        name === "" || contact === "" || choice === ""
                           ? true
                           : false
                       }
