@@ -10,10 +10,10 @@ function generateSiteMap(especialidades) {
       </url>
       <url>
         <loc>https://vpromed.vercel.app/inicio</loc>
-      </url>;
+      </url>
       <url>
         <loc>https://vpromed.vercel.app/sobre</loc>
-      </url>;
+      </url>
       <url>
         <loc>https://vpromed.vercel.app/contactos</loc>
       </url>
@@ -21,12 +21,13 @@ function generateSiteMap(especialidades) {
         <loc>https://vpromed.vercel.app/cartao</loc>
       </url>
       ${especialidades
-        .map(({ id }) => {
+        .map((especialidade) => {
           return `<url>
-          <loc>https://vpromed.vercel.app/especialidades/${id}</loc>
-          <url>`;
+          <loc>https://vpromed.vercel.app/especialidade/${especialidade.ARTICLE_ID}</loc>
+          </url>`;
         })
         .join("")}
+          
     </urlset>`;
 }
 
@@ -36,14 +37,13 @@ function SiteMap() {
 
 export async function getServerSideProps({ res }) {
   const request = await fetch(ESPECIALIDADES_URL);
-  const especialidades = await request.json();
-
-  const sitemap = generateSiteMap(especialidades);
-
+  const books = await request.json();
+  const sitemap = generateSiteMap(books);
   res.setHeader("Content-Type", "text/xml");
   res.write(sitemap);
   res.end();
 
+  console.log(especialidades);
   return {
     props: {},
   };
