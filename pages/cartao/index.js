@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 
 const Cartao = ({ cardData }) => {
+  const API_KEY = process.env.API_KEY;
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
@@ -97,7 +99,7 @@ export default Cartao;
 
 export async function getStaticProps() {
   const cardResponse = await fetch(
-    `https://www.critecnow.com/promed/api/articlebycat/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/5/1`
+    `https://www.critecnow.com/promed/api/articlebycat/${API_KEY}/5/1`
   );
   const cardData = await cardResponse.json();
 

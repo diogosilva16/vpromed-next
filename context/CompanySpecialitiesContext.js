@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 
 export const CompanySpecialitiesContext = createContext();
 
-// const API_KEY = process.env.REACT_APP_TOKEN_KEY;
+const API_KEY = process.env.API_KEY;
 
 export function CompanySpecialitiesContextProvider({ children }) {
   const [espec, setEspec] = useState([]);
@@ -12,7 +12,7 @@ export function CompanySpecialitiesContextProvider({ children }) {
   const getEspec = async () => {
     try {
       const response = await fetch(
-        `https://www.critecnow.com/promed/api/articlebycat/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/3/1`
+        `https://www.critecnow.com/promed/api/articlebycat/${API_KEY}/3/1`
       );
       const data = await response.json();
       setEspec(data);

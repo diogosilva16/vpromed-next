@@ -7,6 +7,8 @@ import Observer from "@researchgate/react-intersection-observer";
 import { useTheme } from "@emotion/react";
 
 const Sweet = () => {
+  const API_KEY = process.env.API_KEY;
+
   const theme = useTheme();
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -37,7 +39,7 @@ const Sweet = () => {
   const getCardInfo = async () => {
     try {
       const response = await fetch(
-        `https://www.critecnow.com/promed/api/articlebycat/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/5/1`
+        `https://www.critecnow.com/promed/api/articlebycat/${API_KEY}/5/1`
       );
       const data = await response.json();
       setCardInfo(data);
@@ -73,7 +75,7 @@ const Sweet = () => {
                 item
                 md={6}
                 className={`${isMobile || isTablet ? "" : leftAnim}`}
-                sx={{ zIndex: (isMobile || isTablet) ? 1 : 0 }}
+                sx={{ zIndex: isMobile || isTablet ? 1 : 0 }}
               >
                 <Box>
                   <Typography
@@ -134,7 +136,7 @@ const Sweet = () => {
                 />
               </Grid>
             </Observer>
-            {(isMobile  || isTablet) && (
+            {(isMobile || isTablet) && (
               <Box
                 xs={12}
                 sx={{

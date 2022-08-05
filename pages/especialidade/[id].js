@@ -10,7 +10,7 @@ import Separator from "../../components/Separator";
 import Head from "next/head";
 
 const Especialidade = () => {
-  // const API_KEY = process.env.API_KEY;
+  const API_KEY = process.env.API_KEY;
   const theme = useTheme();
 
   const router = useRouter();
@@ -36,7 +36,7 @@ const Especialidade = () => {
     try {
       if (!id) return;
       const response = await fetch(
-        `https://www.critecnow.com/promed/api/article/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/${id}/1`
+        `https://www.critecnow.com/promed/api/article/${API_KEY}/${id}/1`
       );
       const data = await response.json();
       setEspecialidadeInfo(data);

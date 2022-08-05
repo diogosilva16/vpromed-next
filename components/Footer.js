@@ -6,6 +6,8 @@ import { CompanyInfoContext } from "../context/CompanyInfoContext";
 import Loader from "./Loader";
 
 const Footer = () => {
+  const API_KEY = process.env.API_KEY;
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
@@ -20,17 +22,17 @@ const Footer = () => {
   const getIcons = async () => {
     try {
       const twResponse = await fetch(
-        `https://www.critecnow.com/promed/api/filebyid/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/34/1`
+        `https://www.critecnow.com/promed/api/filebyid/${API_KEY}/34/1`
       );
       const twData = await twResponse.json();
       setTwitter(twData);
       const fbResponse = await fetch(
-        `https://www.critecnow.com/promed/api/filebyid/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/35/1`
+        `https://www.critecnow.com/promed/api/filebyid/${API_KEY}/35/1`
       );
       const fbData = await fbResponse.json();
       setFacebook(fbData);
       const igResponse = await fetch(
-        `https://www.critecnow.com/promed/api/filebyid/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/32/1`
+        `https://www.critecnow.com/promed/api/filebyid/${API_KEY}/32/1`
       );
       const igData = await igResponse.json();
       setInstagram(igData);
@@ -172,13 +174,13 @@ const Footer = () => {
                   pt={1}
                 >
                   <Box p={1.5}>
-                    <img src={facebook.FILE} width={30} />
+                    <img src={facebook.FILE} width={30} alt="facebook icon"/>
                   </Box>
                   <Box p={1.5}>
-                    <img src={instagram.FILE} width={30} />
+                    <img src={instagram.FILE} width={30} alt="instagram icon"/>
                   </Box>
                   <Box p={1.5}>
-                    <img src={twitter.FILE} width={30} />
+                    <img src={twitter.FILE} width={30} alt="twitter icon"/>
                   </Box>
                 </Box>
               </Grid>

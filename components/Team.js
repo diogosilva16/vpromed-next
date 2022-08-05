@@ -4,6 +4,8 @@ import Loader from "./Loader";
 import { useTheme } from "@emotion/react";
 
 const Team = () => {
+  const API_KEY = process.env.API_KEY;
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
@@ -20,7 +22,7 @@ const Team = () => {
   const getTeamInfo = async () => {
     try {
       const response = await fetch(
-        `https://www.critecnow.com/promed/api/articlebycat/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/6/1`
+        `https://www.critecnow.com/promed/api/articlebycat/${API_KEY}/6/1`
       );
       const data = await response.json();
       setTeamInfo(data);

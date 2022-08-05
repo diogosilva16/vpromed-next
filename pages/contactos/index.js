@@ -16,6 +16,8 @@ import { CompanyInfoContext } from "../../context/CompanyInfoContext";
 import Head from "next/head";
 
 const Contactos = ({ mobData, horData, locData }) => {
+  const API_KEY = process.env.API_KEY;
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
@@ -133,15 +135,15 @@ const Contactos = ({ mobData, horData, locData }) => {
 
 export async function getStaticProps() {
   const mobileResponse = await fetch(
-    `https://www.critecnow.com/promed/api/filebyid/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/33/1`
+    `https://www.critecnow.com/promed/api/filebyid/${API_KEY}/33/1`
   );
   const mobData = await mobileResponse.json();
   const horarioResponse = await fetch(
-    `https://www.critecnow.com/promed/api/filebyid/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/36/1`
+    `https://www.critecnow.com/promed/api/filebyid/${API_KEY}/36/1`
   );
   const horData = await horarioResponse.json();
   const localResponse = await fetch(
-    `https://www.critecnow.com/promed/api/filebyid/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/37/1`
+    `https://www.critecnow.com/promed/api/filebyid/${API_KEY}/37/1`
   );
   const locData = await localResponse.json();
 

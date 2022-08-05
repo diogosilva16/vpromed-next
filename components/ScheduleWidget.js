@@ -6,6 +6,8 @@ import Form from "./Form";
 import MobileForm from "./MobileForm";
 
 const ScheduleWidget = () => {
+  const API_KEY = process.env.API_KEY;
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
@@ -21,7 +23,7 @@ const ScheduleWidget = () => {
   const getIcon = async () => {
     try {
       const response = await fetch(
-        `https://www.critecnow.com/promed/api/filebyid/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/12/1`
+        `https://www.critecnow.com/promed/api/filebyid/${API_KEY}/12/1`
       );
       const data = await response.json();
       setIcon(data);
@@ -100,7 +102,7 @@ const ScheduleWidget = () => {
             </Typography>
           </Grid>
           <Grid item pt={4}>
-            <img src={icon.FILE} />
+            <img src={icon.FILE} alt="agendar consulta"/>
           </Grid>
         </Grid>
       </Box>

@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 
 export const CompanyInfoContext = createContext();
 
-// const API_KEY = process.env.REACT_APP_TOKEN_KEY;
+const API_KEY = process.env.API_KEY;
 
 export function CompanyInfoContextProvider({ children }) {
   const [companyInfo, setCompanyInfo] = useState([]);
@@ -15,7 +15,7 @@ export function CompanyInfoContextProvider({ children }) {
   const getCompanyInfo = async () => {
     try {
       const response = await fetch(
-        `https://www.critecnow.com/promed/api/company/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX`
+        `https://www.critecnow.com/promed/api/company/${API_KEY}`
       );
       const data = await response.json();
       setCompanyInfo(data);
@@ -29,7 +29,7 @@ export function CompanyInfoContextProvider({ children }) {
   const getDest = async () => {
     try {
       const response = await fetch(
-        `https://www.critecnow.com/promed/api/articlebycat/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/4/1`
+        `https://www.critecnow.com/promed/api/articlebycat/${API_KEY}/4/1`
       );
       const data = await response.json();
       setDest(data);
@@ -44,6 +44,8 @@ export function CompanyInfoContextProvider({ children }) {
     getCompanyInfo();
     getDest();
   }, []);
+
+  console.log(API_KEY);
 
   return (
     <CompanyInfoContext.Provider

@@ -19,6 +19,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useTheme } from "@emotion/react";
 
 const MobileForm = () => {
+  const API_KEY = process.env.API_KEY;
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
@@ -51,7 +53,7 @@ const MobileForm = () => {
     };
 
     fetch(
-      "https://www.critecnow.com/promed/api/formSend/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX",
+      `https://www.critecnow.com/promed/api/formSend/${API_KEY}`,
       requestOptions
     )
       .then((response) => response.text())

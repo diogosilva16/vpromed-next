@@ -9,6 +9,8 @@ import Separator from "../../components/Separator";
 import Head from "next/head";
 
 const Sobre = () => {
+  const API_KEY = process.env.API_KEY;
+
   const theme = useTheme();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +22,7 @@ const Sobre = () => {
   const getCompanyAbout = async () => {
     try {
       const response = await fetch(
-        `https://www.critecnow.com/promed/api/section/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/1/1`
+        `https://www.critecnow.com/promed/api/section/${API_KEY}}/1/1`
       );
       const data = await response.json();
       setCompanyAbout(data);
