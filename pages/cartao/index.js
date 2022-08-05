@@ -3,6 +3,7 @@ import { Container, Grid, useMediaQuery, Box, Typography } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import ButtonComp from "../../components/ButtonComp";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const Cartao = ({ cardData }) => {
   const theme = useTheme();
