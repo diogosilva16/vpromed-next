@@ -50,3 +50,7 @@ MyApp.propTypes = {
   emotionCache: PropTypes.object,
   pageProps: PropTypes.object.isRequired,
 };
+
+export function reportWebVitals(metric) {
+  console.log(metric)
+}
