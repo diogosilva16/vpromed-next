@@ -20,10 +20,13 @@ function generateSiteMap(especialidades) {
       <url>
         <loc>https://vpromed.vercel.app/cartao</loc>
       </url>
-      ${especialidades.map(({id}) => {
-        return `<url>
-          <loc>https://vpromed.vercel.app/especialidades/${id}</loc>`
-      }).join('')}
+      ${especialidades
+        .map(({ id }) => {
+          return `<url>
+          <loc>https://vpromed.vercel.app/especialidades/${id}</loc>
+          <url>`;
+        })
+        .join("")}
     </urlset>`;
 }
 
