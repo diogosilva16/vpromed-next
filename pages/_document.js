@@ -10,9 +10,7 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           {/* PWA primary color */}
-          <title>Dentárias V-Promed</title>
-          <meta name="description" content="Dentárias V-Promed" />
-          <meta charset="UTF-8" />
+          
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link
