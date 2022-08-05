@@ -4,9 +4,9 @@ import { useTheme } from "@emotion/react";
 import ButtonComp from "../../components/ButtonComp";
 import { useRouter } from "next/router";
 import Head from "next/head";
+const API_KEY = process.env.API_KEY;
 
 const Cartao = ({ cardData }) => {
-  const API_KEY = process.env.API_KEY;
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));

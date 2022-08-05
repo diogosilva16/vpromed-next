@@ -14,9 +14,9 @@ import Loader from "../../components/Loader";
 import { useTheme } from "@emotion/react";
 import { CompanyInfoContext } from "../../context/CompanyInfoContext";
 import Head from "next/head";
+const API_KEY = process.env.API_KEY;
 
 const Contactos = ({ mobData, horData, locData }) => {
-  const API_KEY = process.env.API_KEY;
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
