@@ -7,6 +7,7 @@ import Loader from "../../components/Loader";
 import { useTheme } from "@emotion/react";
 import Sweet from "../../components/Sweet";
 import Separator from "../../components/Separator";
+import Head from "next/head";
 
 const Especialidade = () => {
   // const API_KEY = process.env.API_KEY;
@@ -52,10 +53,15 @@ const Especialidade = () => {
 
   return (
     <>
+     <Head>
+        <title>V-Promed Especialidades</title>
+        <meta name="description" content="V-Promed especialidades" />
+        <meta charset="UTF-8" />
+      </Head>
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
         <Container maxWidth="xl">
-          <Grid container pt={isMobile ? 7 : isTablet ? 10 : 15} pb={5}>
+          <Grid container pt={(isMobile ? 7 : isTablet) ? 10 : 15} pb={5}>
             <Box
               sx={{
                 zIndex: 0,
@@ -75,7 +81,7 @@ const Especialidade = () => {
             >
               <Grid item xs={12} pt={1} pb={3} className="borderEspecialidade">
                 <Typography
-                  variant="h5"
+                  variant={(isMobile || isTablet) ? "h5" : "h4"}
                   style={{ color: "white", textTransform: "uppercase" }}
                 >
                   Especialidades

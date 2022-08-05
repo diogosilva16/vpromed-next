@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import Loader from "../../components/Loader";
 import ButtonComp from "../../components/ButtonComp";
 import { useTheme } from "@emotion/react";
-
+import Head from "next/head";
 
 const Destaque = () => {
   const router = useRouter();
@@ -45,13 +45,18 @@ const Destaque = () => {
 
   return (
     <>
+    <Head>
+        <title>V-Promed Tendências</title>
+        <meta name="description" content="V-Promed Tendências" />
+        <meta charset="UTF-8" />
+      </Head>
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
         <Container maxWidth="xl">
           <Grid container pt={(isMobile || isTablet) ? 10 : 15}>
             <Box sx={{ width: "100vw" }}>
               <Grid item xs={12}>
-                <Typography variant="h5" style={{ color: "white", textTransform: "uppercase" }}>
+                <Typography variant={(isMobile || isTablet) ? "h5" : "h4"} style={{ color: "white", textTransform: "uppercase" }}>
                   Tendência
                 </Typography>
               </Grid>

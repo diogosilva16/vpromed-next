@@ -8,6 +8,7 @@ import Sweet from "../../components/Sweet";
 import Loader from "../../components/Loader";
 import Separator from "../../components/Separator";
 import { useTheme } from "@emotion/react";
+import Head from "next/head";
 
 const Inicio = () => {
   const [wait, setWait] = useState(true);
@@ -25,21 +26,28 @@ const Inicio = () => {
   }, [timer]);
 
   return (
-    <Box pt={isMobile ? 7 : isTablet ? 8 : 10} sx={{ background: "#2A2A2A" }}>
-      <Panorama />
-      <Container maxWidth="xl">
-        {wait && <Loader />}
-        {!wait && (
-          <>
-            <Tendencias />
-            <Especialidades />
-            <Sweet />
-            <Separator />
-            <Form />
-          </>
-        )}
-      </Container>
-    </Box>
+    <>
+      <Head>
+        <title>V-Promed</title>
+        <meta name="description" content="V-Promed início" />
+        <meta charset="UTF-8" />
+      </Head>
+      <Box pt={isMobile ? 7 : isTablet ? 8 : 10} sx={{ background: "#2A2A2A" }}>
+        <Panorama />
+        <Container maxWidth="xl">
+          {wait && <Loader />}
+          {!wait && (
+            <>
+              <Tendencias />
+              <Especialidades />
+              <Sweet />
+              <Separator />
+              <Form />
+            </>
+          )}
+        </Container>
+      </Box>
+    </>
   );
 };
 

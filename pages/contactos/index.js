@@ -13,22 +13,32 @@ import Form from "../../components/Form";
 import Loader from "../../components/Loader";
 import { useTheme } from "@emotion/react";
 import { CompanyInfoContext } from "../../context/CompanyInfoContext";
+import Head from "next/head";
 
 const Contactos = ({ mobData, horData, locData }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
   const { companyInfo, isLoading, hasError } = useContext(CompanyInfoContext);
 
   return (
     <>
+      <Head>
+        <title>V-Promed Contactos</title>
+        <meta name="description" content="V-Promed Contactos" />
+        <meta charset="UTF-8" />
+      </Head>
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
         <Container maxWidth="xl">
-          <Grid container pt={(isMobile) ? 10 : 20}>
+          <Grid container pt={isMobile ? 10 : 15}>
             <Box sx={{ width: "100%" }}>
               <Grid item xs={12}>
-                <Typography variant="h5" style={{ color: "white" }}>
+                <Typography
+                  variant={isMobile || isTablet ? "h5" : "h4"}
+                  style={{ color: "white", textTransform: "uppercase" }}
+                >
                   Contactos
                 </Typography>
               </Grid>

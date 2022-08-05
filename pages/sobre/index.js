@@ -6,6 +6,7 @@ import Especialidades from "../../components/Especialidades";
 import { useTheme } from "@emotion/react";
 import Form from "../../components/Form";
 import Separator from "../../components/Separator";
+import Head from "next/head";
 
 const Sobre = () => {
   const theme = useTheme();
@@ -38,6 +39,11 @@ const Sobre = () => {
 
   return (
     <>
+      <Head>
+        <title>V-Promed Sobre</title>
+        <meta name="description" content="V-Promed Sobre" />
+        <meta charset="UTF-8" />
+      </Head>
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
         <Container maxWidth="xl">
@@ -61,7 +67,7 @@ const Sobre = () => {
             >
               <Grid item xs={12} pt={1} pb={3} className="borderEspecialidade">
                 <Typography
-                  variant="h5"
+                  variant={isMobile || isTablet ? "h5" : "h4"}
                   style={{ color: "white", textTransform: "uppercase" }}
                 >
                   Dentárias V-Promed
