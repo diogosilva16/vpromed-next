@@ -7,16 +7,15 @@ import Head from "next/head";
 const API_KEY = process.env.API_KEY;
 
 const Cartao = ({ cardData }) => {
-
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
-  console.log(cardData);
-
   const goToContact = () => {
     router.push("/contactos");
   };
+
+  console.log(cardData);
 
   return (
     <>
@@ -74,10 +73,18 @@ const Cartao = ({ cardData }) => {
                   fontSize: "1.25rem",
                 }}
               >
-                Conheça as características do {cardData[0].NAME_SEO}
+                {JSON.parse(cardData[0].CUSTOMCAMPS).main_subtitle}
               </Typography>
             </Grid>
             <Grid item xs={12}>
+              <Typography
+                sx={{ color: "white", fontSize: "1.25rem" }}
+                variant="body1"
+              >
+                {JSON.parse(cardData[0].CUSTOMCAMPS).small_text}
+              </Typography>
+            </Grid>
+            <Grid item xs={12} pt={5}>
               <Typography
                 sx={{ color: "white", fontSize: "1.25rem" }}
                 variant="body1"

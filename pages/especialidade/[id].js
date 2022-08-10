@@ -8,6 +8,7 @@ import { useTheme } from "@emotion/react";
 import Sweet from "../../components/Sweet";
 import Separator from "../../components/Separator";
 import Head from "next/head";
+import DentalSweet from "../../components/DentalSweet";
 
 const Especialidade = () => {
   const API_KEY = process.env.API_KEY;
@@ -51,9 +52,10 @@ const Especialidade = () => {
     getEspecialidadeInfo();
   }, [id, isLoading]);
 
+  console.log(especialidadeInfo);
   return (
     <>
-     <Head>
+      <Head>
         <title>V-Promed Especialidades</title>
         <meta name="description" content="V-Promed especialidades" />
         <meta charset="UTF-8" />
@@ -61,7 +63,7 @@ const Especialidade = () => {
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
         <Container maxWidth="xl">
-          <Grid container pt={(isMobile ? 7 : isTablet) ? 10 : 15} pb={5}>
+          <Grid container pt={isMobile ? 7 : isTablet ? 8 : 15} pb={5}>
             <Box
               sx={{
                 zIndex: 0,
@@ -76,12 +78,18 @@ const Especialidade = () => {
             <Box
               sx={{
                 zIndex: 1,
+                width: "100%",
                 position: "relative",
+                backgroundImage:
+                  !isMobile && `url(${especialidadeInfo.IMAGES[2]?.FILE})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                //meter mais alto
               }}
             >
               <Grid item xs={12} pt={1} pb={3} className="borderEspecialidade">
                 <Typography
-                  variant={(isMobile || isTablet) ? "h5" : "h4"}
+                  variant={isMobile || isTablet ? "h5" : "h4"}
                   style={{ color: "white", textTransform: "uppercase" }}
                 >
                   Especialidades
@@ -96,14 +104,11 @@ const Especialidade = () => {
                     fontSize: "1.25rem",
                   }}
                 >
-                  <span style={{ color: "#CEC568" }}>
-                    A {especialidadeInfo.NAME_SEO} divide-se em {""}
-                  </span>
-                  várias áreas de intervenção.
+                  {JSON.parse(especialidadeInfo.CUSTOMCAMPS)?.title}
                 </Typography>
               </Grid>
             </Box>
-            <Grid container pt={3} pb={5} sx={{ color: "white" }}>
+            <Grid container pt={isMobile ? 10 : 5} pb={5} sx={{ color: "white" }}>
               <Grid item xs={12}>
                 <Typography
                   variant="h5"
@@ -111,6 +116,7 @@ const Especialidade = () => {
                     fontFamily: "Times New Roman",
                     textTransform: "uppercase",
                     fontSize: "2.25rem",
+                    color: "#CEC568"
                   }}
                 >
                   {especialidadeInfo.NAME_SEO}
@@ -129,7 +135,7 @@ const Especialidade = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Sweet />
+          {id != 3 ? <Sweet /> : <DentalSweet />}
           <Separator />
           {!wait && <Form />}
         </Container>

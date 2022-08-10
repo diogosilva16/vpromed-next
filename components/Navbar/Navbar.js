@@ -64,16 +64,15 @@ const Navbar = () => {
             sx={{ my: 2, color: "white", display: "block", cursor: "pointer" }}
             aria-describedby={id}
           >
-            <ListItemText>VPROMED</ListItemText>
+            <ListItemText>V-PROMED</ListItemText>
           </ListItem>
         </Link>
         <ListItem>
           <ListItemText
             sx={{
               my: 2,
-              color: "white",
+              color: "#CEC568",
               display: "block",
-              "&:hover": { color: "#CEC568" },
               cursor: "pointer",
             }}
             aria-describedby={id}
@@ -159,22 +158,26 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar position="fixed" sx={{ background:
-          "linear-gradient(0deg,  rgba(62,62,62,1) 0%, rgba(50,50,50,1) 5%, rgba(0,0,0,1) 100%)",}}>
+      <AppBar
+        position="fixed"
+        sx={{
+          background:
+            "linear-gradient(0deg,  rgba(62,62,62,1) 0%, rgba(50,50,50,1) 5%, rgba(0,0,0,1) 100%)",
+        }}
+      >
         <Container maxWidth="xl">
           <Toolbar>
             <Link href="/inicio">
               <Typography>
-                {isLoading ? <img
-                  src="/logo_menu.svg"
-                  alt="v-promed"
-                  width="150"
-                /> :<img
-                  src={companyInfo[0]?.VALUE || ""}
-                  alt="v-promed"
-                  width="150"
-                /> }
-                
+                {isLoading ? (
+                  <img src="/logo_menu.svg" alt="v-promed" width="150" />
+                ) : (
+                  <img
+                    src={companyInfo[0]?.VALUE || ""}
+                    alt="v-promed"
+                    width="150"
+                  />
+                )}
               </Typography>
             </Link>
             {isMobile ? (

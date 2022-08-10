@@ -62,7 +62,7 @@ const Form = () => {
     };
 
     fetch(
-      `https://www.critecnow.com/promed/api/formSend/$API_KEY}`,
+      `https://www.critecnow.com/promed/api/formSend/${API_KEY}`,
       requestOptions
     )
       .then((response) => response.text())

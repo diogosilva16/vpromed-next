@@ -21,11 +21,11 @@ export const DrawerComponent = ({ openDrawer, setOpenDrawer }) => {
       <>
         <Link href="/sobre">
           <ListItem sx={alignText} onClick={() => setOpenDrawer(false)}>
-            <ListItemText>VPROMED</ListItemText>
+            <ListItemText>V-PROMED</ListItemText>
           </ListItem>
         </Link>
         <ListItem sx={alignText} onClick={() => setOpenDrawer(false)}>
-          <ListItemText>TENDÊNCIAS</ListItemText>
+          <ListItemText sx={{color: "#CEC568"}}>TENDÊNCIAS</ListItemText>
         </ListItem>
         <List
           sx={{

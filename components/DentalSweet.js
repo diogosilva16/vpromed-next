@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import Observer from "@researchgate/react-intersection-observer";
 import { useTheme } from "@emotion/react";
 
-const Sweet = () => {
+const DentalSweet = () => {
   const API_KEY = process.env.API_KEY;
 
   const theme = useTheme();
@@ -58,7 +58,7 @@ const Sweet = () => {
   let { id } = router.query;
 
   const goToPage = () => {
-    router.push(`/dentalwork`);
+    router.push(`/dentalsweet`);
   };
 
 
@@ -81,7 +81,7 @@ const Sweet = () => {
                     variant="subtitle1"
                     sx={{ fontSize: isMobile && "0.8125rem" }}
                   >
-                    {cardInfo[0].NAME_SEO}
+                    {cardInfo[1].NAME_SEO}
                   </Typography>
                 </Box>
                 <Box pt={2} pb={2}>
@@ -93,7 +93,7 @@ const Sweet = () => {
                       fontSize: "2.125rem",
                     }}
                   >
-                    {JSON.parse(cardInfo[0].CUSTOMCAMPS).main_description}
+                    {JSON.parse(cardInfo[1].CUSTOMCAMPS).main_description}
                   </Typography>
                 </Box>
                 <Box>
@@ -104,7 +104,7 @@ const Sweet = () => {
                       fontSize: isMobile && "1rem",
                     }}
                   >
-                    {JSON.parse(cardInfo[0].CUSTOMCAMPS).small_description}.
+                    {JSON.parse(cardInfo[1].CUSTOMCAMPS).small_description}
                   </Typography>
                 </Box>
                 <Box
@@ -116,7 +116,7 @@ const Sweet = () => {
                 >
                   <ButtonComp
                     text={"Saber Mais"}
-                    goTo={() => goToPage(cardInfo[0].ARTICLE_ID)}
+                    goTo={() => goToPage(cardInfo[1].ARTICLE_ID)}
                   />
                 </Box>
               </Grid>
@@ -129,7 +129,7 @@ const Sweet = () => {
                 sx={{ display: (isMobile || isTablet) && "none" }}
               >
                 <img
-                  src={cardInfo[0].IMAGES[0]?.FILE || ""}
+                  src={cardInfo[1].IMAGES[0]?.FILE || ""}
                   alt="Especialidade"
                   width="100%"
                 />
@@ -140,7 +140,7 @@ const Sweet = () => {
                 xs={12}
                 sx={{
                   zIndex: 0,
-                  backgroundImage: `url(${cardInfo[0].IMAGES[1]?.FILE})`,
+                  backgroundImage: `url(${cardInfo[1].IMAGES[1]?.FILE})`,
                   width: "60%",
                   height: "30%",
                   left: "40%",
@@ -157,4 +157,4 @@ const Sweet = () => {
   );
 };
 
-export default Sweet;
+export default DentalSweet;

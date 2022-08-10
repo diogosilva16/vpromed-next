@@ -126,6 +126,7 @@ const Destaques = () => {
                       {dest[0].NAME_SEO}
                     </Typography>
                     <Typography
+                      sx={{ textTransform: "uppercase" }}
                       variant="body1"
                       pb={2}
                       pt={
@@ -138,8 +139,7 @@ const Destaques = () => {
                     </Typography>
                     <Box
                       sx={{
-                        textAlign:
-                          (isMobile && !isDesktop) && "center",
+                        textAlign: isMobile && !isDesktop && "center",
                       }}
                     >
                       <ButtonComp
@@ -232,7 +232,11 @@ const Destaques = () => {
                   >
                     {dest[1].NAME_SEO}
                   </Typography>
-                  <Typography variant="body1" pb={2}>
+                  <Typography
+                    variant="body1"
+                    pb={2}
+                    sx={{ textTransform: "uppercase" }}
+                  >
                     {JSON.parse(dest[1].CUSTOMCAMPS).small_description}
                   </Typography>
                   <ButtonComp

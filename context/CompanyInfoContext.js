@@ -45,8 +45,6 @@ export function CompanyInfoContextProvider({ children }) {
     getDest();
   }, []);
 
-  console.log(API_KEY);
-
   return (
     <CompanyInfoContext.Provider
       value={{

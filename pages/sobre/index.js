@@ -22,7 +22,7 @@ const Sobre = () => {
   const getCompanyAbout = async () => {
     try {
       const response = await fetch(
-        `https://www.critecnow.com/promed/api/section/${API_KEY}}/1/1`
+        `https://www.critecnow.com/promed/api/section/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/1/1`
       );
       const data = await response.json();
       setCompanyAbout(data);
@@ -38,7 +38,6 @@ const Sobre = () => {
   }, [isLoading]);
 
   console.log(companyAbout);
-
   return (
     <>
       <Head>
@@ -64,7 +63,12 @@ const Sobre = () => {
             <Box
               sx={{
                 zIndex: 1,
+                width: "100%",
                 position: "relative",
+                backgroundImage:
+                  !isMobile && `url(${companyAbout.IMAGES[1]?.FILE})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
               }}
             >
               <Grid item xs={12} pt={1} pb={3} className="borderEspecialidade">
@@ -121,6 +125,75 @@ const Sobre = () => {
                   }}
                 >
                   {companyAbout.TEXT_SEO}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} pt={10}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    textTransform: "uppercase",
+                    color: "#CEC568",
+                    fontFamily: "Times New Roman",
+                  }}
+                >
+                  {JSON.parse(companyAbout.CUSTOMCAMPS).small_title2}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} pt={2}>
+                <Typography
+                  sx={{
+                    whiteSpace: "pre-line",
+                    fontFamily: "Mulish",
+                    fontSize: "1.125rem",
+                  }}
+                >
+                  {JSON.parse(companyAbout.CUSTOMCAMPS).text_small_title2}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} pt={2}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    textTransform: "uppercase",
+                    color: "#CEC568",
+                    fontFamily: "Times New Roman",
+                  }}
+                >
+                  {JSON.parse(companyAbout.CUSTOMCAMPS).small_title3}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} pt={2}>
+                <Typography
+                  sx={{
+                    whiteSpace: "pre-line",
+                    fontFamily: "Mulish",
+                    fontSize: "1.125rem",
+                  }}
+                >
+                  {JSON.parse(companyAbout.CUSTOMCAMPS).text_small_tittle3}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} pt={2}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    textTransform: "uppercase",
+                    color: "#CEC568",
+                    fontFamily: "Times New Roman",
+                  }}
+                >
+                  {JSON.parse(companyAbout.CUSTOMCAMPS).small_title_4}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} pt={2}>
+                <Typography
+                  sx={{
+                    whiteSpace: "pre-line",
+                    fontFamily: "Mulish",
+                    fontSize: "1.125rem",
+                  }}
+                >
+                  {JSON.parse(companyAbout.CUSTOMCAMPS).text_small_title4}
                 </Typography>
               </Grid>
             </Grid>
