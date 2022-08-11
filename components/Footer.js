@@ -175,12 +175,12 @@ const Footer = () => {
                   pt={1}
                 >
                   <Box p={1.5}>
-                    <a href="#" target="_blank">
+                    <a href="#" target="_blank" rel="noreferrer">
                       <img src={facebook.FILE} width={30} alt="facebook icon" />
                     </a>
                   </Box>
                   <Box p={1.5}>
-                    <a href="#" target="_blank">
+                    <a href="#" target="_blank" rel="noreferrer">
                       <img
                         src={instagram.FILE}
                         width={30}
@@ -189,7 +189,7 @@ const Footer = () => {
                     </a>
                   </Box>
                   <Box p={1.5}>
-                    <a href="#" target="_blank">
+                    <a href="#" target="_blank" rel="noreferrer">
                       <img src={twitter.FILE} width={30} alt="twitter icon" />
                     </a>
                   </Box>
@@ -233,7 +233,11 @@ const Footer = () => {
                         fontWeight: "900",
                       }}
                     >
-                      <a href="https://www.critec.pt/inicio" target="_blank">
+                      <a
+                        href="https://www.critec.pt/inicio"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
                         critec
                       </a>
                     </span>
