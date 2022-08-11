@@ -54,6 +54,10 @@ const Sweet = () => {
     getCardInfo();
   }, []);
 
+  const getCardImg = (code) => {
+    return (cardInfo[0]?.IMAGES)?.find(x => x.CODE === code)?.FILE ?? ""
+  }
+
   const router = useRouter();
   let { id } = router.query;
 
@@ -61,6 +65,8 @@ const Sweet = () => {
     router.push(`/dentalwork`);
   };
 
+  const cardImgMobGreen = getCardImg("mobileComp");
+  const cardImgDeskGreen = getCardImg("desktopComp");
 
   return (
     <>
@@ -129,7 +135,7 @@ const Sweet = () => {
                 sx={{ display: (isMobile || isTablet) && "none" }}
               >
                 <img
-                  src={cardInfo[0].IMAGES[0]?.FILE || ""}
+                  src={cardImgDeskGreen || ""}
                   alt="Especialidade"
                   width="100%"
                 />
@@ -140,7 +146,7 @@ const Sweet = () => {
                 xs={12}
                 sx={{
                   zIndex: 0,
-                  backgroundImage: `url(${cardInfo[0].IMAGES[1]?.FILE})`,
+                  backgroundImage: `url(${cardImgMobGreen})`,
                   width: "60%",
                   height: "30%",
                   left: "40%",

@@ -53,6 +53,14 @@ const Especialidade = () => {
   }, [id, isLoading]);
 
   console.log(especialidadeInfo);
+
+  const getCardImg = (code) => {
+    return (especialidadeInfo?.IMAGES)?.find(x => x.CODE === code)?.FILE ?? ""
+  }
+
+  const desktopImg = getCardImg("desktop");
+  const mobileImg = getCardImg("mobile");
+
   return (
     <>
       <Head>
@@ -72,30 +80,33 @@ const Especialidade = () => {
               }}
             >
               {isMobile && (
-                <img src={especialidadeInfo.IMAGES[1]?.FILE} width="100%" />
+                <img src={mobileImg} width="100%" />
               )}
             </Box>
             <Box
+            display="flex"
+            flexDirection="column"
               sx={{
                 zIndex: 1,
                 width: "100%",
+                height: !isMobile && "392px",
                 position: "relative",
                 backgroundImage:
-                  !isMobile && `url(${especialidadeInfo.IMAGES[2]?.FILE})`,
+                  !isMobile && `url(${desktopImg})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 //meter mais alto
               }}
             >
-              <Grid item xs={12} pt={1} pb={3} className="borderEspecialidade">
+              <Grid item xs={12} pt={1} pb={3} className="borderEspecialidade" display={!isMobile && "flex"} alignItems={!isMobile && "flex-end"} pl={!isMobile && 3}>
                 <Typography
                   variant={isMobile || isTablet ? "h5" : "h4"}
-                  style={{ color: "white", textTransform: "uppercase" }}
+                  style={{ color: "white", textTransform: "uppercase", fontFamily: "Mulish, sans-serif" }}
                 >
                   Especialidades
                 </Typography>
               </Grid>
-              <Grid item xs={12} pt={5} pb={5}>
+              <Grid item xs={12} pt={5} pb={5} pl={!isMobile && 3}>
                 <Typography
                   sx={{
                     color: "white",
@@ -108,7 +119,12 @@ const Especialidade = () => {
                 </Typography>
               </Grid>
             </Box>
-            <Grid container pt={isMobile ? 10 : 5} pb={5} sx={{ color: "white" }}>
+            <Grid
+              container
+              pt={isMobile ? 10 : 5}
+              pb={5}
+              sx={{ color: "white" }}
+            >
               <Grid item xs={12}>
                 <Typography
                   variant="h5"
@@ -116,7 +132,7 @@ const Especialidade = () => {
                     fontFamily: "Times New Roman",
                     textTransform: "uppercase",
                     fontSize: "2.25rem",
-                    color: "#CEC568"
+                    color: "#CEC568",
                   }}
                 >
                   {especialidadeInfo.NAME_SEO}

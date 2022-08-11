@@ -17,7 +17,7 @@ const PanoComp = () => {
     <Pannellum
       autoLoad
       width="100vw"
-      height={isMobile ? "70vh" : "100vh"}
+      height={isMobile ? "70vh" : "85vh"}
       image="https://www.critecnow.com/promed/storage/files/original/panorama_62e24e3ea860e.jpg"
       pitch={0}
       yaw={180}

@@ -168,17 +168,16 @@ const Navbar = () => {
         <Container maxWidth="xl">
           <Toolbar>
             <Link href="/inicio">
-              <Typography>
                 {isLoading ? (
-                  <img src="/logo_menu.svg" alt="v-promed" width="150" />
+                  <img src="/logo_menu.svg" alt="v-promed" width="200"/>
                 ) : (
                   <img
                     src={companyInfo[0]?.VALUE || ""}
                     alt="v-promed"
-                    width="150"
+                    width="200"
+                    style={{cursor: "pointer"}}
                   />
                 )}
-              </Typography>
             </Link>
             {isMobile ? (
               <DrawerComponent

@@ -4,6 +4,7 @@ import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import { useTheme } from "@emotion/react";
 import { CompanyInfoContext } from "../context/CompanyInfoContext";
 import Loader from "./Loader";
+import Link from "next/link";
 
 const Footer = () => {
   const API_KEY = process.env.API_KEY;
@@ -174,13 +175,23 @@ const Footer = () => {
                   pt={1}
                 >
                   <Box p={1.5}>
-                    <img src={facebook.FILE} width={30} alt="facebook icon"/>
+                    <a href="#" target="_blank">
+                      <img src={facebook.FILE} width={30} alt="facebook icon" />
+                    </a>
                   </Box>
                   <Box p={1.5}>
-                    <img src={instagram.FILE} width={30} alt="instagram icon"/>
+                    <a href="#" target="_blank">
+                      <img
+                        src={instagram.FILE}
+                        width={30}
+                        alt="instagram icon"
+                      />
+                    </a>
                   </Box>
                   <Box p={1.5}>
-                    <img src={twitter.FILE} width={30} alt="twitter icon"/>
+                    <a href="#" target="_blank">
+                      <img src={twitter.FILE} width={30} alt="twitter icon" />
+                    </a>
                   </Box>
                 </Box>
               </Grid>
@@ -217,9 +228,14 @@ const Footer = () => {
                   >
                     Developed by{" "}
                     <span
-                      style={{ textTransform: "lowercase", fontWeight: "900" }}
+                      style={{
+                        textTransform: "lowercase",
+                        fontWeight: "900",
+                      }}
                     >
-                      critec
+                      <a href="https://www.critec.pt/inicio" target="_blank">
+                        critec
+                      </a>
                     </span>
                   </Typography>
                 </Grid>

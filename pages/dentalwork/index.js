@@ -14,8 +14,13 @@ const Cartao = ({ cardData }) => {
   const goToContact = () => {
     router.push("/contactos");
   };
+  
+  const getCardImg = (code) => {
+    return (cardData[0]?.IMAGES)?.find(x => x.CODE === code)?.FILE ?? ""
+  }
 
-  console.log(cardData);
+  const desktopImg = getCardImg("desktop");
+  const mobileImg = getCardImg("mobile");
 
   return (
     <>
@@ -50,11 +55,11 @@ const Cartao = ({ cardData }) => {
           </Box>
           <Box sx={{ width: "100vw" }}>
             {isMobile || isTablet ? (
-              <img src={cardData[0].IMAGES[1].FILE} width={"100%"} />
+              <img src={mobileImg} width={"100%"} />
             ) : (
               <Box>
                 <img
-                  src={cardData[0].IMAGES[0].FILE}
+                  src={desktopImg}
                   height={"50%"}
                   width={"100%"}
                 />
