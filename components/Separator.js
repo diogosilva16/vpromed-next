@@ -16,9 +16,9 @@ const Separator = () => {
       }}
     >
       {isMobile || isTablet ? (
-        <img src="/separador.svg" width="100%" alt="separador mobile" />
+        <img src="/images/separador.svg" width="100%" alt="separador mobile" />
       ) : (
-        <img src="/sepDesktop.svg" width="100%" alt="separador" />
+        <img src="/images/sepDesktop.svg" width="100%" alt="separador" />
       )}
     </Box>
   );

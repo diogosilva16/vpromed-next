@@ -63,7 +63,7 @@ const Especialidade = () => {
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
         <Container maxWidth="xl">
-          <Grid container pt={isMobile ? 7 : isTablet ? 8 : 15} pb={5}>
+          <Grid container pt={isMobile ? 7 : isTablet ? 8 : 12} pb={5}>
             <Box
               sx={{
                 zIndex: 0,
