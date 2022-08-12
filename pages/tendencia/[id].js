@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Grid, Container, Typography, Box, Button, useMediaQuery } from "@mui/material";
+import {
+  Grid,
+  Container,
+  Typography,
+  Box,
+  Button,
+  useMediaQuery,
+} from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Loader from "../../components/Loader";
@@ -45,9 +52,19 @@ const Destaque = () => {
     router.push("/contactos");
   };
 
+  const getTrendImg = (code) => {
+    return trendInfo?.IMAGES?.find((x) => x.CODE === code)?.FILE ?? "";
+  };
+
+  console.log(getTrendImg("trendDesktop"));
+  console.log(getTrendImg("trendMobile"));
+
+  const desktopImg = getTrendImg("trendDesktop");
+  const mobileImg = getTrendImg("trendMobile");
+
   return (
     <>
-    <Head>
+      <Head>
         <title>V-Promed Tendências</title>
         <meta name="description" content="V-Promed Tendências" />
         <meta charset="UTF-8" />
@@ -55,10 +72,13 @@ const Destaque = () => {
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
         <Container maxWidth="xl">
-          <Grid container pt={(isMobile || isTablet) ? 10 : 15}>
+          <Grid container pt={isMobile || isTablet ? 10 : 15}>
             <Box sx={{ width: "100vw" }}>
               <Grid item xs={12}>
-                <Typography variant={(isMobile || isTablet) ? "h5" : "h4"} style={{ color: "white", textTransform: "uppercase" }}>
+                <Typography
+                  variant={isMobile || isTablet ? "h5" : "h4"}
+                  style={{ color: "white", textTransform: "uppercase" }}
+                >
                   Tendência
                 </Typography>
               </Grid>
@@ -75,10 +95,22 @@ const Destaque = () => {
                 </Typography>
               </Grid>
             </Box>
-            <Box sx={{ width: "100vw", height: "200px", background: "black" }}>
-              <Grid item xs={12}></Grid>
+            <Box sx={{ width: "100vw" }}>
+              {isMobile ? (
+                <Box
+                  sx={{
+                    zIndex: 0,
+                    position: "absolute",
+                    left: "calc(-50vw + 50%)",
+                  }}
+                >
+                  <img src={mobileImg} width="100%" />
+                </Box>
+              ) : (
+                <img src={desktopImg} width="100%" />
+              )}
             </Box>
-            <Box>
+            <Box mt={isMobile && 30} sx={{ zIndex: 1, position: "relative"}}>
               <Grid item xs={12} p={5}>
                 <Typography
                   pl={2}
@@ -87,38 +119,20 @@ const Destaque = () => {
                     borderLeft: "1px solid #CEC568",
                     fontFamily: "Times New Roman",
                     textTransform: "uppercase",
-                    fontSize: "1.25rem"
+                    fontSize: "1.25rem",
                   }}
                 >
                   Conheça as características do {trendInfo.NAME_SEO}
                 </Typography>
               </Grid>
               <Grid item xs={12}>
-                <Typography sx={{ color: "white", fontSize: "1.25rem" }} variant="body1">
+                <Typography
+                  sx={{ color: "white", fontSize: "1.25rem" }}
+                  variant="body1"
+                >
                   {trendInfo.TEXT_SEO}
                 </Typography>
               </Grid>
-              {/* <Grid item xs={12} pt={5}>
-                <Typography
-                  sx={{ color: "#CEC568", textTransform: "uppercase" }}
-                >
-                  SED ALIQUAM
-                </Typography>
-              </Grid>
-              <Grid item xs={12} pt={5}>
-                <Typography sx={{ color: "white" }} variant="body1">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Fermentum et sollicitudin ac orci phasellus egestas tellus
-                  rutrum. Massa tincidunt dui ut ornare lectus sit. Nunc congue
-                  nisi vitae suscipit. Eu ultrices vitae auctor eu. Quis blandit
-                  turpis cursus in hac habitasse. Quam lacus suspendisse
-                  faucibus interdum posuere lorem ipsum dolor sit. Auctor neque
-                  vitae tempus quam pellentesque nec nam aliquam. Commodo
-                  viverra maecenas accumsan lacus vel facilisis volutpat est
-                  velit.
-                </Typography>
-              </Grid> */}
             </Box>
             <Grid item xs={12} pt={5} textAlign="center">
               <ButtonComp text={"Contacte-nos"} goTo={goToContact} />

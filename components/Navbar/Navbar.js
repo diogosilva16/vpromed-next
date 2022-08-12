@@ -165,16 +165,16 @@ const Navbar = () => {
             "linear-gradient(0deg,  rgba(62,62,62,1) 0%, rgba(50,50,50,1) 5%, rgba(0,0,0,1) 100%)",
         }}
       >
-        <Container maxWidth="xl">
+        <Container maxWidth="xxl">
           <Toolbar>
             <Link href="/inicio">
                 {isLoading ? (
-                  <img src="/logo_menu.svg" alt="v-promed" width="200"/>
+                  <img src="/logo_menu.svg" alt="v-promed" width="300"/>
                 ) : (
                   <img
                     src={companyInfo[0]?.VALUE || ""}
                     alt="v-promed"
-                    width="200"
+                    width="300"
                     style={{cursor: "pointer"}}
                   />
                 )}

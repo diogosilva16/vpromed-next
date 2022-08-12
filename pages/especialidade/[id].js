@@ -52,11 +52,9 @@ const Especialidade = () => {
     getEspecialidadeInfo();
   }, [id, isLoading]);
 
-  console.log(especialidadeInfo);
-
   const getCardImg = (code) => {
-    return (especialidadeInfo?.IMAGES)?.find(x => x.CODE === code)?.FILE ?? ""
-  }
+    return especialidadeInfo?.IMAGES?.find((x) => x.CODE === code)?.FILE ?? "";
+  };
 
   const desktopImg = getCardImg("desktop");
   const mobileImg = getCardImg("mobile");
@@ -70,90 +68,107 @@ const Especialidade = () => {
       </Head>
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
-        <Container maxWidth="xl">
+        <Container maxWidth="xxl">
           <Grid container pt={isMobile ? 7 : isTablet ? 8 : 12} pb={5}>
-            <Box
-              sx={{
-                zIndex: 0,
-                position: "absolute",
-                left: "calc(-50vw + 50%)",
-              }}
-            >
-              {isMobile && (
+            {isMobile && (
+              <Box
+                sx={{
+                  zIndex: 0,
+                  position: "absolute",
+                  left: "calc(-50vw + 50%)",
+                }}
+              >
                 <img src={mobileImg} width="100%" />
-              )}
-            </Box>
+              </Box>
+            )}
             <Box
-            display="flex"
-            flexDirection="column"
+            justifyContent="center"
+              display="flex"
+              flexDirection="column"
               sx={{
                 zIndex: 1,
                 width: "100%",
                 height: !isMobile && "392px",
                 position: "relative",
-                backgroundImage:
-                  !isMobile && `url(${desktopImg})`,
+                backgroundImage: !isMobile && `url(${desktopImg})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
-                //meter mais alto
               }}
             >
-              <Grid item xs={12} pt={1} pb={3} className="borderEspecialidade" display={!isMobile && "flex"} alignItems={!isMobile && "flex-end"} pl={!isMobile && 3}>
-                <Typography
-                  variant={isMobile || isTablet ? "h5" : "h4"}
-                  style={{ color: "white", textTransform: "uppercase", fontFamily: "Mulish, sans-serif" }}
+              <Container maxWidth="xl">
+                <Grid
+                  item
+                  xs={12}
+                  pt={1}
+                  pb={3}
+                  className="borderEspecialidade"
+                  display={!isMobile && "flex"}
+                  alignItems={!isMobile && "flex-end"}
                 >
-                  Especialidades
-                </Typography>
-              </Grid>
-              <Grid item xs={12} pt={5} pb={5} pl={!isMobile && 3}>
-                <Typography
-                  sx={{
-                    color: "white",
-                    textTransform: "uppercase",
-                    fontFamily: "Times New Roman",
-                    fontSize: "1.25rem",
-                  }}
-                >
-                  {JSON.parse(especialidadeInfo.CUSTOMCAMPS)?.title}
-                </Typography>
-              </Grid>
+                  <Typography
+                    variant={isMobile || isTablet ? "h5" : "h4"}
+                    style={{
+                      color: "white",
+                      textTransform: "uppercase",
+                      fontFamily: "Mulish, sans-serif",
+                    }}
+                  >
+                    Especialidades
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} pt={5} pb={5}>
+                  <Typography
+                    sx={{
+                      color: "white",
+                      textTransform: "uppercase",
+                      fontFamily: "Times New Roman",
+                      fontSize: "1.25rem",
+                    }}
+                  >
+                    {JSON.parse(especialidadeInfo.CUSTOMCAMPS)?.title}
+                  </Typography>
+                </Grid>
+              </Container>
             </Box>
-            <Grid
-              container
-              pt={isMobile ? 10 : 5}
-              pb={5}
-              sx={{ color: "white" }}
-            >
-              <Grid item xs={12}>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    fontFamily: "Times New Roman",
-                    textTransform: "uppercase",
-                    fontSize: "2.25rem",
-                    color: "#CEC568",
-                  }}
-                >
-                  {especialidadeInfo.NAME_SEO}
-                </Typography>
+            <Container maxWidth="xl">
+              <Grid
+                container
+                pt={isMobile ? 10 : 5}
+                pb={5}
+                sx={{ color: "white" }}
+              >
+                <Grid item xs={12}>
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      fontFamily: "Times New Roman",
+                      textTransform: "uppercase",
+                      fontSize: "2.25rem",
+                      color: "#CEC568",
+                    }}
+                  >
+                    {especialidadeInfo.NAME_SEO}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} pt={2}>
+                  <Typography
+                    sx={{
+                      whiteSpace: "pre-line",
+                      fontFamily: "Mulish",
+                      fontSize: "1.125rem",
+                    }}
+                  >
+                    {especialidadeInfo.TEXT_SEO}
+                  </Typography>
+                </Grid>
               </Grid>
-              <Grid item xs={12} pt={2}>
-                <Typography
-                  sx={{
-                    whiteSpace: "pre-line",
-                    fontFamily: "Mulish",
-                    fontSize: "1.125rem",
-                  }}
-                >
-                  {especialidadeInfo.TEXT_SEO}
-                </Typography>
-              </Grid>
-            </Grid>
+            </Container>
           </Grid>
-          {id != 3 ? <Sweet /> : <DentalSweet />}
+          <Container maxWidth="xl">
+            {id != 3 ? <Sweet /> : <DentalSweet />}
+          </Container>
           <Separator />
-          {!wait && <Form />}
+          <Container maxWidth="xl">{!wait && <Form />}</Container>
         </Container>
       )}
     </>
