@@ -57,7 +57,7 @@ const Sobre = () => {
               }}
             >
               {isMobile && (
-                <img src={companyAbout.IMAGES[0]?.FILE} width="100%" />
+                <img src={companyAbout.IMAGES[0]?.FILE} width="100%" alt="mobile image" />
               )}
             </Box>
             <Box

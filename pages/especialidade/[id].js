@@ -78,7 +78,7 @@ const Especialidade = () => {
                   left: "calc(-50vw + 50%)",
                 }}
               >
-                <img src={mobileImg} width="100%" />
+                <img src={mobileImg} width="100%" alt="especialidade"/>
               </Box>
             )}
             <Box

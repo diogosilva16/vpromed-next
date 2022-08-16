@@ -38,15 +38,15 @@ const ContactCard = (props) => {
         </AccordionSummary>
         <AccordionDetails>
           <Box>
-            <img src={props.locData.FILE} width={40} />
+            <img src={props.locData.FILE} width={40} alt="localidade"/>
             <Typography>{props.localidade}</Typography>
           </Box>
           <Box pt={3}>
-            <img src={props.mobData.FILE} width={40} />
+            <img src={props.mobData.FILE} width={40} alt="contacto"/>
             <Typography>{props.mobile}</Typography>
           </Box>
           <Box pt={3}>
-            <img src={props.horData.FILE} width={40} />
+            <img src={props.horData.FILE} width={40} allt="horário" />
             <Typography>{props.horario}</Typography>
           </Box>
         </AccordionDetails>
