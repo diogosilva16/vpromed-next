@@ -67,7 +67,7 @@ export default function Home() {
               sx={{
                 fontFamily: "Times New Roman",
                 backgroundImage:
-                  "linear-gradient(135deg, hsla(55, 51%, 61%, 1) 0%, hsla(0, 0%, 0%, 1) 100%)",
+                  "linear-gradient(135deg, hsla(55, 51%, 40%, 1) 0%,hsla(55, 50%, 10%, 1) 60%, hsla(0, 0%, 0%, 1) 100%)",
                 backgroundClip: "text",
                 color: "transparent",
                 fontWeight: "bold",
@@ -79,9 +79,9 @@ export default function Home() {
           </Grid>
           <Grid item sx={{ zIndex: "2" }}>
             <Typography
-              variant={isMobile ? "h5" : "h3"}
-              sx={{ textTransform: "uppercase", fontFamily: "Times New Roman" }}
+              sx={{ textTransform: "uppercase", fontFamily: "Times New Roman", fontSize: isMobile ? "1.6rem" : "3rem" }}
               className="animate__animated animate__zoomIn"
+              letterSpacing={3}
             >
               Dentárias <span style={{ color: "#CEC568" }}>V</span>-Promed
             </Typography>
@@ -96,11 +96,12 @@ export default function Home() {
           >
             <Grid item pt={5}>
               <Typography
-                variant={isMobile ? "h5" : "h2"}
+              letterSpacing={3}
                 sx={{
                   textTransform: "uppercase",
                   fontFamily: "Times New Roman",
                   color: "#CEC568",
+                  fontSize: isMobile ? "1.875rem" : "3rem",
                 }}
                 className={clicked && "animate__animated animate__fadeIn"}
               >

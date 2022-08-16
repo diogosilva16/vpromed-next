@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, Grid, Paper, Typography, useMediaQuery } from "@mui/material";
-import Loader from "./Loader";
+import Loader from "./utils/Loader";
 import { useTheme } from "@emotion/react";
 
 const Team = () => {

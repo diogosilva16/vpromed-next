@@ -3,8 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import { useTheme } from "@emotion/react";
 import { CompanyInfoContext } from "../context/CompanyInfoContext";
-import Loader from "./Loader";
-import Link from "next/link";
+import Loader from "./utils/Loader";
 
 const Footer = () => {
   const API_KEY = process.env.API_KEY;

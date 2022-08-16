@@ -14,10 +14,10 @@ const Cartao = ({ cardData }) => {
   const goToContact = () => {
     router.push("/contactos");
   };
-  
+
   const getCardImg = (code) => {
-    return (cardData[0]?.IMAGES)?.find(x => x.CODE === code)?.FILE ?? ""
-  }
+    return cardData[0]?.IMAGES?.find((x) => x.CODE === code)?.FILE ?? "";
+  };
 
   const desktopImg = getCardImg("desktop");
   const mobileImg = getCardImg("mobile");
@@ -25,7 +25,7 @@ const Cartao = ({ cardData }) => {
   return (
     <>
       <Head>
-        <title>V-Promed Cartão</title>
+        <title>V-Promed Dental Work</title>
         <meta name="description" content="V-Promed Cartão" />
         <meta charset="UTF-8" />
       </Head>
@@ -54,19 +54,17 @@ const Cartao = ({ cardData }) => {
             </Grid>
           </Box>
           <Box sx={{ width: "100vw" }}>
-            {isMobile || isTablet ? (
-              <img src={mobileImg} width={"100%"} />
+            {isMobile ? (
+              <Box sx={{ position: "absolute", left: "calc(-50vw + 50%)" }}>
+                <img src={mobileImg} width={"100%"} />
+              </Box>
             ) : (
               <Box>
-                <img
-                  src={desktopImg}
-                  height={"50%"}
-                  width={"100%"}
-                />
+                <img src={desktopImg} height={"50%"} width={"100%"} />
               </Box>
             )}
           </Box>
-          <Box>
+          <Box position="relative" pt={isMobile && 30}>
             <Grid item xs={12} p={5}>
               <Typography
                 pl={2}

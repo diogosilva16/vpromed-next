@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import Loader from "../../components/Loader";
+import Loader from "../../components/utils/Loader";
 import ButtonComp from "../../components/ButtonComp";
 import { useTheme } from "@emotion/react";
 import Head from "next/head";
@@ -104,10 +104,10 @@ const Destaque = () => {
                     left: "calc(-50vw + 50%)",
                   }}
                 >
-                  <img src={mobileImg} width="100%" />
+                  <img src={mobileImg} width="100%" alt="tendencia mobile image"/>
                 </Box>
               ) : (
-                <img src={desktopImg} width="100%" />
+                <img src={desktopImg} width="100%" alt="tendencia desktop image"/>
               )}
             </Box>
             <Box mt={isMobile && 30} sx={{ zIndex: 1, position: "relative"}}>
@@ -122,7 +122,7 @@ const Destaque = () => {
                     fontSize: "1.25rem",
                   }}
                 >
-                  Conheça as características do {trendInfo.NAME_SEO}
+                  Conheça as características de {trendInfo.NAME_SEO}
                 </Typography>
               </Grid>
               <Grid item xs={12}>

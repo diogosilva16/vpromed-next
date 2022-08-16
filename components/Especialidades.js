@@ -2,7 +2,7 @@ import { Grid, Typography, Paper, Box, useMediaQuery } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { CompanySpecialitiesContext } from "../context/CompanySpecialitiesContext";
 import Link from "next/link";
-import Loader from "./Loader";
+import Loader from "./utils/Loader";
 import Observer from "@researchgate/react-intersection-observer";
 import { useTheme } from "@emotion/react";
 
@@ -88,8 +88,8 @@ const Especialidades = () => {
           <Observer onChange={playEspecAnim}>
             <Grid
               container
-              spacing={5}
-              columnSpacing={5}
+              spacing={4}
+              columnSpacing={4}
               pb={10}
               sx={{ textTransform: "uppercase", wordWrap: "break-word" }}
             >

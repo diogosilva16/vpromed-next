@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Grid, Box, Typography, useMediaQuery } from "@mui/material";
-import Loader from "../../components/Loader";
+import Loader from "../../components/utils/Loader";
 import Team from "../../components/Team";
 import Especialidades from "../../components/Especialidades";
 import { useTheme } from "@emotion/react";
@@ -47,7 +47,7 @@ const Sobre = () => {
       </Head>
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
-        <Container maxWidth="xl">
+        <Container maxWidth="xxl">
           <Grid container pt={isMobile ? 7 : isTablet ? 8 : 12} pb={5}>
             <Box
               sx={{
@@ -64,6 +64,7 @@ const Sobre = () => {
               sx={{
                 zIndex: 1,
                 width: "100%",
+                height: !isMobile && "392px",
                 position: "relative",
                 backgroundImage:
                   !isMobile && `url(${companyAbout.IMAGES[1]?.FILE})`,
@@ -71,137 +72,151 @@ const Sobre = () => {
                 backgroundPosition: "center",
               }}
             >
-              <Grid item xs={12} pt={1} pb={3} className="borderEspecialidade">
-                <Typography
-                  variant={isMobile || isTablet ? "h5" : "h4"}
-                  style={{ color: "white", textTransform: "uppercase" }}
+              <Container maxWidth="xl">
+                <Grid
+                  item
+                  xs={12}
+                  pt={1}
+                  pb={3}
+                  className="borderEspecialidade"
                 >
-                  Dentárias V-Promed
-                </Typography>
-              </Grid>
-              <Grid item xs={12} pt={5} pb={5}>
-                <Typography
-                  sx={{
-                    color: "white",
-                    textTransform: "uppercase",
-                    fontFamily: "Times New Roman",
-                    fontSize: "1.25rem",
-                  }}
-                >
-                  {JSON.parse(companyAbout.CUSTOMCAMPS).small_description}
-                </Typography>
-              </Grid>
+                  <Typography
+                    variant={isMobile || isTablet ? "h5" : "h4"}
+                    style={{ color: "white", textTransform: "uppercase" }}
+                  >
+                    Dentárias V-Promed
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} pt={isMobile ? 2 : 5} pb={5}>
+                  <Typography
+                    sx={{
+                      color: "white",
+                      textTransform: "uppercase",
+                      fontFamily: "Times New Roman",
+                      fontSize: "1.15rem",
+                    }}
+                  >
+                    {JSON.parse(companyAbout.CUSTOMCAMPS).small_description}
+                  </Typography>
+                </Grid>
+              </Container>
             </Box>
-            <Grid container pt={3} sx={{ color: "white" }}>
-              <Grid item xs={12}>
-                <Typography
-                  sx={{
-                    fontFamily: "Times New Roman",
-                    textTransform: "uppercase",
-                    fontSize: "2.25rem",
-                  }}
-                >
-                  Clínica
-                </Typography>
+            <Container maxWidth="xl">
+              <Grid container pt={isMobile ? 2 : 3} sx={{ color: "white" }}>
+                <Grid item xs={12}>
+                  <Typography
+                    sx={{
+                      fontFamily: "Times New Roman",
+                      textTransform: "uppercase",
+                      fontSize: "2.25rem",
+                    }}
+                  >
+                    Clínica
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} pt={2}>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      textTransform: "uppercase",
+                      color: "#CEC568",
+                      fontFamily: "Times New Roman",
+                    }}
+                  >
+                    {JSON.parse(companyAbout.CUSTOMCAMPS).small_title}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} pt={2}>
+                  <Typography
+                    sx={{
+                      whiteSpace: "pre-line",
+                      fontFamily: "Mulish",
+                      fontSize: "1.125rem",
+                    }}
+                  >
+                    {companyAbout.TEXT_SEO}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} pt={10}>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      textTransform: "uppercase",
+                      color: "#CEC568",
+                      fontFamily: "Times New Roman",
+                    }}
+                  >
+                    {JSON.parse(companyAbout.CUSTOMCAMPS).small_title2}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} pt={2}>
+                  <Typography
+                    sx={{
+                      whiteSpace: "pre-line",
+                      fontFamily: "Mulish",
+                      fontSize: "1.125rem",
+                    }}
+                  >
+                    {JSON.parse(companyAbout.CUSTOMCAMPS).text_small_title2}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} pt={2}>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      textTransform: "uppercase",
+                      color: "#CEC568",
+                      fontFamily: "Times New Roman",
+                    }}
+                  >
+                    {JSON.parse(companyAbout.CUSTOMCAMPS).small_title3}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} pt={2}>
+                  <Typography
+                    sx={{
+                      whiteSpace: "pre-line",
+                      fontFamily: "Mulish",
+                      fontSize: "1.125rem",
+                    }}
+                  >
+                    {JSON.parse(companyAbout.CUSTOMCAMPS).text_small_tittle3}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} pt={2}>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      textTransform: "uppercase",
+                      color: "#CEC568",
+                      fontFamily: "Times New Roman",
+                    }}
+                  >
+                    {JSON.parse(companyAbout.CUSTOMCAMPS).small_title_4}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} pt={2}>
+                  <Typography
+                    sx={{
+                      whiteSpace: "pre-line",
+                      fontFamily: "Mulish",
+                      fontSize: "1.125rem",
+                    }}
+                  >
+                    {JSON.parse(companyAbout.CUSTOMCAMPS).text_small_title4}
+                  </Typography>
+                </Grid>
               </Grid>
-              <Grid item xs={12} pt={2}>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    textTransform: "uppercase",
-                    color: "#CEC568",
-                    fontFamily: "Times New Roman",
-                  }}
-                >
-                  {JSON.parse(companyAbout.CUSTOMCAMPS).small_title}
-                </Typography>
-              </Grid>
-              <Grid item xs={12} pt={2}>
-                <Typography
-                  sx={{
-                    whiteSpace: "pre-line",
-                    fontFamily: "Mulish",
-                    fontSize: "1.125rem",
-                  }}
-                >
-                  {companyAbout.TEXT_SEO}
-                </Typography>
-              </Grid>
-              <Grid item xs={12} pt={10}>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    textTransform: "uppercase",
-                    color: "#CEC568",
-                    fontFamily: "Times New Roman",
-                  }}
-                >
-                  {JSON.parse(companyAbout.CUSTOMCAMPS).small_title2}
-                </Typography>
-              </Grid>
-              <Grid item xs={12} pt={2}>
-                <Typography
-                  sx={{
-                    whiteSpace: "pre-line",
-                    fontFamily: "Mulish",
-                    fontSize: "1.125rem",
-                  }}
-                >
-                  {JSON.parse(companyAbout.CUSTOMCAMPS).text_small_title2}
-                </Typography>
-              </Grid>
-              <Grid item xs={12} pt={2}>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    textTransform: "uppercase",
-                    color: "#CEC568",
-                    fontFamily: "Times New Roman",
-                  }}
-                >
-                  {JSON.parse(companyAbout.CUSTOMCAMPS).small_title3}
-                </Typography>
-              </Grid>
-              <Grid item xs={12} pt={2}>
-                <Typography
-                  sx={{
-                    whiteSpace: "pre-line",
-                    fontFamily: "Mulish",
-                    fontSize: "1.125rem",
-                  }}
-                >
-                  {JSON.parse(companyAbout.CUSTOMCAMPS).text_small_tittle3}
-                </Typography>
-              </Grid>
-              <Grid item xs={12} pt={2}>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    textTransform: "uppercase",
-                    color: "#CEC568",
-                    fontFamily: "Times New Roman",
-                  }}
-                >
-                  {JSON.parse(companyAbout.CUSTOMCAMPS).small_title_4}
-                </Typography>
-              </Grid>
-              <Grid item xs={12} pt={2}>
-                <Typography
-                  sx={{
-                    whiteSpace: "pre-line",
-                    fontFamily: "Mulish",
-                    fontSize: "1.125rem",
-                  }}
-                >
-                  {JSON.parse(companyAbout.CUSTOMCAMPS).text_small_title4}
-                </Typography>
-              </Grid>
-            </Grid>
+            </Container>
           </Grid>
-          <Team />
-          <Especialidades />
+          <Container maxWidth="xl">
+            <Team />
+            <Especialidades />
+          </Container>
           <Separator />
-          <Form />
+          <Container maxWidth="xl">
+            <Form />
+          </Container>
         </Container>
       )}
     </>

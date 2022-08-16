@@ -10,14 +10,14 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import Form from "../../components/Form";
-import Loader from "../../components/Loader";
+import Loader from "../../components/utils/Loader";
 import { useTheme } from "@emotion/react";
 import { CompanyInfoContext } from "../../context/CompanyInfoContext";
 import Head from "next/head";
+import ContactCard from "../../components/ContactCard";
 const API_KEY = process.env.API_KEY;
 
 const Contactos = ({ mobData, horData, locData }) => {
-
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
@@ -46,82 +46,24 @@ const Contactos = ({ mobData, horData, locData }) => {
               </Grid>
               <Box textAlign="center" pt={5}>
                 <Container maxWidth="xs">
-                  <Grid item xs={12}>
-                    <Accordion
-                      sx={{
-                        background:
-                          "linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(50,50,50,1) 85%, rgba(62,62,62,1) 100%)",
-                        color: "white",
-                      }}
-                    >
-                      <AccordionSummary sx={{ flexGrow: 0 }}>
-                        <Typography
-                          variant={isMobile ? "h4" : "h2"}
-                          sx={{
-                            color: "white",
-                            textTransform: "uppercase",
-                            fontFamily: "Times New Roman",
-                          }}
-                        >
-                          Águeda
-                        </Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Box>
-                          <img src={locData.FILE} width={40} />
-                          <Typography>{companyInfo[6].VALUE}</Typography>
-                        </Box>
-                        <Box pt={3}>
-                          <img src={mobData.FILE} width={40} />
-                          <Typography>{companyInfo[10].VALUE}</Typography>
-                        </Box>
-                        <Box pt={3}>
-                          <img src={horData.FILE} width={40} />
-                          <Typography>{companyInfo[8].VALUE}</Typography>
-                        </Box>
-                      </AccordionDetails>
-                    </Accordion>
-                  </Grid>
-                  <Grid item xs={12} pt={3}>
-                    <Accordion
-                      sx={{
-                        background:
-                          "linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(50,50,50,1) 85%, rgba(62,62,62,1) 100%)",
-                        color: "white",
-                        // "&:hover": {
-                        //   background:
-                        //     "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(96,96,96,1) 85%, rgba(255,255,255,0) 100%)",
-                        // },
-                      }}
-                    >
-                      <AccordionSummary>
-                        <Typography
-                          variant={isMobile ? "h4" : "h2"}
-                          sx={{
-                            color: "white",
-                            textTransform: "uppercase",
-                            fontFamily: "Times New Roman",
-                          }}
-                        >
-                          Barrô
-                        </Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Box>
-                          <img src={locData.FILE} width={40} />
-                          <Typography>{companyInfo[7].VALUE}</Typography>
-                        </Box>
-                        <Box pt={3}>
-                          <img src={mobData.FILE} width={40} />
-                          <Typography>{companyInfo[11].VALUE}</Typography>
-                        </Box>
-                        <Box pt={3}>
-                          <img src={horData.FILE} width={40} />
-                          <Typography>{companyInfo[9].VALUE}</Typography>
-                        </Box>
-                      </AccordionDetails>
-                    </Accordion>
-                  </Grid>
+                  <ContactCard
+                    title={"Águeda"}
+                    locData={locData}
+                    mobData={mobData}
+                    horData={horData}
+                    localidade={companyInfo[6].VALUE}
+                    mobile={companyInfo[10].VALUE}
+                    horario={companyInfo[8].VALUE}
+                  />
+                  <ContactCard
+                    title={"Barrô"}
+                    locData={locData}
+                    mobData={mobData}
+                    horData={horData}
+                    localidade={companyInfo[7].VALUE}
+                    mobile={companyInfo[11].VALUE}
+                    horario={companyInfo[9].VALUE}
+                  />
                 </Container>
               </Box>
               <Form />

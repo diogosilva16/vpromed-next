@@ -3,7 +3,7 @@ import { Grid, Container, Typography, Box, useMediaQuery } from "@mui/material";
 import { useRouter } from "next/router";
 import Form from "../../components/Form";
 import { useEffect } from "react";
-import Loader from "../../components/Loader";
+import Loader from "../../components/utils/Loader";
 import { useTheme } from "@emotion/react";
 import Sweet from "../../components/Sweet";
 import Separator from "../../components/Separator";

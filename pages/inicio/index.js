@@ -5,7 +5,7 @@ import Especialidades from "../../components/Especialidades";
 import Form from "../../components/Form";
 import Panorama from "../../components/Panorama";
 import Sweet from "../../components/Sweet";
-import Loader from "../../components/Loader";
+import Loader from "../../components/utils/Loader";
 import Separator from "../../components/Separator";
 import { useTheme } from "@emotion/react";
 import Head from "next/head";

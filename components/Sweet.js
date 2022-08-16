@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Grid, Typography, Box, useMediaQuery } from "@mui/material";
-import Loader from "./Loader";
+import Loader from "./utils/Loader";
 import ButtonComp from "./ButtonComp";
 import { useRouter } from "next/router";
 import Observer from "@researchgate/react-intersection-observer";

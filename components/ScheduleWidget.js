@@ -4,6 +4,7 @@ import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import React, { useState, useEffect } from "react";
 import Form from "./Form";
 import MobileForm from "./MobileForm";
+import useOutsideClick from "./utils/useOutsideClick";
 
 const ScheduleWidget = () => {
   const API_KEY = process.env.API_KEY;
@@ -45,6 +46,8 @@ const ScheduleWidget = () => {
     setOpen(false);
   };
 
+  const ref = useOutsideClick(closeSchedule);
+
   const subtractValue1 = isMobile ? "15vw" : isTablet ? "10vw" : "5vw";
   const subtractValue2 =
     subtractValue1 - isMobile
@@ -58,7 +61,7 @@ const ScheduleWidget = () => {
       : "60vw";
 
   return (
-    <>
+    <Box ref={ref}>
       <Box
         sx={{
           position: "fixed",
@@ -90,7 +93,7 @@ const ScheduleWidget = () => {
       >
         <Grid
           container
-          pt={isMobile || isTablet ? 4 : 2}
+          pt={isMobile || isTablet ? 4 : 3}
           justifyContent="center"
           alignItems="center"
         >
@@ -102,7 +105,7 @@ const ScheduleWidget = () => {
             </Typography>
           </Grid>
           <Grid item pt={4}>
-            <img src={icon.FILE} alt="agendar consulta"/>
+            <img src={icon.FILE} alt="agendar consulta" />
           </Grid>
         </Grid>
       </Box>
@@ -141,7 +144,7 @@ const ScheduleWidget = () => {
         </Grid>
       </Box>
       {/* )} */}
-    </>
+    </Box>
   );
 };
 

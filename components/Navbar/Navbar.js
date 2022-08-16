@@ -20,8 +20,7 @@ import Link from "next/link";
 import { MenuData } from "./MenuData";
 import { CompanyInfoContext } from "../../context/CompanyInfoContext";
 import { CompanySpecialitiesContext } from "../../context/CompanySpecialitiesContext";
-import Loader from "../Loader";
-
+import Loader from "../utils/Loader";
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -168,16 +167,20 @@ const Navbar = () => {
         <Container maxWidth="xxl">
           <Toolbar>
             <Link href="/inicio">
-                {isLoading ? (
-                  <img src="/logo_menu.svg" alt="v-promed" width="300"/>
-                ) : (
-                  <img
-                    src={companyInfo[0]?.VALUE || ""}
-                    alt="v-promed"
-                    width="300"
-                    style={{cursor: "pointer"}}
-                  />
-                )}
+              {isLoading ? (
+                <img
+                  src="/logo_menu.svg"
+                  alt="v-promed"
+                  width={isMobile ? "150" : "300"}
+                />
+              ) : (
+                <img
+                  src={companyInfo[0]?.VALUE || ""}
+                  alt="v-promed"
+                  width={isMobile ? "150" : "300"}
+                  style={{ cursor: "pointer" }}
+                />
+              )}
             </Link>
             {isMobile ? (
               <DrawerComponent

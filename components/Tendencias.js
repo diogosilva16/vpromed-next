@@ -10,7 +10,7 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 import { CompanyInfoContext } from "../context/CompanyInfoContext";
 import ButtonComp from "./ButtonComp";
-import Loader from "./Loader";
+import Loader from "./utils/Loader";
 import { useRouter } from "next/router";
 import Observer from "@researchgate/react-intersection-observer";
 
@@ -53,7 +53,7 @@ const Destaques = () => {
     <>
       {destIsLoading && <Loader />}
       {!destIsLoading && !destHasError && (
-        <div className="teste">
+        <div className="mainDiv">
           <Grid container pt={5} pb={5}>
             <Typography
               sx={{
@@ -61,7 +61,6 @@ const Destaques = () => {
                 textTransform: "uppercase",
                 fontFamily: "Mulish",
                 fontWeight: "bold",
-                fontSize: "1rem",
               }}
               pb={2}
               className={
@@ -98,11 +97,11 @@ const Destaques = () => {
                     xs={12}
                     p={isMobile || (isTablet && !isDesktop) ? 0 : 10}
                     sx={{
-                      zIndex: isMobile || (isTablet && !isDesktop) ? 1 : 0,
+                      zIndex: (isMobile || isTablet) && !isDesktop ? 1 : 0,
                       position: { md: "absolute" },
                       bottom: 0,
                       backgroundColor:
-                        isMobile || (isTablet && !isDesktop) ? "" : "#2A2A2A",
+                        (isMobile || isTablet) && !isDesktop ? "" : "#2A2A2A",
                       color: "white",
                       height: { md: "60%", lg: "60%", xl: "40%" },
                       width: "80%",
@@ -110,7 +109,7 @@ const Destaques = () => {
                   >
                     <Typography
                       variant="h6"
-                      pt={isMobile || (isTablet && !isDesktop) ? 5 : 0}
+                      pt={(isMobile || isTablet) && !isDesktop ? 5 : 0}
                       sx={{ textTransform: "uppercase" }}
                     >
                       Implantologia
@@ -217,7 +216,7 @@ const Destaques = () => {
                 >
                   <Typography
                     variant="h6"
-                    pt={isMobile || (isTablet && !isDesktop) ? 5 : 0}
+                    pt={(isMobile || isTablet) && !isDesktop ? 5 : 0}
                     sx={{ textTransform: "uppercase" }}
                   >
                     Ortodontia

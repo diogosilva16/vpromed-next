@@ -15,10 +15,17 @@ const Cartao = ({ cardData }) => {
     router.push("/contactos");
   };
 
+  const getCardImg = (code) => {
+    return cardData[1]?.IMAGES?.find((x) => x.CODE === code)?.FILE ?? "";
+  };
+
+  const desktopImg = getCardImg("desktop");
+  const mobileImg = getCardImg("mobile");
+
   return (
     <>
       <Head>
-        <title>V-Promed Cartão</title>
+        <title>V-Promed Dental Sweet</title>
         <meta name="description" content="V-Promed Cartão" />
         <meta charset="UTF-8" />
       </Head>
@@ -47,20 +54,18 @@ const Cartao = ({ cardData }) => {
             </Grid>
           </Box>
           <Box sx={{ width: "100vw" }}>
-            {isMobile || isTablet ? (
-              <img src={cardData[0].IMAGES[1].FILE} width={"100%"} />
+            {isMobile ? (
+              <Box sx={{ position: "absolute", left: "calc(-50vw + 50%)" }}>
+                <img src={mobileImg} width={"100%"} />
+              </Box>
             ) : (
               <Box>
-                <img
-                  src={cardData[0].IMAGES[0].FILE}
-                  height={"50%"}
-                  width={"100%"}
-                />
+                <img src={desktopImg} height={"50%"} width={"100%"} />
               </Box>
             )}
           </Box>
-          <Box>
-            <Grid item xs={12} p={5}>
+          <Box pt={ isMobile && 30}>
+            <Grid item xs={12} p={5} >
               <Typography
                 pl={2}
                 sx={{

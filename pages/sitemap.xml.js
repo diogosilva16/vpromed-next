@@ -31,7 +31,12 @@ function generateSiteMap(especialidades, tendencias) {
         <priority>0.9</priority>
       </url>
       <url>
-        <loc>https://vpromed.vercel.app/cartao</loc>
+        <loc>https://vpromed.vercel.app/dentalsweet</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+      </url>
+      <url>
+        <loc>https://vpromed.vercel.app/dentalwork</loc>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
       </url>

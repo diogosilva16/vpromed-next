@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Grid, Typography, Box, useMediaQuery } from "@mui/material";
-import Loader from "./Loader";
+import Loader from "./utils/Loader";
 import ButtonComp from "./ButtonComp";
 import { useRouter } from "next/router";
 import Observer from "@researchgate/react-intersection-observer";
@@ -54,6 +54,10 @@ const DentalSweet = () => {
     getCardInfo();
   }, []);
 
+  const getCardImg = (code) => {
+    return cardInfo[1]?.IMAGES?.find((x) => x.CODE === code)?.FILE ?? "";
+  };
+
   const router = useRouter();
   let { id } = router.query;
 
@@ -61,6 +65,8 @@ const DentalSweet = () => {
     router.push(`/dentalsweet`);
   };
 
+  const cardImgMobGreen = getCardImg("mobileComp");
+  const cardImgDeskGreen = getCardImg("desktopComp");
 
   return (
     <>
@@ -129,7 +135,7 @@ const DentalSweet = () => {
                 sx={{ display: (isMobile || isTablet) && "none" }}
               >
                 <img
-                  src={cardInfo[1].IMAGES[0]?.FILE || ""}
+                  src={cardImgDeskGreen || ""}
                   alt="Especialidade"
                   width="100%"
                 />
@@ -140,7 +146,7 @@ const DentalSweet = () => {
                 xs={12}
                 sx={{
                   zIndex: 0,
-                  backgroundImage: `url(${cardInfo[1].IMAGES[1]?.FILE})`,
+                  backgroundImage: `url(${cardImgMobGreen})`,
                   width: "60%",
                   height: "30%",
                   left: "40%",
