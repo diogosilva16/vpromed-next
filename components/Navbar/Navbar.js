@@ -169,7 +169,7 @@ const Navbar = () => {
             <Link href="/inicio">
               {isLoading ? (
                 <img
-                  src="/logo_menu.svg"
+                  src="https://www.vmedapi.criteclx.com/storage/company/logo-menu_2022-08-04-12-20-58.svg"
                   alt="v-promed"
                   width={isMobile ? "150" : "300"}
                 />

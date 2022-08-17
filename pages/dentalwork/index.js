@@ -56,11 +56,16 @@ const Cartao = ({ cardData }) => {
           <Box sx={{ width: "100vw" }}>
             {isMobile ? (
               <Box sx={{ position: "absolute", left: "calc(-50vw + 50%)" }}>
-                <img src={mobileImg} width={"100%"} alt="mobile image"/>
+                <img src={mobileImg} width={"100%"} alt="mobile image" />
               </Box>
             ) : (
               <Box>
-                <img src={desktopImg} height={"50%"} width={"100%"} alt="desktop image" />
+                <img
+                  src={desktopImg}
+                  height={"50%"}
+                  width={"100%"}
+                  alt="desktop image"
+                />
               </Box>
             )}
           </Box>
@@ -89,7 +94,11 @@ const Cartao = ({ cardData }) => {
             </Grid>
             <Grid item xs={12} pt={5}>
               <Typography
-                sx={{ color: "white", fontSize: "1.25rem" }}
+                sx={{
+                  color: "white",
+                  fontSize: "1.25rem",
+                  whiteSpace: "pre-line",
+                }}
                 variant="body1"
               >
                 {cardData[0].TEXT_SEO}
@@ -109,7 +118,7 @@ export default Cartao;
 
 export async function getStaticProps() {
   const cardResponse = await fetch(
-    `https://www.critecnow.com/promed/api/articlebycat/${API_KEY}/5/1`
+    `https://www.vmedapi.criteclx.com/api/articlebycat/${API_KEY}/5/1`
   );
   const cardData = await cardResponse.json();
 

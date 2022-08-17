@@ -24,6 +24,7 @@ const Contactos = ({ mobData, horData, locData }) => {
 
   const { companyInfo, isLoading, hasError } = useContext(CompanyInfoContext);
 
+  console.log(companyInfo);
   return (
     <>
       <Head>
@@ -53,6 +54,7 @@ const Contactos = ({ mobData, horData, locData }) => {
                     horData={horData}
                     localidade={companyInfo[6].VALUE}
                     mobile={companyInfo[10].VALUE}
+                    phone={companyInfo[16].VALUE}
                     horario={companyInfo[8].VALUE}
                   />
                   <ContactCard
@@ -62,6 +64,7 @@ const Contactos = ({ mobData, horData, locData }) => {
                     horData={horData}
                     localidade={companyInfo[7].VALUE}
                     mobile={companyInfo[11].VALUE}
+                    phone={companyInfo[17].VALUE}
                     horario={companyInfo[9].VALUE}
                   />
                 </Container>
@@ -77,15 +80,15 @@ const Contactos = ({ mobData, horData, locData }) => {
 
 export async function getStaticProps() {
   const mobileResponse = await fetch(
-    `https://www.critecnow.com/promed/api/filebyid/${API_KEY}/33/1`
+    `https://www.vmedapi.criteclx.com/api/filebyid/${API_KEY}/33/1`
   );
   const mobData = await mobileResponse.json();
   const horarioResponse = await fetch(
-    `https://www.critecnow.com/promed/api/filebyid/${API_KEY}/36/1`
+    `https://www.vmedapi.criteclx.com/api/filebyid/${API_KEY}/36/1`
   );
   const horData = await horarioResponse.json();
   const localResponse = await fetch(
-    `https://www.critecnow.com/promed/api/filebyid/${API_KEY}/37/1`
+    `https://www.vmedapi.criteclx.com/api/filebyid/${API_KEY}/37/1`
   );
   const locData = await localResponse.json();
 

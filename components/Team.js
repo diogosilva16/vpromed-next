@@ -22,7 +22,7 @@ const Team = () => {
   const getTeamInfo = async () => {
     try {
       const response = await fetch(
-        `https://www.critecnow.com/promed/api/articlebycat/${API_KEY}/6/1`
+        `https://www.vmedapi.criteclx.com/api/articlebycat/${API_KEY}/6/1`
       );
       const data = await response.json();
       setTeamInfo(data);

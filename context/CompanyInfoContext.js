@@ -15,7 +15,7 @@ export function CompanyInfoContextProvider({ children }) {
   const getCompanyInfo = async () => {
     try {
       const response = await fetch(
-        `https://www.critecnow.com/promed/api/company/${API_KEY}`
+        `https://www.vmedapi.criteclx.com/api/company/${API_KEY}`
       );
       const data = await response.json();
       setCompanyInfo(data);
@@ -29,7 +29,7 @@ export function CompanyInfoContextProvider({ children }) {
   const getDest = async () => {
     try {
       const response = await fetch(
-        `https://www.critecnow.com/promed/api/articlebycat/${API_KEY}/4/1`
+        `https://www.vmedapi.criteclx.com/api/articlebycat/${API_KEY}/4/1`
       );
       const data = await response.json();
       setDest(data);
@@ -44,6 +44,8 @@ export function CompanyInfoContextProvider({ children }) {
     getCompanyInfo();
     getDest();
   }, []);
+
+  console.log(companyInfo);
 
   return (
     <CompanyInfoContext.Provider

@@ -12,7 +12,7 @@ export function CompanySpecialitiesContextProvider({ children }) {
   const getEspec = async () => {
     try {
       const response = await fetch(
-        `https://www.critecnow.com/promed/api/articlebycat/${API_KEY}/3/1`
+        `https://www.vmedapi.criteclx.com/api/articlebycat/${API_KEY}/3/1`
       );
       const data = await response.json();
       setEspec(data);

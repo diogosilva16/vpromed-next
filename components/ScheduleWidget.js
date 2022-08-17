@@ -24,7 +24,7 @@ const ScheduleWidget = () => {
   const getIcon = async () => {
     try {
       const response = await fetch(
-        `https://www.critecnow.com/promed/api/filebyid/${API_KEY}/12/1`
+        `https://www.vmedapi.criteclx.com/api/filebyid/${API_KEY}/12/1`
       );
       const data = await response.json();
       setIcon(data);
@@ -105,7 +105,7 @@ const ScheduleWidget = () => {
             </Typography>
           </Grid>
           <Grid item pt={4}>
-            <img src={icon.FILE} alt="agendar consulta" />
+            <img src={icon?.FILE ?? ""} alt="agendar consulta" />
           </Grid>
         </Grid>
       </Box>

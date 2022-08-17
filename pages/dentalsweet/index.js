@@ -101,7 +101,7 @@ export default Cartao;
 
 export async function getStaticProps() {
   const cardResponse = await fetch(
-    `https://www.critecnow.com/promed/api/articlebycat/${API_KEY}/5/1`
+    `https://www.vmedapi.criteclx.com/api/articlebycat/${API_KEY}/5/1`
   );
   const cardData = await cardResponse.json();
 

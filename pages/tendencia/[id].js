@@ -13,6 +13,7 @@ import Loader from "../../components/utils/Loader";
 import ButtonComp from "../../components/ButtonComp";
 import { useTheme } from "@emotion/react";
 import Head from "next/head";
+import DOMPurify from "dompurify";
 
 const Destaque = () => {
   const API_KEY = process.env.API_KEY;
@@ -33,7 +34,7 @@ const Destaque = () => {
     try {
       if (!id) return;
       const response = await fetch(
-        `https://www.critecnow.com/promed/api/article/${API_KEY}/${id}/1`
+        `https://www.vmedapi.criteclx.com/api/article/${API_KEY}/${id}/1`
       );
       const data = await response.json();
       setTrendInfo(data);
@@ -129,9 +130,10 @@ const Destaque = () => {
                 <Typography
                   sx={{ color: "white", fontSize: "1.25rem" }}
                   variant="body1"
-                >
-                  {trendInfo.TEXT_SEO}
-                </Typography>
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(trendInfo.TEXT_SEO),
+                  }}
+                />
               </Grid>
             </Box>
             <Grid item xs={12} pt={5} textAlign="center">

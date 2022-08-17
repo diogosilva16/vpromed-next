@@ -7,6 +7,7 @@ import { useTheme } from "@emotion/react";
 import Form from "../../components/Form";
 import Separator from "../../components/Separator";
 import Head from "next/head";
+import DOMPurify from "dompurify";
 
 const Sobre = () => {
   const API_KEY = process.env.API_KEY;
@@ -22,7 +23,7 @@ const Sobre = () => {
   const getCompanyAbout = async () => {
     try {
       const response = await fetch(
-        `https://www.critecnow.com/promed/api/section/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/1/1`
+        `https://www.vmedapi.criteclx.com/api/section/t8rAzpkJR8O3kDZdw63h85GDrV86VOeX/1/1`
       );
       const data = await response.json();
       setCompanyAbout(data);
@@ -133,9 +134,10 @@ const Sobre = () => {
                       fontFamily: "Mulish",
                       fontSize: "1.125rem",
                     }}
-                  >
-                    {companyAbout.TEXT_SEO}
-                  </Typography>
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(companyAbout.TEXT_SEO),
+                    }}
+                  />
                 </Grid>
                 <Grid item xs={12} pt={10}>
                   <Typography

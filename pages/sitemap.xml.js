@@ -1,49 +1,49 @@
 const API_KEY = process.env.API_KEY;
 
 const ESPECIALIDADES_URL =
-  `https://www.critecnow.com/promed/api/articlebycat/${API_KEY}/3/1`;
+  `https://www.vmedapi.criteclx.com/api/articlebycat/${API_KEY}/3/1`;
 
 const TENDENCIAS_URL =
-  `https://www.critecnow.com/promed/api/articlebycat/${API_KEY}/4/1`;
+  `https://www.vmedapi.criteclx.com/api/articlebycat/${API_KEY}/4/1`;
 
 function generateSiteMap(especialidades, tendencias) {
   return `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       <!--We manually set the two URLs we know already-->
       <url>
-        <loc>https://vpromed.vercel.app</loc>
+        <loc>https://criteclx.com/vpromed</loc>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
       </url>
       <url>
-        <loc>https://vpromed.vercel.app/inicio</loc>
+        <loc>https://criteclx.com/vpromed/inicio</loc>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
       </url>
       <url>
-        <loc>https://vpromed.vercel.app/sobre</loc>
+        <loc>https://criteclx.com/vpromed/sobre</loc>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
       </url>
       <url>
-        <loc>https://vpromed.vercel.app/contactos</loc>
+        <loc>https://criteclx.com/vpromed/contactos</loc>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
       </url>
       <url>
-        <loc>https://vpromed.vercel.app/dentalsweet</loc>
+        <loc>https://criteclx.com/vpromed/dentalsweet</loc>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
       </url>
       <url>
-        <loc>https://vpromed.vercel.app/dentalwork</loc>
+        <loc>https://criteclx.com/vpromed/dentalwork</loc>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
       </url>
       ${especialidades
         .map((especialidade) => {
           return `<url>
-          <loc>https://vpromed.vercel.app/especialidade/${especialidade.ARTICLE_ID}</loc>
+          <loc>https://criteclx.com/vpromed/especialidade/${especialidade.ARTICLE_ID}</loc>
           <changefreq>monthly</changefreq>
           <priority>0.9</priority>
           </url>`;
@@ -52,7 +52,7 @@ function generateSiteMap(especialidades, tendencias) {
         ${tendencias
           .map((tendencia) => {
             return `<url>
-            <loc>https://vpromed.vercel.app/tendencia/${tendencia.ARTICLE_ID}</loc>
+            <loc>https://criteclx.com/vpromed/tendencia/${tendencia.ARTICLE_ID}</loc>
             <changefreq>monthly</changefreq>
             <priority>0.9</priority>
             </url>`;

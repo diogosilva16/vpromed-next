@@ -4,6 +4,7 @@ import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import { useTheme } from "@emotion/react";
 import { CompanyInfoContext } from "../context/CompanyInfoContext";
 import Loader from "./utils/Loader";
+import DOMPurify from "dompurify";
 
 const Footer = () => {
   const API_KEY = process.env.API_KEY;
@@ -22,17 +23,17 @@ const Footer = () => {
   const getIcons = async () => {
     try {
       const twResponse = await fetch(
-        `https://www.critecnow.com/promed/api/filebyid/${API_KEY}/34/1`
+        `https://www.vmedapi.criteclx.com/api/filebyid/${API_KEY}/34/1`
       );
       const twData = await twResponse.json();
       setTwitter(twData);
       const fbResponse = await fetch(
-        `https://www.critecnow.com/promed/api/filebyid/${API_KEY}/35/1`
+        `https://www.vmedapi.criteclx.com/api/filebyid/${API_KEY}/35/1`
       );
       const fbData = await fbResponse.json();
       setFacebook(fbData);
       const igResponse = await fetch(
-        `https://www.critecnow.com/promed/api/filebyid/${API_KEY}/32/1`
+        `https://www.vmedapi.criteclx.com/api/filebyid/${API_KEY}/32/1`
       );
       const igData = await igResponse.json();
       setInstagram(igData);
@@ -94,9 +95,10 @@ const Footer = () => {
                     fontFamily: "Mulish",
                     fontSize: isMobile && "0.8125rem",
                   }}
-                >
-                  {companyInfo[8].VALUE}
-                </Typography>
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(companyInfo[8].VALUE),
+                  }}
+                />
               </Grid>
               <Grid item xs={12} md={3} pt={(isMobile || isTablet) && 3}>
                 <Typography
@@ -123,6 +125,20 @@ const Footer = () => {
                     {companyInfo[10].VALUE}
                   </a>
                 </Typography>
+                <Typography
+                  sx={{
+                    color: "white",
+                    fontFamily: "Mulish",
+                    fontSize: isMobile && "0.8125rem",
+                  }}
+                >
+                  <a
+                    style={{ textDecoration: "underline" }}
+                    href={`tel: ${companyInfo[16].VALUE}`}
+                  >
+                    {companyInfo[16].VALUE}
+                  </a>
+                </Typography>
               </Grid>
               <Grid item xs={12} md={3} pt={(isMobile || isTablet) && 3}>
                 <Typography
@@ -147,6 +163,20 @@ const Footer = () => {
                     href={`tel: ${companyInfo[10].VALUE}`}
                   >
                     {companyInfo[11].VALUE}
+                  </a>
+                </Typography>
+                <Typography
+                  sx={{
+                    color: "white",
+                    fontFamily: "Mulish",
+                    fontSize: isMobile && "0.8125rem",
+                  }}
+                >
+                  <a
+                    style={{ textDecoration: "underline" }}
+                    href={`tel: ${companyInfo[17].VALUE}`}
+                  >
+                    {companyInfo[17].VALUE}
                   </a>
                 </Typography>
               </Grid>

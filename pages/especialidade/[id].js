@@ -9,6 +9,7 @@ import Sweet from "../../components/Sweet";
 import Separator from "../../components/Separator";
 import Head from "next/head";
 import DentalSweet from "../../components/DentalSweet";
+import DOMPurify from "dompurify";
 
 const Especialidade = () => {
   const API_KEY = process.env.API_KEY;
@@ -37,7 +38,7 @@ const Especialidade = () => {
     try {
       if (!id) return;
       const response = await fetch(
-        `https://www.critecnow.com/promed/api/article/${API_KEY}/${id}/1`
+        `https://www.vmedapi.criteclx.com/api/article/${API_KEY}/${id}/1`
       );
       const data = await response.json();
       setEspecialidadeInfo(data);
@@ -78,11 +79,11 @@ const Especialidade = () => {
                   left: "calc(-50vw + 50%)",
                 }}
               >
-                <img src={mobileImg} width="100%" alt="especialidade"/>
+                <img src={mobileImg} width="100%" alt="especialidade" />
               </Box>
             )}
             <Box
-            justifyContent="center"
+              justifyContent="center"
               display="flex"
               flexDirection="column"
               sx={{
@@ -152,14 +153,15 @@ const Especialidade = () => {
                 </Grid>
                 <Grid item xs={12} pt={2}>
                   <Typography
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(especialidadeInfo.TEXT_SEO),
+                    }}
                     sx={{
-                      whiteSpace: "pre-line",
+                      // whiteSpace: "pre-line",
                       fontFamily: "Mulish",
                       fontSize: "1.125rem",
                     }}
-                  >
-                    {especialidadeInfo.TEXT_SEO}
-                  </Typography>
+                  />
                 </Grid>
               </Grid>
             </Container>

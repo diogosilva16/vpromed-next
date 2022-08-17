@@ -6,9 +6,10 @@ import {
   Typography,
   Box,
   useMediaQuery,
-  AccordionDetails
+  AccordionDetails,
 } from "@mui/material";
 import { useTheme } from "@emotion/react";
+import DOMPurify from "dompurify";
 
 const ContactCard = (props) => {
   const theme = useTheme();
@@ -38,16 +39,29 @@ const ContactCard = (props) => {
         </AccordionSummary>
         <AccordionDetails>
           <Box>
-            <img src={props.locData.FILE} width={40} alt="localidade"/>
-            <Typography>{props.localidade}</Typography>
+            <img src={props.locData.FILE} width={40} alt="localidade" />
+            <Typography
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(props.localidade),
+              }}
+            />
           </Box>
           <Box pt={3}>
-            <img src={props.mobData.FILE} width={40} alt="contacto"/>
-            <Typography>{props.mobile}</Typography>
+            <img src={props.mobData.FILE} width={40} alt="contacto" />
+            <Typography>
+              <a href={`tel:${props.mobile}`}>{props.mobile}</a>
+            </Typography>
+            <Typography>
+              <a href={`tel:${props.phone}`}>{props.phone}</a>
+            </Typography>
           </Box>
           <Box pt={3}>
             <img src={props.horData.FILE} width={40} allt="horário" />
-            <Typography>{props.horario}</Typography>
+            <Typography
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(props.horario),
+              }}
+            />
           </Box>
         </AccordionDetails>
       </Accordion>
