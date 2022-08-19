@@ -11,6 +11,8 @@ const Cartao = ({ cardData }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
+  const router = useRouter();
+
   const goToContact = () => {
     router.push("/contactos");
   };
@@ -56,16 +58,21 @@ const Cartao = ({ cardData }) => {
           <Box sx={{ width: "100vw" }}>
             {isMobile ? (
               <Box sx={{ position: "absolute", left: "calc(-50vw + 50%)" }}>
-                <img src={mobileImg} width={"100%"} alt="mobile image"/>
+                <img src={mobileImg} width={"100%"} alt="mobile image" />
               </Box>
             ) : (
               <Box>
-                <img src={desktopImg} height={"50%"} width={"100%"} alt="desktop image"/>
+                <img
+                  src={desktopImg}
+                  height={"50%"}
+                  width={"100%"}
+                  alt="desktop image"
+                />
               </Box>
             )}
           </Box>
-          <Box pt={ isMobile && 30}>
-            <Grid item xs={12} p={5} >
+          <Box pt={isMobile && 30}>
+            <Grid item xs={12} p={5}>
               <Typography
                 pl={2}
                 sx={{

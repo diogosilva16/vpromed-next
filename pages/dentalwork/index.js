@@ -7,6 +7,8 @@ import Head from "next/head";
 const API_KEY = process.env.API_KEY;
 
 const Cartao = ({ cardData }) => {
+  const router = useRouter();
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));

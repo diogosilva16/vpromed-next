@@ -45,8 +45,6 @@ export function CompanyInfoContextProvider({ children }) {
     getDest();
   }, []);
 
-  console.log(companyInfo);
-
   return (
     <CompanyInfoContext.Provider
       value={{

@@ -28,6 +28,7 @@ const Form = () => {
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [choice, setChoice] = useState(null);
+  const [hasError, setHasError] = useState(false);
   const [playAnim, setPlayAnim] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [openFeedback, setOpenFeedback] = useState(true);
@@ -46,6 +47,7 @@ const Form = () => {
     e.preventDefault();
 
     setFormSubmitted(false);
+    setHasError(false);
 
     var formdata = new FormData();
     formdata.append("name", name);
@@ -65,16 +67,24 @@ const Form = () => {
       `https://www.vmedapi.criteclx.com/api/formSend/${API_KEY}`,
       requestOptions
     )
-      .then((response) => response.text())
-      .then(
-        (result) => setFormSubmitted(true),
-        setName(""),
-        setContact(""),
-        setChoice(),
-        setOpenFeedback(true),
-        setChecked(false)
-      )
-      .catch((error) => console.log("error", error));
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error();
+        }
+        return res.text();
+      })
+      .then((result) => {
+        setFormSubmitted(true),
+          setName(""),
+          setContact(""),
+          setChoice(),
+          setOpenFeedback(true),
+          setChecked(false),
+          console.log(formSubmitted);
+      })
+      .catch((error) => {
+        setFormSubmitted(false), setHasError(true);
+      });
   };
 
   const updateName = (e) => {
@@ -243,12 +253,12 @@ const Form = () => {
                   </Grid>
                 </FormGroup>
               </form>
-              {formSubmitted && (
+              {formSubmitted && !hasError && (
                 <Box pt={2}>
                   <Collapse in={openFeedback}>
                     <Alert
                       variant="standard"
-                      color="success"
+                      color={hasError ? "error" : "success"}
                       action={
                         <IconButton
                           aria-label="close"
@@ -283,6 +293,52 @@ const Form = () => {
                         }}
                       >
                         Pedido de agendamento enviado com sucesso.
+                      </Typography>
+                    </Alert>
+                  </Collapse>
+                </Box>
+              )}
+              {!formSubmitted && hasError && (
+                <Box pt={2}>
+                  <Collapse in={openFeedback}>
+                    <Alert
+                      variant="standard"
+                      severity="error"
+                      color="error"
+                      action={
+                        <IconButton
+                          aria-label="close"
+                          variant="filled"
+                          onClick={() => {
+                            setOpenFeedback(false);
+                            setFormSubmitted(false);
+                          }}
+                          sx={{ color: "#fff" }}
+                        >
+                          <CloseIcon fontSize="inherit" w />
+                        </IconButton>
+                      }
+                      sx={{
+                        "& .MuiAlert-icon": {
+                          color: "#fff",
+                        },
+                        width: isMobile || isTablet ? "80vw" : "40vw",
+                        // backgroundColor: "#2a2a2a",
+                        background:
+                          "linear-gradient(180deg, hsla(0, 80%, 29%, 1) 0%, hsla(0, 50%, 18%, 1) 100%)",
+                        boxShadow: " 0px 10px 15px -3px rgba(0,0,0,0.1)",
+                        color: "#fff",
+                      }}
+                    >
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          color: "#fff",
+                          textTransform: "uppercase",
+                          fontFamily: "Mulish",
+                        }}
+                      >
+                        Ocorreu um erro. Por favor tente mais tarde.
                       </Typography>
                     </Alert>
                   </Collapse>
