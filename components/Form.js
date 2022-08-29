@@ -54,7 +54,11 @@ const Form = () => {
     formdata.append("contact", contact);
     formdata.append(
       "choice",
-      choice === 1 ? "Marcar uma consulta" : "Pedir informações"
+      choice === 0
+        ? null
+        : choice === 1
+        ? "Marcar uma consulta"
+        : choice === 2 && "Pedir informações"
     );
 
     var requestOptions = {
@@ -79,11 +83,16 @@ const Form = () => {
           setContact(""),
           setChoice(),
           setOpenFeedback(true),
-          setChecked(false),
-          console.log(formSubmitted);
+          setChecked(false);
       })
       .catch((error) => {
-        setFormSubmitted(false), setHasError(true);
+        setFormSubmitted(false),
+          setHasError(true),
+          setName(""),
+          setContact(""),
+          setChoice(),
+          setOpenFeedback(true),
+          setChecked(false);
       });
   };
 
@@ -243,7 +252,7 @@ const Form = () => {
                         },
                       }}
                       disabled={
-                        name === "" || contact === "" || choice === ""
+                        name === "" || contact === "" || choice === null || checked === false
                           ? true
                           : false
                       }

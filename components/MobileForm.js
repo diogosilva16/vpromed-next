@@ -27,23 +27,29 @@ const MobileForm = () => {
 
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
-  const [choice, setChoice] = useState();
+  const [choice, setChoice] = useState(null);
+  const [hasError, setHasError] = useState(false);
   const [buttonText, setButtonText] = useState("Enviar");
   const [formSubmitted, setFormSubmitted] = useState(false);
-
+  const [openFeedback, setOpenFeedback] = useState(true);
   const [checked, setChecked] = useState(false);
 
   const submitForm = async (e) => {
     e.preventDefault();
 
     setFormSubmitted(false);
+    setHasError(false);
 
     var formdata = new FormData();
     formdata.append("name", name);
     formdata.append("contact", contact);
     formdata.append(
       "choice",
-      choice === 1 ? "Marcar uma consulta" : "Pedir informações"
+      choice === 0
+        ? null
+        : choice === 1
+        ? "Marcar uma consulta"
+        : choice === 2 && "Pedir informações"
     );
 
     var requestOptions = {
@@ -56,15 +62,31 @@ const MobileForm = () => {
       `https://www.vmedapi.criteclx.com/api/formSend/${API_KEY}`,
       requestOptions
     )
-      .then((response) => response.text())
-      .then(
-        (result) => setFormSubmitted(true),
-        setName(""),
-        setContact(""),
-        setChoice(),
-        setChecked(false)
-      )
-      .catch((error) => console.log("error", error));
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error();
+        }
+        return res.text();
+      })
+      .then((result) => {
+        setFormSubmitted(true),
+          setName(""),
+          setContact(""),
+          setChoice(),
+          setOpenFeedback(true),
+          setChecked(false),
+          setButtonText("Enviado com sucesso");
+      })
+      .catch((error) => {
+        setFormSubmitted(false),
+          setHasError(true),
+          setName(""),
+          setContact(""),
+          setChoice(),
+          setOpenFeedback(true),
+          setChecked(false);
+        setButtonText("Ocorreu um erro");
+      });
   };
 
   const updateName = (e) => {
@@ -82,9 +104,9 @@ const MobileForm = () => {
   };
 
   const handleButtonText = () => {
-    setButtonText("Enviado com sucesso");
     setTimeout(() => {
       setButtonText("Enviar");
+      setHasError(false);
     }, 2000);
   };
 
@@ -211,7 +233,7 @@ const MobileForm = () => {
                   sx={{
                     background:
                       "linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(50,50,50,1) 85%, rgba(62,62,62,1) 100%)",
-                    border: "1px solid #CEC568",
+                    border: `1px solid ${hasError ? "red" : "#CEC568"}`,
                     width: isMobile || isTablet ? "90%" : "10%",
                     "&:disabled": {
                       color: "white",
@@ -220,7 +242,10 @@ const MobileForm = () => {
                   }}
                   onClick={handleButtonText}
                   disabled={
-                    name === "" || contact === "" || choice === ""
+                    name === "" ||
+                    contact === "" ||
+                    choice === null ||
+                    checked === false
                       ? true
                       : false
                   }
