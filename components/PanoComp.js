@@ -25,15 +25,10 @@ const PanoComp = () => {
     setShowCatName(id);
   };
 
-  const getCardImg = (code) => {
-    return especialidadeInfo?.IMAGES?.find((x) => x.CODE === code)?.FILE ?? "";
-  };
-
   const renderSpecInPano = () => {
     return espec?.map((item, key) => (
-      <Link href={`/especialidade/${item.ARTICLE_ID}`}>
+      <Link href={`/especialidade/${item.ARTICLE_ID}`} key={item.ARTICLE_ID}>
         <Box
-          key={item.ARTICLE_ID}
           textAlign="center"
           position="relative"
           onMouseOver={() => showCatNameOnHover(item.ARTICLE_ID)}
