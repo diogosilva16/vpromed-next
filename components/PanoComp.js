@@ -30,7 +30,7 @@ const PanoComp = () => {
   };
 
   const renderSpecInPano = () => {
-    return espec?.map((item) => (
+    return espec?.map((item, key) => (
       <Link href={`/especialidade/${item.ARTICLE_ID}`}>
         <Box
           key={item.ARTICLE_ID}
