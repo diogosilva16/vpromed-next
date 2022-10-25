@@ -8,6 +8,9 @@ const theme = createTheme({
     secondary: {
       main: "#CEC568",
     },
+    neutral: {
+      main: '#fff',
+    },
   },
   typography: {
     h1: {},
@@ -22,16 +25,16 @@ const theme = createTheme({
       fontSize: "2.25rem",
     },
     h5: {
-      fontFamily: "Mulish",
+      fontFamily: "Manrope",
       fontSize: "0.75rem",
     },
     h6: {
-      fontFamily: "Mulish",
+      fontFamily: "Manrope",
       fontSize: "1rem",
       fontWeight: "bold",
     },
     body1: {
-      fontFamily: "Mulish",
+      fontFamily: "Manrope",
       fontWeight: "regular",
       fontSize: "1rem",
     },
@@ -40,11 +43,11 @@ const theme = createTheme({
       color: "#fff",
       textTransform: "uppercase",
       fontSize: "1.5rem",
-      fontFamily: "Mulish",
+      fontFamily: "Manrope",
       fontWeight: "bold",
     },
     subtitle2: {
-      fontFamily: "Mulish",
+      fontFamily: "Manrope",
       fontWeight: "bold",
     },
     caption: {},
@@ -55,6 +58,19 @@ const theme = createTheme({
       styleOverrides: {
         content: {
           flexGrow: 0,
+        },
+      },
+    },
+    MuiFilledInput: {
+      styleOverrides: {
+        input: {
+          color: "#fff",
+          "&::before": {
+            borderBottom: "1px solid #fff" ,
+          },
+          "&::after": {
+            borderBottom: "1px solid #fff",
+          },
         },
       },
     },

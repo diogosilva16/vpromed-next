@@ -13,7 +13,7 @@ const ButtonComp = (props) => {
         "&:hover": {
           color: "#CEC568",
         },
-        fontFamily: "Mulish",
+        fontFamily: "Manrope",
         fontWeight: "regular",
         fontSize: "1rem",
       }}

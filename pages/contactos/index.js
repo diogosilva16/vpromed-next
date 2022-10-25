@@ -24,20 +24,21 @@ const Contactos = ({ mobData, horData, locData }) => {
 
   const { companyInfo, isLoading, hasError } = useContext(CompanyInfoContext);
 
-  console.log(companyInfo);
   return (
     <>
       <Head>
         <title>V-Promed Contactos</title>
         <meta name="description" content="V-Promed Contactos" />
         <meta charset="UTF-8" />
+        <meta property="og:title" content="V-Promed Contactos" />
+        <meta property="og:description" content="Entre em contacto connosco!" />
       </Head>
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
         <Container maxWidth="xl">
           <Grid container pt={isMobile ? 10 : 15}>
             <Box sx={{ width: "100%" }}>
-              <Grid item xs={12}>
+              <Grid item xs={12} md={6} pb={3} className="borderEspecialidade">
                 <Typography
                   variant={isMobile || isTablet ? "h5" : "h4"}
                   style={{ color: "white", textTransform: "uppercase" }}
@@ -46,27 +47,38 @@ const Contactos = ({ mobData, horData, locData }) => {
                 </Typography>
               </Grid>
               <Box textAlign="center" pt={5}>
-                <Container maxWidth="xs">
-                  <ContactCard
-                    title={"Águeda"}
-                    locData={locData}
-                    mobData={mobData}
-                    horData={horData}
-                    localidade={companyInfo[6].VALUE}
-                    mobile={companyInfo[10].VALUE}
-                    phone={companyInfo[16].VALUE}
-                    horario={companyInfo[8].VALUE}
-                  />
-                  <ContactCard
-                    title={"Barrô"}
-                    locData={locData}
-                    mobData={mobData}
-                    horData={horData}
-                    localidade={companyInfo[7].VALUE}
-                    mobile={companyInfo[11].VALUE}
-                    phone={companyInfo[17].VALUE}
-                    horario={companyInfo[9].VALUE}
-                  />
+                <Container maxWidth="xl">
+                  <Grid
+                    container
+                    gap={5}
+                    display="flex"
+                    justifyContent="center"
+                  >
+                    <Grid item md={5} xs={12}>
+                      <ContactCard
+                        title={"Águeda"}
+                        locData={locData}
+                        mobData={mobData}
+                        horData={horData}
+                        localidade={companyInfo[6].VALUE}
+                        mobile={companyInfo[10].VALUE}
+                        phone={companyInfo[16].VALUE}
+                        horario={companyInfo[8].VALUE}
+                      />
+                    </Grid>
+                    <Grid item md={5} xs={12}>
+                      <ContactCard
+                        title={"Barrô"}
+                        locData={locData}
+                        mobData={mobData}
+                        horData={horData}
+                        localidade={companyInfo[7].VALUE}
+                        mobile={companyInfo[11].VALUE}
+                        phone={companyInfo[17].VALUE}
+                        horario={companyInfo[9].VALUE}
+                      />
+                    </Grid>
+                  </Grid>
                 </Container>
               </Box>
               <Form />

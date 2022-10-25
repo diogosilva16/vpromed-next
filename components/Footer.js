@@ -92,7 +92,7 @@ const Footer = () => {
                   sx={{
                     color: "white",
                     whiteSpace: "pre-wrap",
-                    fontFamily: "Mulish",
+                    fontFamily: "Manrope",
                     fontSize: isMobile && "0.8125rem",
                   }}
                   dangerouslySetInnerHTML={{
@@ -114,7 +114,7 @@ const Footer = () => {
                 <Typography
                   sx={{
                     color: "white",
-                    fontFamily: "Mulish",
+                    fontFamily: "Manrope",
                     fontSize: isMobile && "0.8125rem",
                   }}
                 >
@@ -128,7 +128,7 @@ const Footer = () => {
                 <Typography
                   sx={{
                     color: "white",
-                    fontFamily: "Mulish",
+                    fontFamily: "Manrope",
                     fontSize: isMobile && "0.8125rem",
                   }}
                 >
@@ -154,7 +154,7 @@ const Footer = () => {
                 <Typography
                   sx={{
                     color: "white",
-                    fontFamily: "Mulish",
+                    fontFamily: "Manrope",
                     fontSize: isMobile && "0.8125rem",
                   }}
                 >
@@ -168,7 +168,7 @@ const Footer = () => {
                 <Typography
                   sx={{
                     color: "white",
-                    fontFamily: "Mulish",
+                    fontFamily: "Manrope",
                     fontSize: isMobile && "0.8125rem",
                   }}
                 >
@@ -191,7 +191,7 @@ const Footer = () => {
                   sx={{
                     color: "white",
                     textTransform: "uppercase",
-                    fontFamily: "Mulish",
+                    fontFamily: "Manrope",
                     fontSize: isMobile && "1rem",
                   }}
                 >
@@ -217,11 +217,11 @@ const Footer = () => {
                       />
                     </a>
                   </Box>
-                  <Box p={1.5}>
+                  {/* <Box p={1.5}>
                     <a href="#" target="_blank" rel="noreferrer">
                       <img src={twitter.FILE} width={30} alt="twitter icon" />
                     </a>
-                  </Box>
+                  </Box> */}
                 </Box>
               </Grid>
               <Grid
@@ -232,28 +232,28 @@ const Footer = () => {
               >
                 <Grid item xs={12} md={3} pb={isMobile || (isTablet && 2)}>
                   <Typography
-                    sx={{ color: "white", fontSize: isMobile && "1rem" }}
+                    sx={{ color: "white", fontSize: "0.8rem" }}
                   >
                     Política de Privacidade
                   </Typography>
                 </Grid>
                 <Grid item xs={12} md={3} pb={isMobile || (isTablet && 2)}>
                   <Typography
-                    sx={{ color: "white", fontSize: isMobile && "1rem" }}
+                    sx={{ color: "white", fontSize:"0.8rem" }}
                   >
                     Livro de reclamações
                   </Typography>
                 </Grid>
                 <Grid item xs={12} md={3} pb={isMobile || (isTablet && 2)}>
                   <Typography
-                    sx={{ color: "white", fontSize: isMobile && "1rem" }}
+                    sx={{ color: "white", fontSize: "0.8rem" }}
                   >
                     Copyright 2022
                   </Typography>
                 </Grid>
                 <Grid item xs={12} md={3}>
                   <Typography
-                    sx={{ color: "white", fontSize: isMobile && "1rem" }}
+                    sx={{ color: "white", fontSize: "0.8rem" }}
                   >
                     Developed by{" "}
                     <span

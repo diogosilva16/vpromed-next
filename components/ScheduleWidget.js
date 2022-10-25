@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import Form from "./Form";
 import MobileForm from "./MobileForm";
 import useOutsideClick from "./utils/useOutsideClick";
+import Loader from "./utils/Loader";
 
 const ScheduleWidget = () => {
   const API_KEY = process.env.API_KEY;
@@ -18,7 +19,7 @@ const ScheduleWidget = () => {
   const [open, setOpen] = useState(false);
 
   const [icon, setIcon] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
   const getIcon = async () => {
@@ -105,7 +106,7 @@ const ScheduleWidget = () => {
             </Typography>
           </Grid>
           <Grid item pt={4}>
-            <img src={icon?.FILE ?? ""} alt="agendar consulta" />
+            {isLoading ? "" :  <img src={icon?.FILE ?? ""} alt="agendar consulta" />}
           </Grid>
         </Grid>
       </Box>

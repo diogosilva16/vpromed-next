@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Box, Grid, Paper, Typography, useMediaQuery } from "@mui/material";
 import Loader from "./utils/Loader";
 import { useTheme } from "@emotion/react";
+import Spacer from "./Spacer";
 
 const Team = () => {
   const API_KEY = process.env.API_KEY;
@@ -10,8 +11,6 @@ const Team = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
   // const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-
-
 
   const [teamInfo, setTeamInfo] = useState([]);
   const [teamInfoIsLoading, setTeamInfoIsLoading] = useState(true);
@@ -49,49 +48,47 @@ const Team = () => {
   const _renderTeamInfo = () => {
     return teamInfo.map((item, index) => {
       return (
-        <Grid item xs={6} sm={4} md={3} key={index}>
-          <Paper
-            sx={{
-              backgroundImage: `url(${item.IMAGES[0].FILE})`,
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-              // background: "#000",
-              width: "100%",
-              paddingTop: "66.64%",
-            }}
-            onMouseEnter={() => uIsHovering(index)}
-            onMouseLeave={uIsNotHovering}
-            className="animate__animated animate__fadeInUp"
-          >
+        <>
+          <Grid item xs={12} sm={6} md={6} key={index}>
             <Box
-              visibility={
-                isHovering && selected === index ? "visible" : "hidden"
-              }
-              pl={2}
-              pb={2}
+              display="flex"
+              justifyContent="center"
+              // className="animate__animated animate__fadeInLeft"
             >
-              <Typography
-                sx={{
-                  fontFamily: "Times New Roman",
-                  color: "#CEC568",
-                  fontSize: (isMobile || isTablet) ? "1rem" : "2rem",
-                }}
-              >
-                {item.NAME_SEO}
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: "#fff",
-                  fontSize: isMobile ? "0.8rem" : "1.2rem",
-                  textTransform: "uppercase",
-                }}
-              >
-                {item.TEXT_SEO}
-              </Typography>
+              <img
+                src={`${item.IMAGES[0].FILE}`}
+                width="100%"
+                style={{ maxWidth: "70%" }}
+              />
             </Box>
-          </Paper>
-        </Grid>
+          </Grid>
+          <Grid item xs={12} sm={6} md={6} key={index+1}>
+            <Typography
+              // className="animate__animated animate__fadeInRight"
+              sx={{
+                fontFamily: "Times New Roman",
+                textTransform: "uppercase",
+                color: "#CEC568",
+                fontSize: "2.25rem",
+              }}
+            >
+              Vitor Henriques
+            </Typography>
+
+            <Typography
+              textAlign="justify"
+              variant="body1"
+              // className="animate__animated animate__fadeInRight"
+              sx={{
+                wordWrap: "break-word",
+                // textTransform: "uppercase",
+                fontFamily: "Manrope",
+              }}
+            >
+              {item.TEXT_SEO}
+            </Typography>
+          </Grid>
+        </>
       );
     });
   };
@@ -100,39 +97,16 @@ const Team = () => {
     <>
       {teamInfoIsLoading && <Loader />}
       {!teamInfoIsLoading && !teamInfoHasError && (
-        <Grid container pt={1} sx={{ color: "white" }}>
-          <Grid item xs={12}>
-            <Typography
-              sx={{
-                fontFamily: "Times New Roman",
-                textTransform: "uppercase",
-                fontSize: "2.25rem",
-              }}
-            >
-              A Equipa
-            </Typography>
-          </Grid>
-          <Grid item xs={12} pt={2}>
-            <Typography
-              variant="body1"
-              sx={{
-                textTransform: "uppercase",
-                color: "#CEC568",
-                fontFamily: "Times New Roman",
-              }}
-            >
-              Cuidar de si está no nosso adn
-            </Typography>
-          </Grid>
+        <Grid container sx={{ color: "white" }}>
           <Grid
             container
-            spacing={isMobile ? 0 : 5}
+            // spacing={isMobile ? 0 : 5}
             columnSpacing={isMobile ? 0 : 5}
-            pb={10}
             pt={5}
           >
             {_renderTeamInfo()}
           </Grid>
+          <Spacer size={"100"} />
         </Grid>
       )}
     </>

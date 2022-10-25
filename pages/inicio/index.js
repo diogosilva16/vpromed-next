@@ -31,10 +31,16 @@ const Inicio = () => {
         <title>V-Promed</title>
         <meta name="description" content="V-Promed início" />
         <meta charset="UTF-8" />
+        <meta property="og:title" content="Dentárias | Início" />
+        <meta property="og:description" content="Dentárias V-Promed" />
+        <meta
+          property="og:image"
+          content="https://www.vmedapi.criteclx.com/storage/files/original/start_6331b9d9cdbe5.jpeg"
+        />
       </Head>
       <Box pt={isMobile ? 7 : isTablet ? 8 : 10} sx={{ background: "#2A2A2A" }}>
         <Panorama />
-        <Container maxWidth="xl">
+        {/* <Container maxWidth="xl">
           {wait && <Loader />}
           {!wait && (
             <>
@@ -45,7 +51,7 @@ const Inicio = () => {
               <Form />
             </>
           )}
-        </Container>
+        </Container> */}
       </Box>
     </>
   );

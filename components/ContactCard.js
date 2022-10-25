@@ -27,7 +27,7 @@ const ContactCard = (props) => {
       >
         <AccordionSummary sx={{ flexGrow: 0 }}>
           <Typography
-            variant={isMobile ? "h4" : "h2"}
+            variant={isMobile ? "h4" : "h4"}
             sx={{
               color: "white",
               textTransform: "uppercase",

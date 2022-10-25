@@ -8,6 +8,7 @@ import Form from "../../components/Form";
 import Separator from "../../components/Separator";
 import Head from "next/head";
 import DOMPurify from "dompurify";
+import Spacer from "../../components/Spacer";
 
 const Sobre = () => {
   const API_KEY = process.env.API_KEY;
@@ -37,20 +38,25 @@ const Sobre = () => {
   useEffect(() => {
     getCompanyAbout();
   }, [isLoading]);
-
-  console.log(companyAbout);
   return (
     <>
-      <Head>
-        <title>V-Promed Sobre</title>
-        <meta name="description" content="V-Promed Sobre" />
-        <meta charset="UTF-8" />
-      </Head>
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
-        <Container maxWidth="xxl">
-          <Grid container pt={isMobile ? 7 : isTablet ? 8 : 12} pb={5}>
-            <Box
+        <>
+          <Head>
+            <title>V-Promed Sobre</title>
+            <meta name="description" content="V-Promed Sobre" />
+            <meta charset="UTF-8" />
+            <meta property="og:title" content="V-Promed Sobre" />
+            <meta
+              property="og:description"
+              content="Somos uma equipa multidisciplinar de mais de trinta pessoas a trabalhar em função do paciente desde 2000."
+            />
+            <meta property="og:image" content={companyAbout.IMAGES[1]?.FILE} />
+          </Head>
+          <Container maxWidth="xl">
+            <Grid container pt={isMobile ? 7 : isTablet ? 8 : 12} pb={5}>
+              {/* <Box
               sx={{
                 zIndex: 0,
                 position: "absolute",
@@ -58,40 +64,48 @@ const Sobre = () => {
               }}
             >
               {isMobile && (
-                <img src={companyAbout.IMAGES[0]?.FILE} width="100%" alt="mobile image" />
+                <img
+                  src={companyAbout.IMAGES[0]?.FILE}
+                  width="100%"
+                  alt="mobile image"
+                />
               )}
-            </Box>
-            <Box
-              sx={{
-                zIndex: 1,
-                width: "100%",
-                height: !isMobile && "392px",
-                position: "relative",
-                backgroundImage:
-                  !isMobile && `url(${companyAbout.IMAGES[1]?.FILE})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            >
-              <Container maxWidth="xl">
-                <Grid
-                  item
-                  xs={12}
-                  pt={1}
-                  pb={3}
-                  className="borderEspecialidade"
-                >
-                  <Typography
-                    variant={isMobile || isTablet ? "h5" : "h4"}
-                    style={{ color: "white", textTransform: "uppercase" }}
+            </Box> */}
+              <Box
+                sx={{
+                  zIndex: 1,
+                  width: "100%",
+                  // height: !isMobile && "392px",
+                  position: "relative",
+                  // backgroundImage:
+                  //   !isMobile && `url(${companyAbout.IMAGES[1]?.FILE})`,
+                  // backgroundSize: "cover",
+                  // backgroundPosition: "center",
+                }}
+              >
+                <Container maxWidth="xl">
+                  <Grid
+                    item
+                    xs={12}
+                    pt={1}
+                    pb={3}
+                    className="borderEspecialidade"
                   >
-                    Dentárias V-Promed
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} pt={isMobile ? 2 : 5} pb={5}>
+                    <Typography
+                      variant={isMobile || isTablet ? "h5" : "h4"}
+                      style={{ color: "white", textTransform: "uppercase" }}
+                    >
+                      Dentárias V-Promed
+                    </Typography>
+                  </Grid>
+                </Container>
+              </Box>
+              <Container maxWidth="xl">
+                <Team />
+                <Grid item xs={12} pb={5} textAlign="center">
                   <Typography
                     sx={{
-                      color: "white",
+                      color: "#CEC568",
                       textTransform: "uppercase",
                       fontFamily: "Times New Roman",
                       fontSize: "1.15rem",
@@ -100,126 +114,129 @@ const Sobre = () => {
                     {JSON.parse(companyAbout.CUSTOMCAMPS).small_description}
                   </Typography>
                 </Grid>
+                <Grid container pt={isMobile ? 2 : 3} sx={{ color: "white" }}>
+                  <Grid item xs={12}>
+                    <Typography
+                      sx={{
+                        fontFamily: "Times New Roman",
+                        textTransform: "uppercase",
+                        fontSize: "2.25rem",
+                      }}
+                    >
+                      Clínica
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} pt={2}>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        textTransform: "uppercase",
+                        color: "#CEC568",
+                        fontFamily: "Times New Roman",
+                      }}
+                    >
+                      {JSON.parse(companyAbout.CUSTOMCAMPS).small_title}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} pt={2}>
+                    <Typography
+                      sx={{
+                        whiteSpace: "pre-line",
+                        fontFamily: "Manrope",
+                        fontSize: "1.125rem",
+                      }}
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(companyAbout.TEXT_SEO),
+                      }}
+                    />
+                  </Grid>
+                </Grid>
+                <Spacer size="60" />
+                <Grid container columnSpacing={7}>
+                  <Grid item md={4}>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        textTransform: "uppercase",
+                        color: "#CEC568",
+                        fontFamily: "Times New Roman",
+                        fontSize: "1rem",
+                      }}
+                    >
+                      {JSON.parse(companyAbout.CUSTOMCAMPS).small_title2}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        whiteSpace: "pre-line",
+                        fontFamily: "Manrope",
+                        fontSize: "1.125rem",
+                        textAlign: "justify",
+                      }}
+                    >
+                      {JSON.parse(companyAbout.CUSTOMCAMPS).text_small_title2}
+                    </Typography>
+                  </Grid>
+                  {isMobile && <Spacer size="50" />}
+                  <Grid item md={4}>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        textTransform: "uppercase",
+                        color: "#CEC568",
+                        fontFamily: "Times New Roman",
+                        fontSize: "1rem",
+                      }}
+                    >
+                      {JSON.parse(companyAbout.CUSTOMCAMPS).small_title_4}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        whiteSpace: "pre-line",
+                        fontFamily: "Manrope",
+                        fontSize: "1.125rem",
+                        textAlign: "justify",
+                      }}
+                    >
+                      {JSON.parse(companyAbout.CUSTOMCAMPS).text_small_title4}
+                    </Typography>
+                  </Grid>
+                  {isMobile && <Spacer size="50" />}
+
+                  <Grid item xs={12} md={4}>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        textTransform: "uppercase",
+                        color: "#CEC568",
+                        fontFamily: "Times New Roman",
+                        fontSize: "1rem",
+                      }}
+                    >
+                      {JSON.parse(companyAbout.CUSTOMCAMPS).small_title3}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        whiteSpace: "pre-line",
+                        fontFamily: "Manrope",
+                        fontSize: "1.125rem",
+                        textAlign: "justify",
+                      }}
+                    >
+                      {JSON.parse(companyAbout.CUSTOMCAMPS).text_small_tittle3}
+                    </Typography>
+                  </Grid>
+                </Grid>
               </Container>
-            </Box>
+            </Grid>
             <Container maxWidth="xl">
-              <Grid container pt={isMobile ? 2 : 3} sx={{ color: "white" }}>
-                <Grid item xs={12}>
-                  <Typography
-                    sx={{
-                      fontFamily: "Times New Roman",
-                      textTransform: "uppercase",
-                      fontSize: "2.25rem",
-                    }}
-                  >
-                    Clínica
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} pt={2}>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      textTransform: "uppercase",
-                      color: "#CEC568",
-                      fontFamily: "Times New Roman",
-                    }}
-                  >
-                    {JSON.parse(companyAbout.CUSTOMCAMPS).small_title}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} pt={2}>
-                  <Typography
-                    sx={{
-                      whiteSpace: "pre-line",
-                      fontFamily: "Mulish",
-                      fontSize: "1.125rem",
-                    }}
-                    dangerouslySetInnerHTML={{
-                      __html: DOMPurify.sanitize(companyAbout.TEXT_SEO),
-                    }}
-                  />
-                </Grid>
-                <Grid item xs={12} pt={10}>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      textTransform: "uppercase",
-                      color: "#CEC568",
-                      fontFamily: "Times New Roman",
-                    }}
-                  >
-                    {JSON.parse(companyAbout.CUSTOMCAMPS).small_title2}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} pt={2}>
-                  <Typography
-                    sx={{
-                      whiteSpace: "pre-line",
-                      fontFamily: "Mulish",
-                      fontSize: "1.125rem",
-                    }}
-                  >
-                    {JSON.parse(companyAbout.CUSTOMCAMPS).text_small_title2}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} pt={2}>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      textTransform: "uppercase",
-                      color: "#CEC568",
-                      fontFamily: "Times New Roman",
-                    }}
-                  >
-                    {JSON.parse(companyAbout.CUSTOMCAMPS).small_title3}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} pt={2}>
-                  <Typography
-                    sx={{
-                      whiteSpace: "pre-line",
-                      fontFamily: "Mulish",
-                      fontSize: "1.125rem",
-                    }}
-                  >
-                    {JSON.parse(companyAbout.CUSTOMCAMPS).text_small_tittle3}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} pt={2}>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      textTransform: "uppercase",
-                      color: "#CEC568",
-                      fontFamily: "Times New Roman",
-                    }}
-                  >
-                    {JSON.parse(companyAbout.CUSTOMCAMPS).small_title_4}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} pt={2}>
-                  <Typography
-                    sx={{
-                      whiteSpace: "pre-line",
-                      fontFamily: "Mulish",
-                      fontSize: "1.125rem",
-                    }}
-                  >
-                    {JSON.parse(companyAbout.CUSTOMCAMPS).text_small_title4}
-                  </Typography>
-                </Grid>
-              </Grid>
+              <Especialidades />
             </Container>
-          </Grid>
-          <Container maxWidth="xl">
-            <Team />
-            <Especialidades />
+            <Separator />
+            <Container maxWidth="xl">
+              <Form />
+            </Container>
           </Container>
-          <Separator />
-          <Container maxWidth="xl">
-            <Form />
-          </Container>
-        </Container>
+        </>
       )}
     </>
   );

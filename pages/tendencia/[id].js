@@ -57,90 +57,106 @@ const Destaque = () => {
     return trendInfo?.IMAGES?.find((x) => x.CODE === code)?.FILE ?? "";
   };
 
-  console.log(getTrendImg("trendDesktop"));
-  console.log(getTrendImg("trendMobile"));
-
   const desktopImg = getTrendImg("trendDesktop");
   const mobileImg = getTrendImg("trendMobile");
 
   return (
     <>
-      <Head>
-        <title>V-Promed Tendências</title>
-        <meta name="description" content="V-Promed Tendências" />
-        <meta charset="UTF-8" />
-      </Head>
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
-        <Container maxWidth="xl">
-          <Grid container pt={isMobile || isTablet ? 10 : 15}>
-            <Box sx={{ width: "100vw" }}>
-              <Grid item xs={12}>
-                <Typography
-                  variant={isMobile || isTablet ? "h5" : "h4"}
-                  style={{ color: "white", textTransform: "uppercase" }}
-                >
-                  Tendência
-                </Typography>
+        <>
+          <Head>
+            <title>V-Promed Tendências</title>
+            <meta name="description" content="V-Promed Tendências" />
+            <meta charset="UTF-8" />
+            <meta
+              property="og:title"
+              content={`V-Promed | ${trendInfo.NAME_SEO}`}
+            />
+            <meta property="og:description" content={trendInfo.NAME_SEO} />
+            <meta property="og:image" content={desktopImg} />
+          </Head>
+          <Container maxWidth="xl">
+            <Grid container pt={isMobile || isTablet ? 10 : 15}>
+              <Box sx={{ width: "100vw" }}>
+                <Grid item xs={12}>
+                  <Typography
+                    variant={isMobile || isTablet ? "h5" : "h4"}
+                    style={{ color: "white", textTransform: "uppercase" }}
+                  >
+                    Tendência
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} pt={2} pb={5}>
+                  <Typography
+                    sx={{
+                      color: "#CEC568",
+                      fontFamily: "Times New Roman",
+                      textTransform: "uppercase",
+                    }}
+                    variant="h3"
+                  >
+                    {trendInfo.NAME_SEO}
+                  </Typography>
+                </Grid>
+              </Box>
+              <Box sx={{ width: "100vw" }}>
+                {isMobile ? (
+                  <Box
+                    sx={{
+                      zIndex: 0,
+                      position: "absolute",
+                      left: "calc(-50vw + 50%)",
+                    }}
+                  >
+                    <img
+                      src={mobileImg}
+                      width="100%"
+                      alt="tendencia mobile image"
+                    />
+                  </Box>
+                ) : (
+                  <img
+                    src={desktopImg}
+                    width="100%"
+                    alt="tendencia desktop image"
+                  />
+                )}
+              </Box>
+              <Box mt={isMobile && 30} sx={{ zIndex: 1, position: "relative" }}>
+                <Grid item xs={12} p={5}>
+                  <Typography
+                    pl={2}
+                    sx={{
+                      color: "#CEC568",
+                      borderLeft: "1px solid #CEC568",
+                      fontFamily: "Times New Roman",
+                      textTransform: "uppercase",
+                      fontSize: "1.25rem",
+                    }}
+                  >
+                    Conheça as características de {trendInfo.NAME_SEO}
+                  </Typography>
+                </Grid>
+              </Box>
+              <Box display="flex" pl={5}>
+                <Grid item md={10} sx={12} pl={2}>
+                  <Typography
+                    sx={{ color: "white", fontSize: "1.25rem" }}
+                    variant="body1"
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(trendInfo.TEXT_SEO),
+                    }}
+                  />
+                </Grid>
+                <Grid item md={2}></Grid>
+              </Box>
+              <Grid item xs={12} pt={5} textAlign="center">
+                <ButtonComp text={"Contacte-nos"} goTo={goToContact} />
               </Grid>
-              <Grid item xs={12} pt={2} pb={5}>
-                <Typography
-                  sx={{
-                    color: "#CEC568",
-                    fontFamily: "Times New Roman",
-                    textTransform: "uppercase",
-                  }}
-                  variant="h3"
-                >
-                  {trendInfo.NAME_SEO}
-                </Typography>
-              </Grid>
-            </Box>
-            <Box sx={{ width: "100vw" }}>
-              {isMobile ? (
-                <Box
-                  sx={{
-                    zIndex: 0,
-                    position: "absolute",
-                    left: "calc(-50vw + 50%)",
-                  }}
-                >
-                  <img src={mobileImg} width="100%" alt="tendencia mobile image"/>
-                </Box>
-              ) : (
-                <img src={desktopImg} width="100%" alt="tendencia desktop image"/>
-              )}
-            </Box>
-            <Box mt={isMobile && 30} sx={{ zIndex: 1, position: "relative"}}>
-              <Grid item xs={12} p={5}>
-                <Typography
-                  pl={2}
-                  sx={{
-                    color: "#CEC568",
-                    borderLeft: "1px solid #CEC568",
-                    fontFamily: "Times New Roman",
-                    textTransform: "uppercase",
-                    fontSize: "1.25rem",
-                  }}
-                >
-                  Conheça as características de {trendInfo.NAME_SEO}
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography
-                  sx={{ color: "white", fontSize: "1.25rem" }}
-                  variant="body1"
-                  dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(trendInfo.TEXT_SEO),
-                  }}
-                />
-              </Grid>
-            </Box>
-            <Grid item xs={12} pt={5} textAlign="center">
-              <ButtonComp text={"Contacte-nos"} goTo={goToContact} />
             </Grid>
-          </Grid>
-        </Container>
+          </Container>
+        </>
       )}
     </>
   );

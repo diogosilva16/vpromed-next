@@ -59,7 +59,7 @@ const Destaques = () => {
               sx={{
                 color: "#CEC568",
                 textTransform: "uppercase",
-                fontFamily: "Mulish",
+                fontFamily: "Manrope",
                 fontWeight: "bold",
               }}
               pb={2}

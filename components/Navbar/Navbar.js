@@ -63,7 +63,9 @@ const Navbar = () => {
             sx={{ my: 2, color: "white", display: "block", cursor: "pointer" }}
             aria-describedby={id}
           >
-            <ListItemText>V-PROMED</ListItemText>
+            <ListItemText sx={{ fontFamily: "Times New Roman, sans-serif" }}>
+              V-PROMED
+            </ListItemText>
           </ListItem>
         </Link>
         <ListItem>
@@ -93,13 +95,14 @@ const Navbar = () => {
           <List sx={{ backgroundColor: "#000", color: "#fff" }}>
             {dest.map((item, key) => (
               <Link href={`/tendencia/${item.ARTICLE_ID}`} key={key}>
-                <a>
-                  <ListItem>
-                    <ListItemText sx={{ textTransform: "uppercase" }}>
-                      {item.NAME_SEO}
-                    </ListItemText>
-                  </ListItem>
-                </a>
+                <ListItem onClick={handleClose}>
+                  <ListItemText
+                    sx={{ textTransform: "uppercase" }}
+                    onClick={handleClose}
+                  >
+                    {item.NAME_SEO}
+                  </ListItemText>
+                </ListItem>
               </Link>
             ))}
           </List>
@@ -132,13 +135,11 @@ const Navbar = () => {
           <List sx={{ backgroundColor: "#000", color: "#fff" }}>
             {espec.map((item, key) => (
               <Link href={`/especialidade/${item.ARTICLE_ID}`} key={key}>
-                <a>
-                  <ListItem>
-                    <ListItemText sx={{ textTransform: "uppercase" }}>
-                      {item.NAME_SEO}
-                    </ListItemText>
-                  </ListItem>
-                </a>
+                <ListItem onClick={handleClose}>
+                  <ListItemText sx={{ textTransform: "uppercase" }}>
+                    {item.NAME_SEO}
+                  </ListItemText>
+                </ListItem>
               </Link>
             ))}
           </List>

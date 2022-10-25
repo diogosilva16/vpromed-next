@@ -32,7 +32,7 @@ const Especialidades = () => {
       <Grid
         item
         xs={6}
-        md={3}
+        md={12/5}
         key={key}
         className={`${isMobile || isTablet ? "" : especAnim}`}
       >
@@ -58,7 +58,7 @@ const Especialidades = () => {
             </Paper>
             <Typography
               pt={1}
-              sx={{ color: "white", textAlign: "center" }}
+              sx={{ color: "white", textAlign: "center", fontWeight: "600" }}
               variant="subtitle2"
             >
               {especialidade.NAME_SEO}

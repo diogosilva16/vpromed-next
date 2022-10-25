@@ -23,10 +23,10 @@ export default function Home() {
 
   useEffect(() => {
     setTimeout(() => {
-      setTeste("animate__animated animate__fadeOut");
+      // setTeste("animate__animated animate__fadeOut");
       setClicked(true);
       setVisible(false);
-    }, 3000);
+    }, 2500);
   }, []);
 
   return (
@@ -35,7 +35,17 @@ export default function Home() {
         <title>Dentárias V-Promed</title>
         <meta name="description" content="Dentárias V-Promed" />
         <meta charset="UTF-8" />
+        <meta property="og:title" content="Dentárias V-Promed" />
+        <meta
+          property="og:description"
+          content="Dentárias V-Promed | Bem vindo!"
+        />
+        <meta
+          property="og:image"
+          content="https://www.vmedapi.criteclx.com/storage/files/original/start_6331b9d9cdbe5.jpeg"
+        />
       </Head>
+
       <Container
         maxWidth="xxl"
         sx={{
@@ -47,7 +57,6 @@ export default function Home() {
       >
         <Grid
           container
-          pt={10}
           justifyContent="center"
           alignItems="center"
           direction="column"
@@ -58,12 +67,10 @@ export default function Home() {
             sx={{
               zIndex: "1",
               position: "absolute",
-              top: isMobile ? "0" : "",
+              bottom: isMobile ? "0" : "",
             }}
           >
-            {/* visibility because just removing the element was not placing the other elements in the right spot :)*/}
             <Typography
-              className={teste}
               sx={{
                 fontFamily: "Times New Roman",
                 backgroundImage:
@@ -71,7 +78,8 @@ export default function Home() {
                 backgroundClip: "text",
                 color: "transparent",
                 fontWeight: "bold",
-                fontSize: isMobile ? "40rem" : "90vw",
+                fontSize: isMobile ? "250vw" : "90vw",
+                lineHeight: "100vh"
               }}
             >
               V
@@ -83,10 +91,9 @@ export default function Home() {
               className="animate__animated animate__zoomIn"
               letterSpacing={3}
             >
-              Dentárias <span style={{ color: "#CEC568" }}>V</span>-Promed
+              Dentárias V-<span style={{ color: "#CEC568" }}>P</span>romed
             </Typography>
           </Grid>
-          {/* visibility because just removing the element was not placing this in the right spot :)*/}
           <Box
             style={{
               visibility: clicked ? "visible" : "hidden",
@@ -96,7 +103,7 @@ export default function Home() {
           >
             <Grid item pt={5}>
               <Typography
-              letterSpacing={3}
+                letterSpacing={3}
                 sx={{
                   textTransform: "uppercase",
                   fontFamily: "Times New Roman",

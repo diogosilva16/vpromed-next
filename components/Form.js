@@ -121,13 +121,10 @@ const Form = () => {
               pt={5}
               sx={{ textTransform: "uppercase" }}
             >
-              <Typography
-                variant="subtitle1"
-                sx={{ fontSize: isMobile && "0.8125rem" }}
-              >
+              <Typography variant="subtitle1" sx={{ fontSize: "0.8125rem" }}>
                 Os nossos especialistas cuidam de si
               </Typography>
-              <Typography variant={isMobile ? "h4" : "h2"}>
+              <Typography variant={isMobile ? "h4" : "h4"}>
                 Agende a sua consulta
               </Typography>
             </Grid>
@@ -140,9 +137,13 @@ const Form = () => {
                         variant="filled"
                         label="Nome"
                         required
+                        color="neutral"
+                        InputLabelProps={{
+                          style: { color: "#fff" },
+                        }}
                         sx={{
                           width: "300px",
-                          background: "white",
+                          // background: "white",
                           borderRadius: "5px",
                         }}
                         onChange={updateName}
@@ -154,10 +155,14 @@ const Form = () => {
                         variant="filled"
                         label="Contacto"
                         required
+                        color="neutral"
                         value={contact}
+                        InputLabelProps={{
+                          style: { color: "#fff" },
+                        }}
                         sx={{
                           width: "300px",
-                          background: "white",
+                          // background: "white",
                           borderRadius: "5px",
                         }}
                         onChange={updateContact}
@@ -178,7 +183,7 @@ const Form = () => {
                           textTransform: "uppercase",
                           border: "1px solid white",
                           width: "300px",
-                          fontFamily: "Mulish",
+                          fontFamily: "Manrope",
                           fontWeight: "regular",
                           fontSize: isMobile && "0.8125rem",
                           "&:focus": {
@@ -201,7 +206,7 @@ const Form = () => {
                           textTransform: "uppercase",
                           border: "1px solid white",
                           width: "300px",
-                          fontFamily: "Mulish",
+                          fontFamily: "Manrope",
                           fontWeight: "regular",
                           fontSize: isMobile && "0.8125rem",
                           "&:focus": {
@@ -228,7 +233,7 @@ const Form = () => {
                           onChange={handleChecked}
                           sx={{
                             color: "white",
-                            fontFamily: "Mulish",
+                            fontFamily: "Manrope",
                             fontWeight: "regular",
                             fontSize: isMobile && "1rem",
                           }}
@@ -252,7 +257,10 @@ const Form = () => {
                         },
                       }}
                       disabled={
-                        name === "" || contact === "" || choice === null || checked === false
+                        name === "" ||
+                        contact === "" ||
+                        choice === null ||
+                        checked === false
                           ? true
                           : false
                       }
@@ -298,7 +306,7 @@ const Form = () => {
                         sx={{
                           color: "#fff",
                           textTransform: "uppercase",
-                          fontFamily: "Mulish",
+                          fontFamily: "Manrope",
                         }}
                       >
                         Pedido de agendamento enviado com sucesso.
@@ -344,7 +352,7 @@ const Form = () => {
                         sx={{
                           color: "#fff",
                           textTransform: "uppercase",
-                          fontFamily: "Mulish",
+                          fontFamily: "Manrope",
                         }}
                       >
                         Ocorreu um erro. Por favor tente mais tarde.

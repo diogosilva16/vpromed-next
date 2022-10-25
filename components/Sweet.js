@@ -105,7 +105,7 @@ const Sweet = () => {
                 <Box>
                   <Typography
                     sx={{
-                      fontFamily: "Mulish",
+                      fontFamily: "Manrope",
                       fontWeight: "regular",
                       fontSize: isMobile && "1rem",
                     }}

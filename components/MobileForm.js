@@ -133,10 +133,14 @@ const MobileForm = () => {
                   <TextField
                     variant="filled"
                     label="Nome"
+                    color="neutral"
                     required
+                    InputLabelProps={{
+                      style: { color: "#fff" },
+                    }}
                     sx={{
                       width: "200px",
-                      background: "white",
+                      // background: "white",
                       borderRadius: "5px",
                     }}
                     onChange={updateName}
@@ -147,11 +151,15 @@ const MobileForm = () => {
                   <TextField
                     variant="filled"
                     label="Contacto"
+                    color="neutral"
                     required
                     value={contact}
+                    InputLabelProps={{
+                      style: { color: "#fff" },
+                    }}
                     sx={{
                       width: "200px",
-                      background: "white",
+                      // background: "white",
                       borderRadius: "5px",
                     }}
                     onChange={updateContact}
@@ -176,7 +184,7 @@ const MobileForm = () => {
                         background: "black",
                       },
                       backgroundColor: choice === 1 ? "black" : "transparent",
-                      fontFamily: "Mulish",
+                      fontFamily: "Manrope",
                       fontWeight: "regular",
                       fontSize: isMobile && "0.8125rem",
                     }}
@@ -198,7 +206,7 @@ const MobileForm = () => {
                         background: "black",
                       },
                       backgroundColor: choice === 2 ? "black" : "transparent",
-                      fontFamily: "Mulish",
+                      fontFamily: "Manrope",
                       fontWeight: "regular",
                       fontSize: isMobile && "0.8125rem",
                     }}

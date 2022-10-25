@@ -62,116 +62,127 @@ const Especialidade = () => {
 
   return (
     <>
-      <Head>
-        <title>V-Promed Especialidades</title>
-        <meta name="description" content="V-Promed especialidades" />
-        <meta charset="UTF-8" />
-      </Head>
       {isLoading && <Loader />}
       {!isLoading && !hasError && (
-        <Container maxWidth="xxl">
-          <Grid container pt={isMobile ? 7 : isTablet ? 8 : 12} pb={5}>
-            {isMobile && (
+        <>
+          <Head>
+            <title>V-Promed Especialidades</title>
+            <meta name="description" content="V-Promed especialidades" />
+            <meta charset="UTF-8" />
+            <meta
+              property="og:title"
+              content={`V-Promed | ${especialidadeInfo.NAME_SEO}`}
+            />
+            <meta
+              property="og:description"
+              content={JSON.parse(especialidadeInfo.CUSTOMCAMPS)?.title}
+            />
+            <meta property="og:image" content={desktopImg} />
+          </Head>
+          <Container maxWidth="xxl">
+            <Grid container pt={isMobile ? 7 : isTablet ? 8 : 12} pb={5}>
+              {isMobile && (
+                <Box
+                  sx={{
+                    zIndex: 0,
+                    position: "absolute",
+                    left: "calc(-50vw + 50%)",
+                  }}
+                >
+                  <img src={mobileImg} width="100%" alt="especialidade" />
+                </Box>
+              )}
               <Box
+                justifyContent="center"
+                display="flex"
+                flexDirection="column"
                 sx={{
-                  zIndex: 0,
-                  position: "absolute",
-                  left: "calc(-50vw + 50%)",
+                  zIndex: 1,
+                  width: "100%",
+                  height: !isMobile && "392px",
+                  position: "relative",
+                  backgroundImage: !isMobile && `url(${desktopImg})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                 }}
               >
-                <img src={mobileImg} width="100%" alt="especialidade" />
+                <Container maxWidth="xl">
+                  <Grid
+                    item
+                    xs={12}
+                    pt={1}
+                    pb={3}
+                    className="borderEspecialidade"
+                    display={!isMobile && "flex"}
+                    alignItems={!isMobile && "flex-end"}
+                  >
+                    <Typography
+                      variant={isMobile || isTablet ? "h5" : "h4"}
+                      style={{
+                        color: "white",
+                        textTransform: "uppercase",
+                        fontFamily: "Manrope, sans-serif",
+                      }}
+                    >
+                      Especialidades
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} pt={5} pb={5}>
+                    <Typography
+                      sx={{
+                        color: "white",
+                        textTransform: "uppercase",
+                        fontFamily: "Times New Roman",
+                        fontSize: "1.25rem",
+                      }}
+                    >
+                      {JSON.parse(especialidadeInfo.CUSTOMCAMPS)?.title}
+                    </Typography>
+                  </Grid>
+                </Container>
               </Box>
-            )}
-            <Box
-              justifyContent="center"
-              display="flex"
-              flexDirection="column"
-              sx={{
-                zIndex: 1,
-                width: "100%",
-                height: !isMobile && "392px",
-                position: "relative",
-                backgroundImage: !isMobile && `url(${desktopImg})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            >
               <Container maxWidth="xl">
                 <Grid
-                  item
-                  xs={12}
-                  pt={1}
-                  pb={3}
-                  className="borderEspecialidade"
-                  display={!isMobile && "flex"}
-                  alignItems={!isMobile && "flex-end"}
+                  container
+                  pt={isMobile ? 10 : 5}
+                  pb={5}
+                  sx={{ color: "white" }}
                 >
-                  <Typography
-                    variant={isMobile || isTablet ? "h5" : "h4"}
-                    style={{
-                      color: "white",
-                      textTransform: "uppercase",
-                      fontFamily: "Mulish, sans-serif",
-                    }}
-                  >
-                    Especialidades
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} pt={5} pb={5}>
-                  <Typography
-                    sx={{
-                      color: "white",
-                      textTransform: "uppercase",
-                      fontFamily: "Times New Roman",
-                      fontSize: "1.25rem",
-                    }}
-                  >
-                    {JSON.parse(especialidadeInfo.CUSTOMCAMPS)?.title}
-                  </Typography>
+                  <Grid item xs={12}>
+                    <Typography
+                      variant="h5"
+                      sx={{
+                        fontFamily: "Times New Roman",
+                        textTransform: "uppercase",
+                        fontSize: "2.25rem",
+                        color: "#CEC568",
+                      }}
+                    >
+                      {especialidadeInfo.NAME_SEO}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} pt={2}>
+                    <Typography
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(especialidadeInfo.TEXT_SEO),
+                      }}
+                      sx={{
+                        // whiteSpace: "pre-line",
+                        fontFamily: "Manrope",
+                        fontSize: "1.125rem",
+                      }}
+                    />
+                  </Grid>
                 </Grid>
               </Container>
-            </Box>
+            </Grid>
             <Container maxWidth="xl">
-              <Grid
-                container
-                pt={isMobile ? 10 : 5}
-                pb={5}
-                sx={{ color: "white" }}
-              >
-                <Grid item xs={12}>
-                  <Typography
-                    variant="h5"
-                    sx={{
-                      fontFamily: "Times New Roman",
-                      textTransform: "uppercase",
-                      fontSize: "2.25rem",
-                      color: "#CEC568",
-                    }}
-                  >
-                    {especialidadeInfo.NAME_SEO}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} pt={2}>
-                  <Typography
-                    dangerouslySetInnerHTML={{
-                      __html: DOMPurify.sanitize(especialidadeInfo.TEXT_SEO),
-                    }}
-                    sx={{
-                      // whiteSpace: "pre-line",
-                      fontFamily: "Mulish",
-                      fontSize: "1.125rem",
-                    }}
-                  />
-                </Grid>
-              </Grid>
+              {id != 3 ? <Sweet /> : <DentalSweet />}
             </Container>
-          </Grid>
-          <Container maxWidth="xl">
-            {id != 3 ? <Sweet /> : <DentalSweet />}
+            <Separator />
+            <Container maxWidth="xl">{!wait && <Form />}</Container>
           </Container>
-          <Separator />
-          <Container maxWidth="xl">{!wait && <Form />}</Container>
-        </Container>
+        </>
       )}
     </>
   );
