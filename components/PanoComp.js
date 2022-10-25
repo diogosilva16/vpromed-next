@@ -33,6 +33,7 @@ const PanoComp = () => {
     return espec?.map((item) => (
       <Link href={`/especialidade/${item.ARTICLE_ID}`}>
         <Box
+          key={item.ARTICLE_ID}
           textAlign="center"
           position="relative"
           onMouseOver={() => showCatNameOnHover(item.ARTICLE_ID)}
@@ -59,7 +60,7 @@ const PanoComp = () => {
       </Link>
     ));
   };
-  
+
   return (
     <>
       <Pannellum
@@ -91,7 +92,7 @@ const PanoComp = () => {
           flexDirection="column"
           justifyContent="space-evenly"
           alignItems="center"
-          sx={{cursor: "pointer"}}
+          sx={{ cursor: "pointer" }}
         >
           {especIsLoading && (
             <Box background="red">
